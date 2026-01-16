@@ -73,3 +73,39 @@ main {
   margin: 2rem auto;
   padding: 0 1.5rem;
 }
+
+/* Analytics navigation bar */
+.analytics-nav {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-bottom: 2px solid #78586F;
+}
+
+.analytics-nav-link {
+  color: #78586F;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+
+.analytics-nav-link:hover {
+  border-color: #58B09C;
+}
+
+/* Ordered list styling */
+ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+ol li {
+  margin: 0.5em 0;
+  padding-left: 0.5em;
+}
