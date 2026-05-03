@@ -73,3 +73,118 @@ main {
   margin: 2rem auto;
   padding: 0 1.5rem;
 }
+
+/* Analytics navigation bar */
+.analytics-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  border-bottom: 2px solid #78586F;
+}
+
+.analytics-nav-link {
+  color: #78586F;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  border: 2px solid transparent;
+}
+
+.analytics-nav-link:hover {
+  border-color: #58B09C;
+}
+
+/* Ordered list styling */
+ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+ol li {
+  margin: 0.5em 0;
+  padding-left: 0.5em;
+}
+
+/* Unordered lists in page content (not navbar) */
+main ul {
+  margin: 1em 0 1.5em;
+  padding-left: 3em;
+  list-style-position: outside;
+}
+
+main ul li {
+  margin: 0.5em 0;
+  padding-left: 0.75em;
+}
+
+/* Gold Plan draft table (analytics articles) */
+.gold-plan-table-wrapper {
+  overflow-x: auto;
+  margin: 1.75rem 0 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #c4b8c0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(1, 17, 10, 0.06);
+}
+
+.gold-plan-table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.gold-plan-table caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  color: #01110A;
+  padding: 1rem 1rem 0.75rem;
+  font-size: 1rem;
+  border-bottom: 2px solid #78586F;
+}
+
+.gold-plan-table thead th {
+  background: #78586F;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.gold-plan-table tbody td {
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid #e0d8dc;
+}
+
+.gold-plan-table tbody tr:nth-child(even) {
+  background: #f7f4f3;
+}
+
+.gold-plan-table tbody tr:hover {
+  background: #eef8f5;
+}
+
+.gold-plan-table td.num,
+.gold-plan-table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.gold-plan-table-wrapper .table-footnote {
+  display: block;
+  margin: 0;
+  padding: 0.75rem 1rem 1rem;
+  font-size: 0.85rem;
+  color: #444;
+  line-height: 1.45;
+  border-top: 1px solid #e0d8dc;
+  background: #faf9f8;
+}
