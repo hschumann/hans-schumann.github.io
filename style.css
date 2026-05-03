@@ -201,14 +201,3 @@ main ul li {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-
-.gold-plan-table-wrapper .table-footnote {
-  display: block;
-  margin: 0;
-  padding: 0.75rem 1rem 1rem;
-  font-size: 0.85rem;
-  color: #444;
-  line-height: 1.45;
-  border-top: 1px solid #e0d8dc;
-  background: #faf9f8;
-}
