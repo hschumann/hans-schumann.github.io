@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Third Quarter Success</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../index.html" class="logo" aria-label="Home">
+      <img src="../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../analytics/index.html">Analytics</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">NBA • coaching signal</div>
+    <h1>Third Quarter Success</h1>
+    <p class="muted">A quick test of the idea that teams who consistently outperform expectations in the third quarter may be better coached—and more dangerous in the playoffs.</p>
+    <div class="button-row">
+      <a class="btn" href="../analytics/index.html">Back to analytics</a>
+    </div>
+  </section>
+
+  <section class="section card stack">
+    <h2>Motivation</h2>
+    <p>Theory: Teams that overperform expectations in the third quarter demonstrate that they are well coached and can take control of a game in the second half. These teams will do well in the playoffs and have a better chance of winning a title.</p>
+    <p>Story: Growing up as a Warriors fan, things took off when Steve Kerr became the head coach in 2015. After halftime, the Warriors would come out and win the 3rd quarter by a large margin—whether it was coming back from 10+ down or turning a tie game into a 10+ point lead.</p>
+  </section>
+
+  <section class="section card stack">
+    <h2>Approach</h2>
+    <p>This led me to the following analysis. In Figure 1, the x-axis is point differential at halftime and the y-axis is point differential in the 3rd quarter for that game.</p>
+    <p>A line of best fit shows that a larger halftime margin (i.e. a lead) is intuitively associated with larger 3rd quarter success. For each point, we can compute a residual from the line—representing how much that team overperformed expectations.</p>
+    <img src="../images/3rd_quarter_success.png" alt="Scatter plot of 3rd quarter success vs halftime margin" />
+  </section>
+
+  <section class="section card stack">
+    <h2>Results</h2>
+    <p>Table 1 shows the sum of residuals for each team. Top teams are generally strong overall, but the more interesting takeaway is which teams look better in the 3rd quarter than their record suggests. I hypothesize these teams may be dark horses in the playoffs.</p>
+    <div style="text-align:center; margin: 1.25rem 0;">
+      <img src="../images/third_quarter_table_placeholder.png" alt="Table 1 Placeholder - 3rd Quarter Success by Team" style="max-width:100%; border:1px solid rgba(5,5,5,0.12); border-radius:12px;"/>
+      <div style="margin-top:0.65rem; color: rgba(5,5,5,0.72); font-size:0.95rem;">Table 1: Placeholder for 3rd Quarter Success Table (to be added)</div>
+    </div>
+
+    <h3>Teams to watch</h3>
+    <ol>
+      <li>Houston Rockets</li>
+      <li>Boston Celtics</li>
+      <li>Phoenix Suns</li>
+      <li>Portland Trail Blazers</li>
+    </ol>
+  </section>
+
+</main>
+
+</body>
+</html>
