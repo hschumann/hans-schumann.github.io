@@ -4,32 +4,59 @@
   <meta charset="UTF-8" />
   <title>Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <header class="navbar">
-  <nav class="nav-container">
-    <a href="index.html" class="logo">Hans Schumann</a>
+  <nav class="nav-container container">
+    <a href="index.html" class="logo" aria-label="Home">
+      <img src="images/logo.png" alt="Hans Schumann logo" />
+    </a>
     <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="analytics.html">Analytics</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="index.html" aria-current="page">Home</a></li>
+      <li><a href="analytics/index.html">Analytics</a></li>
+      <li><a href="contact/index.html">Contact</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <h1>Home</h1>
-  <p>My name is Hans Schumann. I am a Data Scientist with a fascination for using data to make discoveries and
-    better understand the world. In high school, I read Moneyball and my love for statistics and data science only
-    grew from there.</p>
+<main class="container">
+  <section class="hero">
+    <h1>Hello, I&rsquo;m Hans Schumann.</h1>
+    <p class="muted">I&rsquo;m a Data Scientist with a fascination for using data to make discoveries and better understand the world.</p>
+    <div class="button-row">
+      <a class="btn primary" href="analytics/index.html">Read analytics</a>
+      <a class="btn" href="contact/index.html">Get in touch</a>
+    </div>
+  </section>
 
-  <p>I pursued a degree in Statistics and Data Science from Cal Poly, San Luis Obispo, and have since worked at
-    Unanimous AI and KaChan Research. Some of this work has led me to use do analysis on Sports Data.</p>
+  <section class="section home-grid">
+    <aside class="card home-photo">
+      <img src="images/hans_pic.jpeg" alt="Photo of Hans Schumann" />
+    </aside>
 
-  <p>This page will contain research that I find interesting and want to share with anyone else who is curious.
-    I hope you enjoy reading!</p>
+    <article class="card home-content">
+      <div class="subsection stack">
+        <h2>About</h2>
+        <p>I was born and raised in the East Bay Area, as a fan of all Oakland sports franchises. This fandom led me 
+          to read <em>Moneyball</em> and spark my passion for statistics and the larger field of data science.</p>
+      </div>
+
+      <div class="subsection stack">
+        <h3>Background</h3>
+        <p>I pursued a degree in Statistics and Data Science from Cal Poly, San Luis Obispo, and have since worked at  
+          Unanimous AI and KaChan Research. In these roles, I have done research in Large Language Models, Collective Intelligence, 
+          Sports Statistics, and more.</p>
+      </div>
+
+      <div class="subsection stack">
+        <h3>What you&rsquo;ll find here</h3>
+        <p>This page contains research into additional topicsthat I find interesting and want to share with anyone  
+          who is curious. I hope you enjoy reading them as much as I enjoyed writing them.</p>
+      </div>
+    </article>
+  </section>
 </main>
 
 </body>
