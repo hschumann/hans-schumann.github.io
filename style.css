@@ -1,128 +1,403 @@
-body {
-  font-family: system-ui, sans-serif;
-  max-width: 700px;
-  margin: 4rem auto;
-  line-height: 1.6;
-  background-color: #EAE6E5;
-  color: #01110A;
+/* ---------- Theme (your palette) ---------- */
+:root {
+  --black: #050505;
+  --primary: #734b5e;
+  --primary-2: #5f3e4d;
+  --white: #ffffff;
+  --accent: #808f87;
+
+  /* UI neutrals derived from palette */
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f6f7fb;
+  --text: #050505;
+  --muted: rgba(5, 5, 5, 0.72);
+  --border: rgba(5, 5, 5, 0.12);
+
+  --radius: 14px;
+  --shadow: 0 14px 40px rgba(5, 5, 5, 0.08);
+
+  /* Page gradient (single, top-to-bottom) */
+  --page-grad-start: color-mix(in oklab, var(--primary) 14%, white);
+  --page-grad-end: #ffffff;
 }
 
-p {
-  margin-bottom: 1.5em;
-  line-height: 1.5;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c0c10;
+    --surface: #12121a;
+    --surface-2: #0f0f15;
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.72);
+    --border: rgba(255, 255, 255, 0.12);
+    --shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+
+    --page-grad-start: color-mix(in oklab, var(--primary) 22%, black);
+    --page-grad-end: #0c0c10;
+  }
 }
 
-/* Reset some defaults */
+/* ---------- Reset ---------- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Navbar */
+html {
+  color-scheme: light dark;
+  min-height: 100%;
+  background: linear-gradient(180deg, var(--page-grad-start) 0%, var(--page-grad-end) 70%);
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  min-height: 100%;
+  background: transparent;
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) - 6px);
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Layout ---------- */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+main {
+  padding: 2.25rem 0 3.25rem;
+}
+
+.section {
+  margin-top: 2rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
+.stack > * + * {
+  margin-top: 1rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Contact ---------- */
+.contact-items {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.contact-item {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 6px);
+  background: color-mix(in oklab, var(--primary) 14%, transparent);
+}
+
+.contact-label {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.contact-value {
+  min-width: 0;
+  color: var(--text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-value:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .contact-item {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    align-items: start;
+  }
+}
+
+/* ---------- Typography ---------- */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: clamp(1.85rem, 2.8vw, 2.35rem);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  margin-top: 1.25rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  line-height: 1.3;
+  margin-top: 1rem;
+}
+
+p {
+  color: var(--muted);
+}
+
+/* ---------- Navbar ---------- */
 .navbar {
-  background-color: #78586F;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    background: var(--bg);
+  }
 }
 
 .nav-container {
-  width: 100%;
-  margin: 0;
-  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.9rem 0;
 }
 
-/* Logo */
 .logo {
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 600;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  margin-left: 0.25rem;
+}
+
+.logo img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
+@media (max-width: 560px) {
+  .logo img {
+    height: 40px;
+  }
+}
+
+.logo:hover {
   text-decoration: none;
 }
 
-/* Links */
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .nav-links a {
-  color: #ffffff;
+  color: var(--text);
+  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
   text-decoration: none;
-  font-size: 1rem;
-  padding: 0.25rem 0;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease;
 }
 
 .nav-links a:hover {
-  border-bottom: 2px solid #e0c8ff;
+  text-decoration: none;
+  border-color: var(--border);
+  background: color-mix(in oklab, var(--primary) 16%, transparent);
 }
 
-/* Page content spacing */
-main {
-  max-width: 1100px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
+.nav-links a[aria-current="page"] {
+  background: color-mix(in oklab, var(--primary) 24%, transparent);
+  border-color: color-mix(in oklab, var(--primary) 40%, transparent);
 }
 
-/* Headings (global * reset removes browser default margins) */
-main h1 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin: 0 0 1rem;
-  line-height: 1.25;
+@media (max-width: 560px) {
+  .nav-container {
+    gap: 0.5rem;
+  }
+  .nav-links {
+    gap: 0.25rem;
+  }
+  .nav-links a {
+    padding: 0.45rem 0.55rem;
+  }
 }
 
-main h2 {
-  font-size: 1.35rem;
-  font-weight: 600;
-  margin: 2rem 0 0.75rem;
-  line-height: 1.3;
-  color: #3d2c38;
+/* ---------- Hero ---------- */
+.hero {
+  padding: 1.35rem 0 0.25rem;
 }
 
-main h3 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 1.25rem 0 0.5rem;
-  line-height: 1.35;
-  color: #3d2c38;
+.hero .kicker {
+  display: none;
 }
 
-/* Analytics navigation bar */
+.button-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 650;
+  font-size: 0.95rem;
+  padding: 0.6rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+  border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+  box-shadow: 0 10px 28px color-mix(in oklab, var(--primary) 22%, transparent);
+  transform: translateY(-1px);
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: var(--white);
+  border-color: color-mix(in oklab, var(--primary) 70%, transparent);
+}
+
+.btn.primary:hover {
+  border-color: color-mix(in oklab, var(--primary) 92%, transparent);
+}
+
+/* ---------- Home layout ---------- */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  grid-template-areas: "content photo";
+  gap: 1.25rem;
+  align-items: start;
+  margin-top: 1.25rem;
+}
+
+.home-photo {
+  grid-area: photo;
+  padding: 0.75rem;
+  position: sticky;
+  top: 84px;
+}
+
+.home-photo img {
+  width: 100%;
+  border-radius: calc(var(--radius) - 6px);
+  display: block;
+}
+
+.home-content {
+  grid-area: content;
+  padding: 1.25rem;
+}
+
+.home-content h2 {
+  margin-top: 0;
+}
+
+.home-content .subsection + .subsection {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.home-content p {
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .home-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "content"
+      "photo";
+  }
+  .home-photo {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* ---------- Analytics page nav ---------- */
 .analytics-nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: 2rem 0;
-  padding: 1rem 0;
-  border-bottom: 2px solid #78586F;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin: 1.75rem 0;
 }
 
 .analytics-nav-link {
-  color: #78586F;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--text);
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-  background-color: transparent;
-  border: 2px solid transparent;
+  font-weight: 650;
+  padding: 0.75rem 0.95rem;
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 18%, transparent), transparent);
+  width: 100%;
 }
 
 .analytics-nav-link:hover {
-  border-color: #58B09C;
+  text-decoration: none;
+  border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+  box-shadow: 0 10px 28px rgba(5, 5, 5, 0.08);
 }
+
+/* Analytics navigation bar */
+/* (legacy selector kept above, styling updated) */
 
 /* Ordered list styling */
 ol {
@@ -151,10 +426,10 @@ main ul li {
 .gold-plan-table-wrapper {
   overflow-x: auto;
   margin: 1.75rem 0 2.5rem;
-  border-radius: 8px;
-  border: 1px solid #c4b8c0;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(1, 17, 10, 0.06);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .gold-plan-table {
@@ -168,15 +443,15 @@ main ul li {
   caption-side: top;
   text-align: left;
   font-weight: 600;
-  color: #01110A;
+  color: var(--text);
   padding: 1rem 1rem 0.75rem;
   font-size: 1rem;
-  border-bottom: 2px solid #78586F;
+  border-bottom: 1px solid var(--border);
 }
 
 .gold-plan-table thead th {
-  background: #78586F;
-  color: #fff;
+  background: linear-gradient(135deg, var(--primary), #5250d6);
+  color: var(--white);
   font-weight: 600;
   padding: 0.65rem 0.85rem;
   text-align: left;
@@ -185,15 +460,15 @@ main ul li {
 
 .gold-plan-table tbody td {
   padding: 0.55rem 0.85rem;
-  border-bottom: 1px solid #e0d8dc;
+  border-bottom: 1px solid var(--border);
 }
 
 .gold-plan-table tbody tr:nth-child(even) {
-  background: #f7f4f3;
+  background: rgba(102, 101, 221, 0.06);
 }
 
 .gold-plan-table tbody tr:hover {
-  background: #eef8f5;
+  background: rgba(128, 143, 135, 0.14);
 }
 
 .gold-plan-table td.num,
