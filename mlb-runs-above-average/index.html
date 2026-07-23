@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Who&rsquo;s Creating Value at the Plate? MLB Runs Above Average, 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../index.html" class="logo" aria-label="Home">
+      <img src="../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../analytics/index.html">Analytics</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">MLB &bull; offense &bull; 2026</div>
+    <h1>Who&rsquo;s Creating Value at the Plate?</h1>
+    <p class="muted">A breakdown of which hitters are not just driving in runs, but setting up better situations&mdash;using a two-part runs above average framework built from Statcast data.</p>
+    <div class="button-row">
+      <a class="btn" href="../analytics/index.html">Back to analytics</a>
+    </div>
+  </section>
+
+  <section class="section card stack">
+
+    <h2>Two Ways to Add Value</h2>
+
+    <p>Most offensive metrics focus on what a batter <em>produces</em>: hits, home runs, RBI. But a plate appearance does more than just score or not score runs in that moment. It also reshapes the situation the next batter inherits. A well-placed single with nobody on is worth more than a single with runners already in scoring position, even if both show up identically in a box score.</p>
+
+    <p>To capture both sides of this, I built a framework using Statcast play-by-play data that separates a batter&rsquo;s contribution into two components:</p>
+
+    <ul>
+      <li><strong>Runs Above Average (RAA):</strong> How many runs actually scored on this plate appearance, relative to the average for that base-out state. If the bases are loaded with nobody out, teams score an average of about 0.28 runs on a given plate appearance. A grand slam scores 4, so that&rsquo;s +3.72. A strikeout scores 0, so that&rsquo;s &minus;0.28.</li>
+      <li><strong>Run Expectancy Added (RE Added):</strong> How much did the batter change the situation for the hitters that follow? This measures the shift in expected future run value. A batter who turns a runner-on-first situation into a runners-on-first-and-second situation has improved the environment, even if no run scored on their plate appearance.</li>
+    </ul>
+
+    <p>Adding these together gives a single number&mdash;<strong>Total Value</strong>&mdash;that captures the full offensive contribution of a plate appearance. Across a season, it tells you which hitters are consistently doing the most to help their team score.</p>
+
+    <h2>How the Run Expectancy Matrix Works</h2>
+
+    <p>There are 24 possible base-out states in baseball: eight combinations of which bases are occupied (empty, runner on first, first and second, and so on) times three out counts. For each of those 24 states, I calculated the average number of runs that score on a plate appearance starting in that state, using every plate appearance in the 2026 season through mid-July.</p>
+
+    <p>This creates a baseline. When a batter steps to the plate with one out and a runner on first, history tells us what the average outcome looks like in terms of runs scored and state change. Anything above that average is value added. Anything below is value lost.</p>
+
+    <p>This approach differs slightly from traditional RE24, which looks at runs scored for the rest of the inning rather than on the plate appearance itself. By focusing on the individual plate appearance, the two components stay cleanly separated and easier to interpret.</p>
+
+    <h2>2026 Leaderboard (through July 21, minimum 100 PA)</h2>
+
+    <p>The table below ranks hitters by Total Value&mdash;the sum of RAA and RE Added. All figures are cumulative through July 21, 2026.</p>
+
+    <div class="gold-plan-table-wrapper">
+      <table class="gold-plan-table">
+        <caption>MLB plate appearance value leaders, 2026 season (min. 100 PA, through July 21)</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="num">Rank</th>
+            <th scope="col">Player</th>
+            <th scope="col">Team</th>
+            <th scope="col" class="num">PA</th>
+            <th scope="col" class="num">RAA</th>
+            <th scope="col" class="num">RE Added</th>
+            <th scope="col" class="num">Total Value</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- TABLE_START -->
+        <!-- TABLE_END -->
+        </tbody>
+      </table>
+    </div>
+
+    <h2>What the Numbers Tell Us</h2>
+
+    <p>The split between RAA and RE Added is where this framework gets interesting. Some hitters rank highly on Total Value primarily because they drive in runs at an above-average clip&mdash;their RAA is the dominant term. Others carry much of their value through situation-setting: they get on base, advance runners, and leave the lineup in a consistently better state than they found it, even when the scoreboard doesn&rsquo;t always reflect it immediately.</p>
+
+    <p>Neither profile is inherently better&mdash;both contribute to winning. But understanding which type of hitter you have matters for lineup construction and roster evaluation.</p>
+
+    <h2>Methodology Notes</h2>
+
+    <p>All data is drawn from Baseball Savant via the <code>pybaseball</code> library. The run expectancy baselines are calculated from 2026 season data only, rather than multi-year averages, so they reflect current league conditions. Plate appearances from the designated hitter slot and pitcher hitting are both included. The team shown reflects each player&rsquo;s most recent team, which accounts for mid-season trades.</p>
+
+  </section>
+</main>
+
+</body>
+</html>
