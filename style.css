@@ -476,3 +476,101 @@ main ul li {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+
+/* NFL ATS picks table */
+.ats-table-wrapper {
+  max-width: 28rem;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.ats-table {
+  width: 100%;
+  min-width: 0;
+  font-size: 0.82rem;
+}
+
+.ats-table caption {
+  font-size: 0.88rem;
+  padding: 0.75rem 0.85rem 0.55rem;
+}
+
+.ats-table thead th {
+  padding: 0.45rem 0.65rem;
+}
+
+.ats-table tbody td {
+  padding: 0.35rem 0.65rem;
+}
+
+.ats-table th:first-child,
+.ats-table td:first-child {
+  width: 3rem;
+}
+
+.ats-table th:last-child,
+.ats-table td:last-child {
+  width: 6.75rem;
+  min-width: 6.75rem;
+  white-space: nowrap;
+}
+
+.ats-table tbody tr:nth-child(even):not(.ats-record-row) {
+  background: color-mix(in oklab, var(--primary) 6%, transparent);
+}
+
+.ats-table tbody tr:hover:not(.ats-record-row) {
+  background: color-mix(in oklab, var(--primary) 12%, transparent);
+}
+
+.ats-record-row {
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+  border-top: 1px solid var(--border);
+}
+
+.ats-record-row:hover {
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+}
+
+.ats-record-label {
+  text-align: right;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+.ats-record-value {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.ats-win {
+  color: #1a7f37;
+  font-weight: 700;
+}
+
+.ats-loss {
+  color: #cf222e;
+  font-weight: 700;
+}
+
+.ats-push {
+  color: #9a6700;
+  font-weight: 700;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ats-win {
+    color: #3fb950;
+  }
+
+  .ats-loss {
+    color: #f85149;
+  }
+
+  .ats-push {
+    color: #d29922;
+  }
+}

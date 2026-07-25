@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Betting Against the Public: NFL Teams ATS, 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../index.html" class="logo" aria-label="Home">
+      <img src="../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../analytics/index.html">Analytics</a></li>
+      <li><a href="../contact/index.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">NFL &bull; betting &bull; 2025</div>
+    <h1>Betting Against the Public</h1>
+    <p class="muted">Testing whether the public overreacts to prior-week results against the spread&mdash;and whether that creates a repeatable edge in NFL betting.</p>
+    <div class="button-row">
+      <a class="btn" href="../analytics/index.html">Back to analytics</a>
+    </div>
+  </section>
+
+  <section class="section card stack">
+
+    <h2>The Theory</h2>
+
+    <p>One of the most common ideas in sports gambling is the distinction between &ldquo;public&rdquo; bets and &ldquo;sharp&rdquo; bets. Casual fans and recreational gamblers tend to bet differently from professionals who rely on advanced mathematical models.</p>
+
+    <p>With the growing prevalence of sports gambling, the split between sharps and the public has become even more apparent. The most popular sport to gamble on in the U.S. is the NFL, which is our area of focus.</p>
+
+    <h2>Testing the Overreaction Hypothesis</h2>
+
+    <p>Last season (2025), I decided to test my theory that the public overreacts to prior weeks&rsquo; results. Week to week, I tracked each team&rsquo;s margin against the spread. For example, if the Houston Texans were 3.5-point favorites and lost by 7 points, they lost against the spread by 10.5 points. If the Washington Commanders were 4.5-point underdogs but won by 4 points, they beat the spread by 8.5 points.</p>
+
+    <p>Using results relative to the spread, we can compute a difference for each game in an upcoming week, starting with Week 2. Consider the Texans and Commanders outcomes above. In a matchup between them the following week, the difference in their prior outcomes would be 19 points (|&minus;10.5 &minus; 8.5| = 19).</p>
+
+    <p>A gap that large, according to my theory, would make the Texans a solid bet that week. Casual fans would have seen the Texans&rsquo; Week 1 underperformance and undervalued them, while doing the opposite for the Commanders&mdash;all while professional models weigh long-run averages and other factors to determine each team&rsquo;s true value for the upcoming matchup.</p>
+
+    <h2>Two Heuristics</h2>
+
+    <p>Using this theory, I set up two heuristics for a model that tries to exploit the public&rsquo;s overreaction:</p>
+
+    <ol>
+      <li><strong>Opposite outcomes:</strong> If two teams had opposite outcomes against the spread in the prior week, bet the team that lost against the spread.</li>
+      <li><strong>Largest differences:</strong> Take the absolute value of the difference in prior-week ATS outcomes for each matchup and select the five largest. It is naive to assume every spread is mispriced, but assuming roughly one-third may be mispriced is reasonable&mdash;so focusing on the top five differences gives a workable subset to consider.</li>
+    </ol>
+
+    <h2>2025 Results</h2>
+
+    <p>There is substantial overlap between the games flagged by each heuristic. First, the results on their own:</p>
+
+    <ul>
+      <li><strong>Opposite outcomes:</strong> Correct <em>X</em>% of the time (<em>X</em> out of <em>X</em> games, <em>p</em> = ___).</li>
+      <li><strong>Largest difference:</strong> Correct <em>X</em>% of the time (<em>X</em> out of <em>X</em> games, <em>p</em> = ___).</li>
+    </ul>
+
+    <p>Both results are strong&mdash;close to statistically significantly better than the 52.4% win rate needed to break even at &minus;110 odds.</p>
+
+    <p>The real power comes when we combine the two. When a game satisfied both conditions, bets were correct <em>X</em>% of the time (<em>X</em> out of <em>X</em> games, <em>p</em> = ___). Assuming an average price of &minus;110 on each bet, a $25 wager on every qualifying game would have returned +$__ in profit by the end of the regular season.</p>
+
+    <p class="muted">All results cover the regular season only, Weeks 2 through 18.</p>
+
+    <h2>2025 Picks</h2>
+
+    <p>Below is a table of all picks made during the 2025 season.</p>
+
+    <div class="gold-plan-table-wrapper ats-table-wrapper">
+      <table class="gold-plan-table ats-table">
+        <caption>NFL ATS picks, 2025 regular season (Weeks 2&ndash;18) &mdash; games where both heuristics agreed</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="num">Week</th>
+            <th scope="col">Bet</th>
+            <th scope="col" class="num">Bet Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">2</td><td><span class="ats-win">NYG +5.5 (v DAL)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">2</td><td><span class="ats-win">@CIN -3.5 (v JAX)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">2</td><td><span class="ats-win">CAR +7 (v ARI)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 2</td><td class="num ats-record-value">3&ndash;0 (100%)</td></tr>
+          <tr><td class="num">3</td><td><span class="ats-win">MIA +12.5 (v BUF)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">3</td><td><span class="ats-win">@MIN -3 (v CIN)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">3</td><td><span class="ats-win">PIT -1.5 (v NE)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">3</td><td><span class="ats-loss">NO +7 (v SEA)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 3</td><td class="num ats-record-value">6&ndash;1 (86%)</td></tr>
+          <tr><td class="num">4</td><td><span class="ats-win">@ATL +1.5 (v WSH)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">4</td><td><span class="ats-win">@NE -5.5 (v CAR)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">4</td><td><span class="ats-loss">@LV -1.5 (v CHI)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 4</td><td class="num ats-record-value">8&ndash;2 (80%)</td></tr>
+          <tr><td class="num">5</td><td><span class="ats-win">@CAR +1.5 (v MIA)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">5</td><td><span class="ats-loss">@BAL +1.5 (v HOU)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">5</td><td><span class="ats-loss">@CIN +10.5 (v DET)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">5</td><td><span class="ats-loss">@BUF -8.5 (v NE)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 5</td><td class="num ats-record-value">9&ndash;5 (64%)</td></tr>
+          <tr><td class="num">6</td><td><span class="ats-win">@NYJ +7.5 (v DEN)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">6</td><td><span class="ats-win">ARI +7 (v IND)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">6</td><td><span class="ats-win">@LV -3.5 (v TEN)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">6</td><td><span class="ats-loss">BUF -4.5 (v ATL)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 6</td><td class="num ats-record-value">12&ndash;6 (67%)</td></tr>
+          <tr><td class="num">7</td><td><span class="ats-loss">@DEN -7 (v NYG)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">7</td><td><span class="ats-win">@SF -3 (v ATL)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">7</td><td><span class="ats-win">@DET -4.5 (v TB)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 7</td><td class="num ats-record-value">14&ndash;7 (67%)</td></tr>
+          <tr><td class="num">8</td><td><span class="ats-win">BUF -7.5 (v CAR)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">8</td><td><span class="ats-loss">TEN +14 (v IND)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">8</td><td><span class="ats-win">@DEN -3 (v DAL)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">8</td><td><span class="ats-loss">WSH +10.5 (v KC)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 8</td><td class="num ats-record-value">16&ndash;9 (64%)</td></tr>
+          <tr><td class="num">9</td><td><span class="ats-win">@TEN +10 (v LAC)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">9</td><td><span class="ats-win">MIN +8.5 (v DET)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">9</td><td><span class="ats-win">ATL +5.5 (v NE)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">9</td><td><span class="ats-win">CAR +12.5 (v GB)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">9</td><td><span class="ats-loss">NO +13.5 (v LAR)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 9</td><td class="num ats-record-value">20&ndash;10 (67%)</td></tr>
+          <tr><td class="num">10</td><td><span class="ats-loss">CLE -2.5 (v NYJ)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">10</td><td><span class="ats-win">NO +5.5 (v CAR)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">10</td><td><span class="ats-win">NE +2.5 (v TB)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">10</td><td><span class="ats-win">@MIA +9.5 (v BUF)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">10</td><td><span class="ats-loss">@GB -2.5 (v PHI)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 10</td><td class="num ats-record-value">23&ndash;12 (66%)</td></tr>
+          <tr><td class="num">11</td><td><span class="ats-loss">WAS +2.5 (v MIA)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">11</td><td><span class="ats-win">CAR +3.5 (v ATL)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">11</td><td><span class="ats-win">@JAX +2.5 (v LAC)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">11</td><td><span class="ats-win">DAL -3 (v LV)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 11</td><td class="num ats-record-value">26&ndash;13 (67%)</td></tr>
+          <tr><td class="num">12</td><td><span class="ats-win">@CIN +7 (v NE)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">12</td><td><span class="ats-loss">@LV -3 (v CLE)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">12</td><td><span class="ats-loss">@ARI +2.5 (v JAX)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">12</td><td><span class="ats-win">ATL +1.5 (v NO)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 12</td><td class="num ats-record-value">28&ndash;15 (65%)</td></tr>
+          <tr><td class="num">13</td><td><span class="ats-win">NO +6 (v MIA)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">13</td><td><span class="ats-win">@CAR +10.5 (v LAR)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">13</td><td><span class="ats-push">@TB -3 (v ARI)</span></td><td class="num"><span class="ats-push">P</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 13</td><td class="num ats-record-value">30&ndash;15&ndash;1 (67%)</td></tr>
+          <tr><td class="num">14</td><td><span class="ats-win">@DET -3 (v DAL)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">14</td><td><span class="ats-loss">@ATL +7.5 (v SEA)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">14</td><td><span class="ats-loss">IND -1.5 (v JAX)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">14</td><td><span class="ats-win">@MIN +1.5 (v WSH)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">14</td><td><span class="ats-loss">PHI -3 (v LAC)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 14</td><td class="num ats-record-value">32&ndash;18&ndash;1 (64%)</td></tr>
+          <tr><td class="num">15</td><td><span class="ats-loss">ARI +9.5 (v HOU)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">15</td><td><span class="ats-loss">@KC -4.5 (v LAC)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">15</td><td><span class="ats-loss">NYJ +12.5 (v JAX)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">15</td><td><span class="ats-win">IND +11.5 (v SEA)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">15</td><td><span class="ats-loss">@DAL -6 (v MIN)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 15</td><td class="num ats-record-value">33&ndash;22&ndash;1 (60%)</td></tr>
+          <tr><td class="num">16</td><td><span class="ats-loss">GB -1.5 (v CHI)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">16</td><td><span class="ats-loss">NYG +2.5 (v MIN)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">16</td><td><span class="ats-win">NE +2.5 (v BAL)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">16</td><td><span class="ats-win">@CLE +10 (v BUF)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">16</td><td><span class="ats-win">LV +14.5 (v HOU)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 16</td><td class="num ats-record-value">36&ndash;24&ndash;1 (60%)</td></tr>
+          <tr><td class="num">17</td><td><span class="ats-win">HOU +1.5 (v LAC)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">17</td><td><span class="ats-loss">@NYJ +12.5 (v NE)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">17</td><td><span class="ats-loss">ARI +7 (v CIN)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">17</td><td><span class="ats-win">@IND +6.5 (v JAX)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 17</td><td class="num ats-record-value">38&ndash;26&ndash;1 (59%)</td></tr>
+          <tr><td class="num">18</td><td><span class="ats-loss">DAL -5.5 (v NYG)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">18</td><td><span class="ats-loss">GB +6.5 (v MIN)</span></td><td class="num"><span class="ats-loss">L</span></td></tr>
+          <tr><td class="num">18</td><td><span class="ats-win">@PIT +3.5 (v BAL)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr><td class="num">18</td><td><span class="ats-win">@LV +5.5 (v KC)</span></td><td class="num"><span class="ats-win">W</span></td></tr>
+          <tr class="ats-record-row"><td colspan="2" class="ats-record-label">Season record through Week 18</td><td class="num ats-record-value">40&ndash;28&ndash;1 (59%)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Looking Ahead to 2026</h2>
+
+    <p>Looking ahead to the 2026 season, I will post bets on this site. Follow along to see whether the theory holds up for another year.</p>
+
+  </section>
+</main>
+
+</body>
+</html>
