@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NFL Probabilities</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../../index.html" class="logo" aria-label="Home">
+      <img src="../../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../analytics/index.html">Analytics</a></li>
+      <li><a href="../index.html">Prediction Games</a></li>
+      <li><a href="../../contact/index.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">NFL &bull; prediction game</div>
+    <h1>NFL Probabilities</h1>
+    <p class="muted">Playing as <strong id="username-display"></strong>.</p>
+    <p class="muted" id="week-heading">Forecast win probabilities for <strong id="week-label"></strong>.</p>
+    <div class="button-row">
+      <a class="btn" href="index.html">Switch user</a>
+      <a class="btn" href="../index.html">Back to prediction games</a>
+    </div>
+  </section>
+
+  <section class="section stack">
+    <p id="game-status" class="game-status" hidden></p>
+
+    <div id="games-list" class="prob-games-list" aria-live="polite"></div>
+
+    <div class="section card stack prob-submit-card">
+      <p class="muted">Drag each slider toward the team you think will win. Percentages always sum to 100%. Points are shown for the team with the higher probability.</p>
+      <div class="form-actions">
+        <button class="btn primary" type="button" id="submit-predictions" disabled>Submit predictions</button>
+      </div>
+      <p id="submit-status" class="submit-status" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="play.js"></script>
+
+</body>
+</html>

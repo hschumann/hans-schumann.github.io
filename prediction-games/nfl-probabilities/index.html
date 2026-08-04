@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NFL Probabilities</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../../index.html" class="logo" aria-label="Home">
+      <img src="../../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Home</a></li>
+      <li><a href="../../analytics/index.html">Analytics</a></li>
+      <li><a href="../index.html">Prediction Games</a></li>
+      <li><a href="../../contact/index.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">NFL &bull; prediction game</div>
+    <h1>NFL Probabilities</h1>
+    <p class="muted">Enter a username to start playing.</p>
+    <div class="button-row">
+      <a class="btn" href="../index.html">Back to prediction games</a>
+    </div>
+  </section>
+
+  <section class="section card stack">
+    <form id="username-form" class="stack" novalidate>
+      <div class="form-field">
+        <label class="form-label" for="username">Username</label>
+        <input
+          class="form-input"
+          type="text"
+          id="username"
+          name="username"
+          autocomplete="username"
+          maxlength="32"
+          placeholder="Your name"
+          required
+        />
+      </div>
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Continue</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script>
+  document.getElementById("username-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const input = document.getElementById("username");
+    const username = input.value.trim();
+
+    if (!username) {
+      input.focus();
+      return;
+    }
+
+    sessionStorage.setItem("nfl-probabilities-username", username);
+    window.location.href = "play.html?user=" + encodeURIComponent(username);
+  });
+</script>
+
+</body>
+</html>

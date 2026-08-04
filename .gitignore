@@ -1,0 +1,4 @@
+.DS_Store
+**/node_modules/
+**/.cache/
+prediction-games/nfl-probabilities/cloudflare-worker/.wrangler/
