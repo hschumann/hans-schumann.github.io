@@ -1,0 +1,10 @@
+name = "nfl-probabilities-api"
+main = "src/index.js"
+compatibility_date = "2026-08-03"
+
+# Secrets (set via CLI — never commit these):
+#   npx wrangler secret put APPS_SCRIPT_URL
+#   npx wrangler secret put APPS_SCRIPT_TOKEN
+#
+# APPS_SCRIPT_URL   = https://script.google.com/macros/s/AKfycbynMWAn-_5i0vmg-gwLYC9S_U4mItEdNx3wwvLpmghKDQanHFvXxu1_nuVmvr26H4CF/exec
+# APPS_SCRIPT_TOKEN = rjnaCRvi842uKVn2avri23ua
