@@ -108,6 +108,43 @@ main {
   color: var(--muted);
 }
 
+/* ---------- Forms ---------- */
+.form-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-weight: 650;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 6px);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 18%, transparent);
+}
+
+.form-actions {
+  margin-top: 0.25rem;
+}
+
+button.btn {
+  cursor: pointer;
+  font-family: inherit;
+}
+
 /* ---------- Contact ---------- */
 .contact-items {
   display: grid;
@@ -592,5 +629,121 @@ main ul li {
 
   .ats-push {
     color: #d29922;
+  }
+}
+
+/* ---------- NFL Probabilities game ---------- */
+.prob-games-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.prob-game-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.1rem 1.25rem;
+}
+
+.prob-matchup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.prob-team {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.prob-at {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.prob-slider-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.prob-slider-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.prob-slider-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.prob-slider {
+  width: 100%;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.prob-complement {
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+}
+
+.prob-complement strong {
+  color: var(--text);
+}
+
+.prob-submit-card {
+  margin-top: 0.25rem;
+}
+
+.game-status {
+  padding: 0.85rem 1rem;
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--primary) 10%, transparent);
+  color: var(--text);
+}
+
+.game-status-error {
+  border-color: color-mix(in oklab, #cf222e 35%, transparent);
+  background: color-mix(in oklab, #cf222e 8%, transparent);
+}
+
+.game-status-empty,
+.game-status-setup {
+  color: var(--muted);
+}
+
+.submit-status {
+  min-height: 1.25rem;
+  font-size: 0.92rem;
+}
+
+.submit-status-success {
+  color: #1a7f37;
+  font-weight: 600;
+}
+
+.submit-status-error {
+  color: #cf222e;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .submit-status-success {
+    color: #3fb950;
+  }
+
+  .submit-status-error {
+    color: #f85149;
   }
 }
