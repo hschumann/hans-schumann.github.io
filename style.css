@@ -398,11 +398,21 @@ p {
 
 @media (min-width: 761px) {
   .nav-menu-toggle {
-    display: none;
+    display: none !important;
   }
 
-  .nav-menu .nav-links {
-    display: flex;
+  /* Closed <details> hides non-summary children by default — force links visible on desktop. */
+  details.nav-menu > .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
 }
 
