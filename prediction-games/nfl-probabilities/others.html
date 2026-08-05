@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Others&rsquo; Predictions — NFL Probabilities</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../../index.html" class="logo" aria-label="Home">
+      <img src="../../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <details class="nav-menu">
+      <summary class="nav-menu-toggle" aria-label="Menu">
+        <span class="nav-menu-label">Menu</span>
+        <span class="nav-menu-icon" aria-hidden="true"></span>
+      </summary>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../analytics/index.html">Analytics</a></li>
+        <li><a href="../index.html">Prediction Games</a></li>
+        <li><a href="../../contact/index.html">Contact</a></li>
+      </ul>
+    </details>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">NFL &bull; prediction game</div>
+    <h1>Others&rsquo; Predictions</h1>
+    <p class="muted">Each cell shows who that player favored and at what probability for <strong id="week-label">this week</strong>.</p>
+    <div class="button-row">
+      <a class="btn primary" id="link-leaderboard" href="leaderboard.html">Leaderboard</a>
+      <a class="btn" id="link-home" href="index.html">Back</a>
+      <a class="btn" id="link-play" href="play.html">Edit my predictions</a>
+    </div>
+  </section>
+
+  <section class="section stack">
+    <p id="others-status" class="game-status" hidden></p>
+    <div class="gold-plan-table-wrapper others-table-wrapper">
+      <table class="gold-plan-table others-table" id="others-table">
+        <caption id="others-caption">Participant forecasts</caption>
+        <thead id="others-thead"></thead>
+        <tbody id="others-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="others.js"></script>
+<script src="../../nav.js"></script>
+</body>
+</html>

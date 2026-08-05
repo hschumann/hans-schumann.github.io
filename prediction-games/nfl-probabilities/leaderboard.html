@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Leaderboard — NFL Probabilities</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../../index.html" class="logo" aria-label="Home">
+      <img src="../../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <details class="nav-menu">
+      <summary class="nav-menu-toggle" aria-label="Menu">
+        <span class="nav-menu-label">Menu</span>
+        <span class="nav-menu-icon" aria-hidden="true"></span>
+      </summary>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../analytics/index.html">Analytics</a></li>
+        <li><a href="../index.html">Prediction Games</a></li>
+        <li><a href="../../contact/index.html">Contact</a></li>
+      </ul>
+    </details>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">NFL &bull; prediction game</div>
+    <h1>Leaderboard</h1>
+    <p class="muted">Points from locked games with a final result. Click a column header to sort.</p>
+    <div class="button-row">
+      <a class="btn primary" id="link-others" href="others.html">Others&rsquo; Predictions</a>
+      <a class="btn" id="link-home" href="index.html">Back</a>
+      <a class="btn" id="link-play" href="play.html">Edit my predictions</a>
+    </div>
+  </section>
+
+  <section class="section stack">
+    <p id="leaderboard-status" class="game-status" hidden></p>
+    <div class="gold-plan-table-wrapper leaderboard-table-wrapper">
+      <table class="gold-plan-table leaderboard-table" id="leaderboard-table">
+        <caption>Season standings</caption>
+        <thead id="leaderboard-thead"></thead>
+        <tbody id="leaderboard-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script src="leaderboard.js"></script>
+<script src="../../nav.js"></script>
+</body>
+</html>
