@@ -844,7 +844,8 @@ function savePredictions_(payload) {
     var rowValues = [timestamp, username, away, home, awayPct, homePct];
 
     if (existingRows[key]) {
-      sheet.getRange(existingRows[key], 1, existingRows[key], 6).setValues([rowValues]);
+      // Sheet.getRange(row, column, numRows, numColumns) — not endRow/endColumn.
+      sheet.getRange(existingRows[key], 1, 1, 6).setValues([rowValues]);
       updated += 1;
     } else {
       sheet.appendRow(rowValues);
