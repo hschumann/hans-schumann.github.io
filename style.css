@@ -622,6 +622,94 @@ main ul li {
   font-variant-numeric: tabular-nums;
 }
 
+/* ---------- Run expectancy diagram (MLB study) ---------- */
+.re-diagram {
+  margin: 1.35rem 0 1.6rem;
+  padding: 1.1rem 1.1rem 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in oklab, var(--primary) 5%, var(--surface));
+  color: var(--text);
+}
+
+.re-diagram svg {
+  display: block;
+  width: min(100%, 34rem);
+  height: auto;
+  margin: 0 auto 0.85rem;
+}
+
+.re-diagram .re-base {
+  fill: var(--surface);
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.re-diagram .re-base.is-occupied {
+  fill: #e6c84a;
+  stroke: color-mix(in oklab, #a68a10 55%, var(--text));
+}
+
+.re-diagram .re-label {
+  fill: var(--text);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.re-diagram .re-value {
+  fill: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.re-diagram .re-branches {
+  color: color-mix(in oklab, var(--primary) 55%, var(--text));
+}
+
+.re-diagram figcaption {
+  margin: 0.15rem 0 0.85rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .re-diagram {
+    padding: 0.85rem 0.7rem 0.75rem;
+  }
+}
+
+/* ---------- MLB RAA leaderboard controls ---------- */
+.leaderboard-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  margin: 1rem 0 0.75rem;
+}
+
+.leaderboard-range-label {
+  font-weight: 650;
+  color: var(--text);
+}
+
+.leaderboard-range {
+  width: auto;
+  min-width: 7.5rem;
+  padding: 0.45rem 0.7rem;
+}
+
+.leaderboard-meta {
+  flex: 1 1 100%;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.mlb-raa-table {
+  min-width: 42rem;
+}
+
 /* NFL ATS picks table */
 .ats-table-wrapper {
   max-width: 28rem;

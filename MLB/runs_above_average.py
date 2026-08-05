@@ -91,10 +91,14 @@ def collect_plate_appearances(start_dt: str, end_dt: str) -> pd.DataFrame:
     for col in ["outs_after", "on_1b_after", "on_2b_after", "on_3b_after"]:
         pa[col] = pa[col].astype(int)
 
-    # ── 6. Batter's team abbreviation ──────────────────────────────────────
+    # ── 6. Batter's and pitcher's team abbreviations ───────────────────────
     # Top of inning → away team bats; Bottom → home team bats
     pa["team"] = pa.apply(
         lambda r: r["away_team"] if r["inning_topbot"] == "Top" else r["home_team"],
+        axis=1,
+    )
+    pa["pitcher_team"] = pa.apply(
+        lambda r: r["home_team"] if r["inning_topbot"] == "Top" else r["away_team"],
         axis=1,
     )
 
@@ -106,6 +110,7 @@ def collect_plate_appearances(start_dt: str, end_dt: str) -> pd.DataFrame:
         "inning", "inning_topbot",
         "batter", "pitcher",
         "team",
+        "pitcher_team",
         "events",
         # — before —
         "outs_before", "on_1b", "on_2b", "on_3b",
@@ -125,7 +130,7 @@ def collect_plate_appearances(start_dt: str, end_dt: str) -> pd.DataFrame:
 if __name__ == "__main__":
     # Adjust date range as needed
     START = "2026-04-01"
-    END   = "2026-07-21"
+    END   = "2026-08-04"
 
     df = collect_plate_appearances(START, END)
 
