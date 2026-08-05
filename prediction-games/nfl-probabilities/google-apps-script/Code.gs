@@ -1,21 +1,19 @@
 /**
  * NFL Probabilities — Google Apps Script backend
  *
- * Setup:
- * 1. Create a Google Sheet named "nfl_guessing_game_2026".
- * 2. Add tabs "Week 1", "Week 2", … with header row: Away | Home
- * 3. Extensions → Apps Script → paste this file → Save.
- * 4. Set API_TOKEN below to a long random string.
- * 5. Deploy → New deployment → Web app
- *    - Execute as: Me
- *    - Who has access: Anyone
- * 6. Put the /exec URL and API_TOKEN into Cloudflare Worker secrets
- *    (APPS_SCRIPT_URL, APPS_SCRIPT_TOKEN) — never into the public site.
+ * Sheet setup (nfl_guessing_game_2026):
+ *   - Tabs "Week 1", "Week 2", … with columns including:
+ *       Away | Home | Normalized Odds Away | Normalized Odds Home | AwayWin
+ *   - AwayWin empty  → game still open for predictions
+ *   - AwayWin filled → game locked (TRUE/1/away = away won; FALSE/0/home = home won)
+ *   - Predictions are stored on tabs like "Week 1 Predictions"
+ *
+ * Deploy as web app (Execute as: Me, Who has access: Anyone), then put the
+ * /exec URL + API_TOKEN into Cloudflare Worker secrets.
  */
 
 const SPREADSHEET_NAME = "nfl_guessing_game_2026";
-const API_TOKEN = "REPLACE_WITH_A_LONG_RANDOM_TOKEN"; // must match Cloudflare APPS_SCRIPT_TOKEN // must match Cloudflare APPS_SCRIPT_TOKEN
-const PREDICTIONS_SHEET = "Predictions";
+const API_TOKEN = "rjnaCRvi842uKVn2avri23ua"; // must match Cloudflare APPS_SCRIPT_TOKEN
 
 function doGet(e) {
   if (!authorized_(e)) {
@@ -25,7 +23,49 @@ function doGet(e) {
   const action = (e.parameter.action || "games").toLowerCase();
 
   if (action === "games") {
-    return jsonResponse_(getLatestWeekGames_());
+    var username = String(e.parameter.user || "").trim();
+    return jsonResponse_(getLatestWeekGames_(username));
+  }
+
+  if (action === "userpredictions" || action === "user-predictions") {
+    var user = String(e.parameter.user || "").trim();
+    var weekNum = parseInt(e.parameter.week, 10);
+    if (!user) {
+      return jsonResponse_({ error: "Username is required" });
+    }
+    if (!weekNum) {
+      return jsonResponse_({ error: "Week is required" });
+    }
+    var ss = openGameSpreadsheet_();
+    var savedMap = loadUserPredictions_(ss, weekNum, user);
+    var list = [];
+    var keys = Object.keys(savedMap);
+    for (var i = 0; i < keys.length; i++) {
+      var parts = keys[i].split("|");
+      list.push({
+        away: parts[0],
+        home: parts[1],
+        awayWinPct: savedMap[keys[i]],
+      });
+    }
+    return jsonResponse_({
+      username: user,
+      week: weekNum,
+      predictions: list,
+    });
+  }
+
+  if (
+    action === "weekpredictions" ||
+    action === "week-predictions" ||
+    action === "others"
+  ) {
+    var boardWeek = parseInt(e.parameter.week, 10);
+    return jsonResponse_(getWeekPredictionsBoard_(boardWeek || null));
+  }
+
+  if (action === "leaderboard") {
+    return jsonResponse_(getLeaderboard_());
   }
 
   return jsonResponse_({ error: "Unknown action" });
@@ -38,8 +78,8 @@ function doPost(e) {
 
   try {
     const payload = JSON.parse(e.postData.contents);
-    savePredictions_(payload);
-    return jsonResponse_({ success: true });
+    var result = savePredictions_(payload);
+    return jsonResponse_(result);
   } catch (err) {
     return jsonResponse_({ error: String(err) });
   }
@@ -57,7 +97,11 @@ function openGameSpreadsheet_() {
   return SpreadsheetApp.open(files.next());
 }
 
-function getLatestWeekGames_() {
+function predictionsSheetName_(week) {
+  return "Week " + week + " Predictions";
+}
+
+function getLatestWeekGames_(username) {
   const ss = openGameSpreadsheet_();
   const sheets = ss.getSheets();
 
@@ -83,10 +127,22 @@ function getLatestWeekGames_() {
     return { week: null, weekLabel: null, games: [] };
   }
 
+  var gamesOut = readGamesFromSheet_(latestSheet);
+
+  if (username) {
+    var saved = loadUserPredictions_(ss, latestWeek, username);
+    for (var g = 0; g < gamesOut.length; g++) {
+      var key = predictionKey_(gamesOut[g].away, gamesOut[g].home);
+      if (saved[key] !== undefined) {
+        gamesOut[g].userAwayWinPct = saved[key];
+      }
+    }
+  }
+
   return {
     week: latestWeek,
     weekLabel: latestSheet.getName(),
-    games: readGamesFromSheet_(latestSheet),
+    games: gamesOut,
   };
 }
 
@@ -109,6 +165,11 @@ function readGamesFromSheet_(sheet) {
   var homeOddsIdx = findColumnIndex_(headers, [
     "normalized odds home",
     "normalized_odds_home",
+  ]);
+  var awayWinIdx = findColumnIndex_(headers, [
+    "awaywin",
+    "away win",
+    "away_win",
   ]);
 
   if (awayIdx === -1) {
@@ -142,10 +203,72 @@ function readGamesFromSheet_(sheet) {
       game.vegasHomePct = homeOdds;
     }
 
+    var awayWinInfo = parseAwayWin_(
+      awayWinIdx === -1 ? null : data[row][awayWinIdx]
+    );
+    game.locked = awayWinInfo.locked;
+    game.awayWin = awayWinInfo.awayWin;
+
     games.push(game);
   }
 
   return games;
+}
+
+/**
+ * Empty → unlocked.
+ * Any value → locked.
+ * TRUE/1/away/yes → awayWin true; FALSE/0/home/no → awayWin false.
+ */
+function parseAwayWin_(value) {
+  if (value === null || value === undefined) {
+    return { locked: false, awayWin: null };
+  }
+
+  if (typeof value === "string" && value.trim() === "") {
+    return { locked: false, awayWin: null };
+  }
+
+  if (typeof value === "boolean") {
+    return { locked: true, awayWin: value };
+  }
+
+  if (typeof value === "number") {
+    if (isNaN(value)) {
+      return { locked: false, awayWin: null };
+    }
+    return { locked: true, awayWin: value !== 0 };
+  }
+
+  var text = String(value).trim().toLowerCase();
+  if (text === "") {
+    return { locked: false, awayWin: null };
+  }
+
+  if (
+    text === "true" ||
+    text === "1" ||
+    text === "yes" ||
+    text === "y" ||
+    text === "away" ||
+    text === "w"
+  ) {
+    return { locked: true, awayWin: true };
+  }
+
+  if (
+    text === "false" ||
+    text === "0" ||
+    text === "no" ||
+    text === "n" ||
+    text === "home" ||
+    text === "l"
+  ) {
+    return { locked: true, awayWin: false };
+  }
+
+  // Any other non-empty value still locks the game.
+  return { locked: true, awayWin: null };
 }
 
 /** Returns a 0–100 percentage, or null if missing/invalid. */
@@ -166,7 +289,6 @@ function parseProbability_(value) {
     return null;
   }
 
-  // Treat fractions like 0.60 as 60%.
   if (num >= 0 && num <= 1) {
     num = num * 100;
   }
@@ -184,6 +306,481 @@ function findColumnIndex_(headers, candidates) {
   return -1;
 }
 
+function predictionKey_(away, home) {
+  return String(away).trim().toLowerCase() + "|" + String(home).trim().toLowerCase();
+}
+
+function getOrCreatePredictionsSheet_(ss, week) {
+  var name = predictionsSheetName_(week);
+  var sheet = ss.getSheetByName(name);
+
+  if (!sheet) {
+    sheet = ss.insertSheet(name);
+    sheet.appendRow([
+      "Submitted At",
+      "Username",
+      "Away",
+      "Home",
+      "Away Win %",
+      "Home Win %",
+    ]);
+  }
+
+  return sheet;
+}
+
+/**
+ * Leaderboard: Player | Total | Week 1 | Week 2 | …
+ * Points only from games with a known AwayWin result.
+ * Favorite = higher % team; win/loss formulas match the play page.
+ */
+function getLeaderboard_() {
+  var ss = openGameSpreadsheet_();
+  var sheets = ss.getSheets();
+  var weekNums = [];
+  var gamesByWeek = {};
+
+  for (var i = 0; i < sheets.length; i++) {
+    var match = sheets[i].getName().match(/^Week\s+(\d+)$/i);
+    if (!match) {
+      continue;
+    }
+    var weekNum = parseInt(match[1], 10);
+    var games = readGamesFromSheet_(sheets[i]);
+    if (games.length === 0) {
+      continue;
+    }
+    weekNums.push(weekNum);
+    gamesByWeek[weekNum] = games;
+  }
+
+  weekNums.sort(function (a, b) {
+    return a - b;
+  });
+
+  var byPlayer = {}; // lowerName -> { name, total, weeks: { weekNum: score|null } }
+
+  function ensurePlayer_(displayName) {
+    var lower = displayName.toLowerCase();
+    if (byPlayer[lower]) {
+      return byPlayer[lower];
+    }
+    var row = { name: displayName, total: 0, weeks: {} };
+    byPlayer[lower] = row;
+    return row;
+  }
+
+  for (var w = 0; w < weekNums.length; w++) {
+    var week = weekNums[w];
+    var weekGames = gamesByWeek[week];
+    var allPicks = withVegasParticipant_(
+      loadAllPredictionsForWeek_(ss, week),
+      weekGames
+    );
+    var names = Object.keys(allPicks);
+
+    for (var p = 0; p < names.length; p++) {
+      var name = names[p];
+      var player = ensurePlayer_(name);
+      var weekScore = scorePlayerWeek_(weekGames, allPicks[name]);
+      player.weeks[week] = weekScore;
+      if (weekScore !== null) {
+        player.total = round1_(player.total + weekScore);
+      }
+    }
+
+    var playerKeys = Object.keys(byPlayer);
+    for (var pk = 0; pk < playerKeys.length; pk++) {
+      if (byPlayer[playerKeys[pk]].weeks[week] === undefined) {
+        byPlayer[playerKeys[pk]].weeks[week] = null;
+      }
+    }
+  }
+
+  var players = Object.keys(byPlayer).map(function (key) {
+    var row = byPlayer[key];
+    var weekScores = [];
+    for (var wi = 0; wi < weekNums.length; wi++) {
+      weekScores.push(row.weeks[weekNums[wi]]);
+    }
+    return {
+      name: row.name,
+      total: round1_(row.total),
+      weekScores: weekScores,
+    };
+  });
+
+  players.sort(function (a, b) {
+    if (b.total !== a.total) {
+      return b.total - a.total;
+    }
+    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+  });
+
+  return {
+    weeks: weekNums,
+    players: players,
+  };
+}
+
+function scorePlayerWeek_(games, picksByKey) {
+  var total = 0;
+  var any = false;
+
+  for (var g = 0; g < games.length; g++) {
+    var game = games[g];
+    if (game.awayWin !== true && game.awayWin !== false) {
+      continue;
+    }
+    var awayPct = picksByKey[predictionKey_(game.away, game.home)];
+    if (awayPct === undefined || awayPct === null) {
+      continue;
+    }
+    total += scorePrediction_(awayPct, game.awayWin);
+    any = true;
+  }
+
+  return any ? round1_(total) : null;
+}
+
+function scorePrediction_(awayWinPct, awayWon) {
+  var awayPct = Math.max(0, Math.min(100, Math.round(Number(awayWinPct))));
+  var homePct = 100 - awayPct;
+  var favoriteIsAway = awayPct >= homePct;
+  var prob = (favoriteIsAway ? awayPct : homePct) / 100;
+  var favoredWon = favoriteIsAway ? !!awayWon : !awayWon;
+  return favoredWon ? scoreWin_(prob) : scoreLoss_(prob);
+}
+
+function scoreWin_(prob) {
+  return round1_(100 * (0.25 - Math.pow(1 - prob, 2)));
+}
+
+function scoreLoss_(prob) {
+  return round1_(100 * (0.25 - Math.pow(prob, 2)));
+}
+
+function round1_(value) {
+  return Math.round(Number(value) * 10) / 10;
+}
+
+/**
+ * Board for Others' Predictions:
+ * rows = games, columns = participants, cells = favored team + %.
+ */
+function getWeekPredictionsBoard_(weekOpt) {
+  var ss = openGameSpreadsheet_();
+  var week = weekOpt;
+  var weekSheet = null;
+
+  if (week) {
+    weekSheet = ss.getSheetByName("Week " + week);
+  }
+
+  if (!weekSheet) {
+    var sheets = ss.getSheets();
+    var latestWeek = 0;
+    for (var i = 0; i < sheets.length; i++) {
+      var match = sheets[i].getName().match(/^Week\s+(\d+)$/i);
+      if (!match) {
+        continue;
+      }
+      var weekNum = parseInt(match[1], 10);
+      var gamesCheck = readGamesFromSheet_(sheets[i]);
+      if (gamesCheck.length > 0 && weekNum >= latestWeek) {
+        latestWeek = weekNum;
+        weekSheet = sheets[i];
+      }
+    }
+    week = latestWeek || null;
+  }
+
+  if (!weekSheet || !week) {
+    return { week: null, weekLabel: null, participants: [], games: [] };
+  }
+
+  var games = readGamesFromSheet_(weekSheet);
+  var allPicks = withVegasParticipant_(
+    loadAllPredictionsForWeek_(ss, week),
+    games
+  );
+  var participants = sortedParticipantsWithVegas_(allPicks);
+
+  var boardGames = [];
+  for (var g = 0; g < games.length; g++) {
+    var game = games[g];
+    var key = predictionKey_(game.away, game.home);
+    var picks = {};
+
+    for (var p = 0; p < participants.length; p++) {
+      var name = participants[p];
+      var awayPct = allPicks[name][key];
+      if (awayPct === undefined || awayPct === null) {
+        picks[name] = null;
+        continue;
+      }
+      picks[name] = formatFavoredPick_(game.away, game.home, awayPct);
+    }
+
+    boardGames.push({
+      away: game.away,
+      home: game.home,
+      label: game.away + " @" + game.home,
+      picks: picks,
+    });
+  }
+
+  return {
+    week: week,
+    weekLabel: weekSheet.getName(),
+    participants: participants,
+    games: boardGames,
+  };
+}
+
+/** Build matchup → away-win % from Normalized Odds on the Week sheet. */
+function vegasPicksFromGames_(games) {
+  var picks = {};
+  for (var g = 0; g < games.length; g++) {
+    var game = games[g];
+    var awayPct = null;
+    if (game.vegasAwayPct !== undefined && game.vegasAwayPct !== null) {
+      awayPct = Number(game.vegasAwayPct);
+    } else if (game.vegasHomePct !== undefined && game.vegasHomePct !== null) {
+      awayPct = 100 - Number(game.vegasHomePct);
+    }
+    if (awayPct === null || isNaN(awayPct)) {
+      continue;
+    }
+    picks[predictionKey_(game.away, game.home)] = awayPct;
+  }
+  return picks;
+}
+
+/**
+ * Inject synthetic "Vegas" picks from sheet odds.
+ * Overwrites any real submission named Vegas so the column always means the books.
+ */
+function withVegasParticipant_(allPicks, games) {
+  var vegas = vegasPicksFromGames_(games);
+  if (Object.keys(vegas).length === 0) {
+    return allPicks;
+  }
+
+  var names = Object.keys(allPicks);
+  for (var i = 0; i < names.length; i++) {
+    if (names[i].toLowerCase() === "vegas") {
+      delete allPicks[names[i]];
+    }
+  }
+  allPicks["Vegas"] = vegas;
+  return allPicks;
+}
+
+/** Vegas first, then everyone else A–Z. */
+function sortedParticipantsWithVegas_(allPicks) {
+  var names = Object.keys(allPicks).filter(function (name) {
+    return name.toLowerCase() !== "vegas";
+  });
+  names.sort(function (a, b) {
+    return a.toLowerCase().localeCompare(b.toLowerCase());
+  });
+  if (allPicks["Vegas"]) {
+    names.unshift("Vegas");
+  }
+  return names;
+}
+
+function formatFavoredPick_(away, home, awayWinPct) {
+  var awayPct = Math.max(0, Math.min(100, Math.round(Number(awayWinPct))));
+  var homePct = 100 - awayPct;
+  if (awayPct >= homePct) {
+    return { team: away, pct: awayPct, awayWinPct: awayPct };
+  }
+  return { team: home, pct: homePct, awayWinPct: awayPct };
+}
+
+/** All users' away-win % by matchup key for a week. */
+function loadAllPredictionsForWeek_(ss, week) {
+  var byUser = {}; // displayName -> { matchupKey: awayWinPct }
+
+  function ensureUser_(displayName) {
+    var existing = null;
+    var lower = displayName.toLowerCase();
+    var names = Object.keys(byUser);
+    for (var i = 0; i < names.length; i++) {
+      if (names[i].toLowerCase() === lower) {
+        existing = names[i];
+        break;
+      }
+    }
+    if (existing) {
+      return existing;
+    }
+    byUser[displayName] = {};
+    return displayName;
+  }
+
+  function ingest_(displayName, away, home, pctValue, onlyIfMissing) {
+    var awayName = String(away || "").trim();
+    var homeName = String(home || "").trim();
+    var awayPct = parseProbability_(pctValue);
+    if (!displayName || !awayName || !homeName || awayPct === null) {
+      return;
+    }
+    var userKey = ensureUser_(String(displayName).trim());
+    var key = predictionKey_(awayName, homeName);
+    if (onlyIfMissing && byUser[userKey][key] !== undefined) {
+      return;
+    }
+    byUser[userKey][key] = Math.max(0, Math.min(100, Math.round(awayPct)));
+  }
+
+  function readSheetRows_(sheet, hasWeekColumn, onlyIfMissing) {
+    if (!sheet || sheet.getLastRow() < 2) {
+      return;
+    }
+    var data = sheet.getDataRange().getValues();
+    var headers = data[0].map(function (cell) {
+      return String(cell).trim().toLowerCase();
+    });
+    var userIdx = findColumnIndex_(headers, ["username", "user", "name"]);
+    var weekIdx = findColumnIndex_(headers, ["week"]);
+    var awayIdx = findColumnIndex_(headers, ["away", "away team"]);
+    var homeIdx = findColumnIndex_(headers, ["home", "home team"]);
+    var pctIdx = findColumnIndex_(headers, [
+      "away win %",
+      "away win pct",
+      "awaywinpct",
+      "away_win_%",
+    ]);
+
+    if (userIdx === -1) userIdx = 1;
+    if (awayIdx === -1) awayIdx = hasWeekColumn || weekIdx !== -1 ? 3 : 2;
+    if (homeIdx === -1) homeIdx = hasWeekColumn || weekIdx !== -1 ? 4 : 3;
+    if (pctIdx === -1) pctIdx = hasWeekColumn || weekIdx !== -1 ? 5 : 4;
+
+    for (var row = 1; row < data.length; row++) {
+      if (weekIdx !== -1) {
+        var rowWeek = Number(data[row][weekIdx]);
+        if (rowWeek !== Number(week)) {
+          continue;
+        }
+      }
+      ingest_(
+        data[row][userIdx],
+        data[row][awayIdx],
+        data[row][homeIdx],
+        data[row][pctIdx],
+        onlyIfMissing
+      );
+    }
+  }
+
+  readSheetRows_(ss.getSheetByName(predictionsSheetName_(week)), false, false);
+  readSheetRows_(ss.getSheetByName("Predictions"), true, true);
+
+  return byUser;
+}
+
+function loadUserPredictions_(ss, week, username) {
+  var map = {};
+  var wantUser = username.toLowerCase();
+
+  function ingestRow_(away, home, pctValue) {
+    var awayName = String(away || "").trim();
+    var homeName = String(home || "").trim();
+    var awayPct = parseProbability_(pctValue);
+    if (!awayName || !homeName || awayPct === null) {
+      return;
+    }
+    map[predictionKey_(awayName, homeName)] = Math.max(
+      0,
+      Math.min(100, Math.round(awayPct))
+    );
+  }
+
+  // Preferred: "Week N Predictions"
+  var weekSheet = ss.getSheetByName(predictionsSheetName_(week));
+  if (weekSheet && weekSheet.getLastRow() >= 2) {
+    var data = weekSheet.getDataRange().getValues();
+    var headers = data[0].map(function (cell) {
+      return String(cell).trim().toLowerCase();
+    });
+    var userIdx = findColumnIndex_(headers, ["username", "user", "name"]);
+    var awayIdx = findColumnIndex_(headers, ["away", "away team"]);
+    var homeIdx = findColumnIndex_(headers, ["home", "home team"]);
+    var pctIdx = findColumnIndex_(headers, [
+      "away win %",
+      "away win pct",
+      "awaywinpct",
+      "away_win_%",
+    ]);
+
+    if (userIdx === -1) userIdx = 1;
+    if (awayIdx === -1) awayIdx = 2;
+    if (homeIdx === -1) homeIdx = 3;
+    if (pctIdx === -1) pctIdx = 4;
+
+    for (var row = 1; row < data.length; row++) {
+      var rowUser = String(data[row][userIdx] || "").trim().toLowerCase();
+      if (rowUser !== wantUser) {
+        continue;
+      }
+      ingestRow_(data[row][awayIdx], data[row][homeIdx], data[row][pctIdx]);
+    }
+  }
+
+  // Fallback: legacy "Predictions" tab
+  var legacy = ss.getSheetByName("Predictions");
+  if (legacy && legacy.getLastRow() >= 2) {
+    var legacyData = legacy.getDataRange().getValues();
+    var legacyHeaders = legacyData[0].map(function (cell) {
+      return String(cell).trim().toLowerCase();
+    });
+    var lUserIdx = findColumnIndex_(legacyHeaders, ["username", "user", "name"]);
+    var lWeekIdx = findColumnIndex_(legacyHeaders, ["week"]);
+    var lAwayIdx = findColumnIndex_(legacyHeaders, ["away", "away team"]);
+    var lHomeIdx = findColumnIndex_(legacyHeaders, ["home", "home team"]);
+    var lPctIdx = findColumnIndex_(legacyHeaders, [
+      "away win %",
+      "away win pct",
+      "awaywinpct",
+      "away_win_%",
+    ]);
+
+    if (lUserIdx === -1) lUserIdx = 1;
+    if (lAwayIdx === -1) lAwayIdx = lWeekIdx === -1 ? 2 : 3;
+    if (lHomeIdx === -1) lHomeIdx = lWeekIdx === -1 ? 3 : 4;
+    if (lPctIdx === -1) lPctIdx = lWeekIdx === -1 ? 4 : 5;
+
+    for (var r = 1; r < legacyData.length; r++) {
+      var legacyUser = String(legacyData[r][lUserIdx] || "")
+        .trim()
+        .toLowerCase();
+      if (legacyUser !== wantUser) {
+        continue;
+      }
+      if (lWeekIdx !== -1) {
+        var legacyWeek = Number(legacyData[r][lWeekIdx]);
+        if (legacyWeek !== Number(week)) {
+          continue;
+        }
+      }
+      var key = predictionKey_(legacyData[r][lAwayIdx], legacyData[r][lHomeIdx]);
+      if (map[key] === undefined) {
+        ingestRow_(
+          legacyData[r][lAwayIdx],
+          legacyData[r][lHomeIdx],
+          legacyData[r][lPctIdx]
+        );
+      }
+    }
+  }
+
+  return map;
+}
+
 function savePredictions_(payload) {
   var username = String(payload.username || "").trim();
   var week = payload.week;
@@ -197,40 +794,74 @@ function savePredictions_(payload) {
   }
 
   var ss = openGameSpreadsheet_();
-  var sheet = ss.getSheetByName(PREDICTIONS_SHEET);
+  var weekSheet = ss.getSheetByName("Week " + week);
+  if (!weekSheet) {
+    throw new Error('Week sheet "Week ' + week + '" not found');
+  }
 
-  if (!sheet) {
-    sheet = ss.insertSheet(PREDICTIONS_SHEET);
-    sheet.appendRow([
-      "Submitted At",
-      "Username",
-      "Week",
-      "Away",
-      "Home",
-      "Away Win %",
-      "Home Win %",
-    ]);
+  var games = readGamesFromSheet_(weekSheet);
+  var lockByMatchup = {};
+  for (var g = 0; g < games.length; g++) {
+    lockByMatchup[predictionKey_(games[g].away, games[g].home)] = !!games[g].locked;
+  }
+
+  var sheet = getOrCreatePredictionsSheet_(ss, week);
+  var data = sheet.getDataRange().getValues();
+  var existingRows = {}; // key -> 1-based sheet row index
+
+  for (var row = 1; row < data.length; row++) {
+    var rowUser = String(data[row][1] || "").trim().toLowerCase();
+    if (rowUser !== username.toLowerCase()) {
+      continue;
+    }
+    var key = predictionKey_(data[row][2], data[row][3]);
+    existingRows[key] = row + 1; // convert to 1-based
   }
 
   var timestamp = new Date();
+  var saved = 0;
+  var skippedLocked = 0;
+  var updated = 0;
 
   for (var i = 0; i < predictions.length; i++) {
     var pick = predictions[i];
+    var away = String(pick.away || "").trim();
+    var home = String(pick.home || "").trim();
+    var key = predictionKey_(away, home);
     var awayPct = Number(pick.awayWinPct);
-    if (isNaN(awayPct)) {
+
+    if (!away || !home || isNaN(awayPct)) {
       continue;
     }
+
+    if (lockByMatchup[key]) {
+      skippedLocked += 1;
+      continue;
+    }
+
     awayPct = Math.max(0, Math.min(100, Math.round(awayPct)));
-    sheet.appendRow([
-      timestamp,
-      username,
-      week,
-      pick.away,
-      pick.home,
-      awayPct,
-      100 - awayPct,
-    ]);
+    var homePct = 100 - awayPct;
+    var rowValues = [timestamp, username, away, home, awayPct, homePct];
+
+    if (existingRows[key]) {
+      sheet.getRange(existingRows[key], 1, existingRows[key], 6).setValues([rowValues]);
+      updated += 1;
+    } else {
+      sheet.appendRow(rowValues);
+      saved += 1;
+    }
   }
+
+  if (saved === 0 && updated === 0 && skippedLocked > 0) {
+    throw new Error("All selected games are locked and cannot be updated");
+  }
+
+  return {
+    success: true,
+    saved: saved,
+    updated: updated,
+    skippedLocked: skippedLocked,
+  };
 }
 
 function jsonResponse_(obj) {

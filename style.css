@@ -265,16 +265,33 @@ p {
 
 .nav-links {
   list-style: none;
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  z-index: 60;
+  min-width: 13.5rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.2rem;
+  padding: 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.nav-menu[open] .nav-links {
   display: flex;
-  gap: 0.5rem;
-  align-items: center;
 }
 
 .nav-links a {
+  display: block;
+  width: 100%;
   color: var(--text);
   font-size: 0.95rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 999px;
+  padding: 0.65rem 0.8rem;
+  border-radius: calc(var(--radius) - 6px);
   border: 1px solid transparent;
   text-decoration: none;
 }
@@ -295,17 +312,21 @@ p {
 }
 
 .nav-menu-toggle {
-  display: none;
+  display: inline-flex;
   list-style: none;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
+  gap: 0.45rem;
+  min-width: 2.5rem;
   height: 2.5rem;
+  padding: 0 0.75rem;
   border-radius: calc(var(--radius) - 6px);
   border: 1px solid var(--border);
   background: color-mix(in oklab, var(--primary) 10%, transparent);
   color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 650;
 }
 
 .nav-menu-toggle::-webkit-details-marker {
@@ -314,6 +335,16 @@ p {
 
 .nav-menu-toggle::marker {
   content: "";
+}
+
+.nav-menu-label {
+  display: none;
+}
+
+@media (min-width: 520px) {
+  .nav-menu-label {
+    display: inline;
+  }
 }
 
 .nav-menu-icon,
@@ -357,63 +388,6 @@ p {
 .nav-menu[open] .nav-menu-icon::after {
   top: 0;
   transform: rotate(-45deg);
-}
-
-@media (max-width: 760px) {
-  .nav-container {
-    gap: 0.5rem;
-  }
-
-  .nav-menu-toggle {
-    display: inline-flex;
-  }
-
-  .nav-menu .nav-links {
-    display: none;
-    position: absolute;
-    top: calc(100% + 0.45rem);
-    right: 0;
-    min-width: 13.5rem;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.2rem;
-    padding: 0.45rem;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
-
-  .nav-menu[open] .nav-links {
-    display: flex;
-  }
-
-  .nav-menu .nav-links a {
-    display: block;
-    width: 100%;
-    padding: 0.65rem 0.8rem;
-    border-radius: calc(var(--radius) - 6px);
-  }
-}
-
-@media (min-width: 761px) {
-  .nav-menu-toggle {
-    display: none !important;
-  }
-
-  /* Closed <details> hides non-summary children by default — force links visible on desktop. */
-  details.nav-menu > .nav-links {
-    display: flex !important;
-    position: static;
-    flex-direction: row;
-    align-items: center;
-    min-width: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-  }
 }
 
 /* ---------- Hero ---------- */
@@ -760,6 +734,17 @@ main ul li {
   padding: 1.1rem 1.25rem;
 }
 
+.prob-game-card-locked {
+  opacity: 0.78;
+}
+
+.prob-locked-badge {
+  margin: 0 0 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--muted);
+}
+
 .prob-scale {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -810,7 +795,7 @@ main ul li {
 
 .prob-vegas-marker {
   position: absolute;
-  left: var(--vegas-away-pct, 50%);
+  left: var(--vegas-pos, 50%);
   top: 3.15rem;
   bottom: 0.35rem;
   width: 0;
@@ -820,7 +805,7 @@ main ul li {
 
 .prob-vegas-label {
   position: absolute;
-  left: var(--vegas-away-pct, 50%);
+  left: var(--vegas-pos, 50%);
   top: 0;
   transform: translateX(-50%);
   margin: 0;
@@ -838,10 +823,85 @@ main ul li {
   position: relative;
   z-index: 2;
   width: 100%;
-  accent-color: var(--primary);
+  height: 1.75rem;
+  margin: 0;
   cursor: pointer;
   display: block;
-  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.prob-slider:focus {
+  outline: none;
+}
+
+.prob-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 28%, transparent);
+}
+
+.prob-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 28%, transparent);
+}
+
+/* Thin center line — no filled "bar" */
+.prob-slider::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--text) 22%, transparent);
+  border: none;
+}
+
+.prob-slider::-moz-range-track {
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--text) 22%, transparent);
+  border: none;
+}
+
+.prob-slider::-moz-range-progress {
+  background: transparent;
+  height: 2px;
+}
+
+/* Single draggable dot */
+.prob-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: calc(-0.575rem + 1px);
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  background: var(--primary);
+  box-shadow: 0 1px 4px color-mix(in oklab, var(--text) 22%, transparent);
+  cursor: grab;
+}
+
+.prob-slider::-moz-range-thumb {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  background: var(--primary);
+  box-shadow: 0 1px 4px color-mix(in oklab, var(--text) 22%, transparent);
+  cursor: grab;
+}
+
+.prob-slider:active::-webkit-slider-thumb,
+.prob-slider:active::-moz-range-thumb {
+  cursor: grabbing;
+}
+
+.prob-game-card-locked .prob-slider {
+  cursor: not-allowed;
+}
+
+.prob-game-card-locked .prob-slider::-webkit-slider-thumb,
+.prob-game-card-locked .prob-slider::-moz-range-thumb {
+  cursor: not-allowed;
+  background: color-mix(in oklab, var(--text) 35%, transparent);
+  box-shadow: none;
 }
 
 .prob-ticks {
@@ -946,4 +1006,99 @@ main ul li {
   .submit-status-error {
     color: #f85149;
   }
+}
+
+/* ---------- Others' predictions board ---------- */
+.others-table-wrapper {
+  max-width: none;
+}
+
+.others-table {
+  min-width: 28rem;
+  font-size: 0.88rem;
+}
+
+.others-table th,
+.others-table td {
+  white-space: nowrap;
+}
+
+.others-table .others-game {
+  font-weight: 650;
+  color: var(--text);
+  white-space: normal;
+  min-width: 9rem;
+}
+
+.others-table .others-empty {
+  color: var(--muted);
+}
+
+/* ---------- Leaderboard ---------- */
+.leaderboard-table-wrapper {
+  max-width: none;
+}
+
+.leaderboard-table {
+  min-width: 22rem;
+  font-size: 0.92rem;
+}
+
+.leaderboard-table .leaderboard-player {
+  font-weight: 650;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.leaderboard-table .leaderboard-empty {
+  color: var(--muted);
+}
+
+.leaderboard-table tr.leaderboard-you td {
+  background: color-mix(in oklab, var(--primary) 14%, transparent);
+  font-weight: 650;
+}
+
+.leaderboard-sort {
+  appearance: none;
+  background: none;
+  border: 0;
+  color: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+  font: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+  text-align: inherit;
+  text-transform: inherit;
+  width: 100%;
+}
+
+.leaderboard-sort::after {
+  content: "";
+  display: inline-block;
+  margin-left: 0.35em;
+  opacity: 0.45;
+  width: 0;
+  height: 0;
+  border-left: 0.28em solid transparent;
+  border-right: 0.28em solid transparent;
+  border-top: 0.35em solid currentColor;
+  vertical-align: 0.1em;
+}
+
+.leaderboard-sort.is-asc::after {
+  border-top: 0;
+  border-bottom: 0.35em solid currentColor;
+  opacity: 1;
+}
+
+.leaderboard-sort.is-desc::after {
+  opacity: 1;
+}
+
+.leaderboard-sort:hover,
+.leaderboard-sort:focus-visible {
+  color: rgba(255, 255, 255, 0.96);
+  outline: none;
 }

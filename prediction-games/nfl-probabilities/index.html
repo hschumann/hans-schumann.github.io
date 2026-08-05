@@ -15,6 +15,7 @@
     </a>
     <details class="nav-menu">
       <summary class="nav-menu-toggle" aria-label="Menu">
+        <span class="nav-menu-label">Menu</span>
         <span class="nav-menu-icon" aria-hidden="true"></span>
       </summary>
       <ul class="nav-links">
@@ -31,8 +32,10 @@
   <section class="hero">
     <div class="kicker">NFL &bull; prediction game</div>
     <h1>NFL Probabilities</h1>
-    <p class="muted">Enter a username to start playing.</p>
+    <p class="muted">Enter a username to start or continue. The same username loads your saved picks so you can edit them.</p>
     <div class="button-row">
+      <a class="btn" id="link-leaderboard" href="leaderboard.html">Leaderboard</a>
+      <a class="btn" id="link-others" href="others.html">Others&rsquo; Predictions</a>
       <a class="btn" href="../index.html">Back to prediction games</a>
     </div>
   </section>
@@ -60,20 +63,39 @@
 </main>
 
 <script>
-  document.getElementById("username-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const input = document.getElementById("username");
-    const username = input.value.trim();
-
-    if (!username) {
-      input.focus();
-      return;
+  (function () {
+    var input = document.getElementById("username");
+    var linkLeaderboard = document.getElementById("link-leaderboard");
+    var linkOthers = document.getElementById("link-others");
+    var saved = sessionStorage.getItem("nfl-probabilities-username");
+    if (saved) {
+      input.value = saved;
     }
 
-    sessionStorage.setItem("nfl-probabilities-username", username);
-    window.location.href = "play.html?user=" + encodeURIComponent(username);
-  });
+    function syncNavLinks() {
+      var username = input.value.trim();
+      var q = username ? "?user=" + encodeURIComponent(username) : "";
+      linkLeaderboard.href = "leaderboard.html" + q;
+      linkOthers.href = "others.html" + q;
+    }
+
+    syncNavLinks();
+    input.addEventListener("input", syncNavLinks);
+
+    document.getElementById("username-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      var username = input.value.trim();
+
+      if (!username) {
+        input.focus();
+        return;
+      }
+
+      sessionStorage.setItem("nfl-probabilities-username", username);
+      window.location.href = "play.html?user=" + encodeURIComponent(username);
+    });
+  })();
 </script>
 
 <script src="../../nav.js"></script>

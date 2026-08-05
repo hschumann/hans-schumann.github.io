@@ -15,6 +15,7 @@
     </a>
     <details class="nav-menu">
       <summary class="nav-menu-toggle" aria-label="Menu">
+        <span class="nav-menu-label">Menu</span>
         <span class="nav-menu-icon" aria-hidden="true"></span>
       </summary>
       <ul class="nav-links">
@@ -40,12 +41,13 @@
   </section>
 
   <section class="section stack">
+    <p class="muted prob-instructions">Drag the dot toward the team you think will win. That team&rsquo;s percentage grows as you move closer. Points are shown for the team with the higher probability. Games with a final result are locked.</p>
+
     <p id="game-status" class="game-status" hidden></p>
 
     <div id="games-list" class="prob-games-list" aria-live="polite"></div>
 
     <div class="section card stack prob-submit-card">
-      <p class="muted">Drag each slider toward the team you think will win. Percentages always sum to 100%. Points are shown for the team with the higher probability.</p>
       <div class="form-actions">
         <button class="btn primary" type="button" id="submit-predictions" disabled>Submit predictions</button>
       </div>

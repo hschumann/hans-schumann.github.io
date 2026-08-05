@@ -35,7 +35,19 @@ export default {
 
     try {
       if (request.method === "GET" && (path === "/games" || path === "/")) {
-        return await proxyGames_(env, corsHeaders);
+        return await proxyGames_(env, corsHeaders, request);
+      }
+
+      if (request.method === "GET" && path === "/user-predictions") {
+        return await proxyUserPredictions_(env, corsHeaders, request);
+      }
+
+      if (request.method === "GET" && path === "/others") {
+        return await proxyOthers_(env, corsHeaders, request);
+      }
+
+      if (request.method === "GET" && path === "/leaderboard") {
+        return await proxyLeaderboard_(env, corsHeaders);
       }
 
       if (request.method === "POST" && path === "/predictions") {
@@ -53,12 +65,97 @@ export default {
   },
 };
 
-async function proxyGames_(env, corsHeaders) {
+async function proxyGames_(env, corsHeaders, request) {
+  const incoming = new URL(request.url);
+  const user = incoming.searchParams.get("user") || "";
+
   const target =
     env.APPS_SCRIPT_URL +
     "?token=" +
     encodeURIComponent(env.APPS_SCRIPT_TOKEN) +
-    "&action=games";
+    "&action=games" +
+    (user ? "&user=" + encodeURIComponent(user) : "");
+
+  const response = await fetch(target, {
+    method: "GET",
+    redirect: "follow",
+  });
+
+  const text = await response.text();
+  return new Response(text, {
+    status: response.ok ? 200 : response.status,
+    headers: {
+      ...corsHeaders,
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+async function proxyUserPredictions_(env, corsHeaders, request) {
+  const incoming = new URL(request.url);
+  const user = incoming.searchParams.get("user") || "";
+  const week = incoming.searchParams.get("week") || "";
+
+  const target =
+    env.APPS_SCRIPT_URL +
+    "?token=" +
+    encodeURIComponent(env.APPS_SCRIPT_TOKEN) +
+    "&action=userpredictions" +
+    "&user=" +
+    encodeURIComponent(user) +
+    "&week=" +
+    encodeURIComponent(week);
+
+  const response = await fetch(target, {
+    method: "GET",
+    redirect: "follow",
+  });
+
+  const text = await response.text();
+  return new Response(text, {
+    status: response.ok ? 200 : response.status,
+    headers: {
+      ...corsHeaders,
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+async function proxyOthers_(env, corsHeaders, request) {
+  const incoming = new URL(request.url);
+  const week = incoming.searchParams.get("week") || "";
+
+  const target =
+    env.APPS_SCRIPT_URL +
+    "?token=" +
+    encodeURIComponent(env.APPS_SCRIPT_TOKEN) +
+    "&action=others" +
+    (week ? "&week=" + encodeURIComponent(week) : "");
+
+  const response = await fetch(target, {
+    method: "GET",
+    redirect: "follow",
+  });
+
+  const text = await response.text();
+  return new Response(text, {
+    status: response.ok ? 200 : response.status,
+    headers: {
+      ...corsHeaders,
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+async function proxyLeaderboard_(env, corsHeaders) {
+  const target =
+    env.APPS_SCRIPT_URL +
+    "?token=" +
+    encodeURIComponent(env.APPS_SCRIPT_TOKEN) +
+    "&action=leaderboard";
 
   const response = await fetch(target, {
     method: "GET",
