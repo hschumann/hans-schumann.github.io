@@ -64,6 +64,10 @@ function doGet(e) {
     return jsonResponse_(getWeekPredictionsBoard_(boardWeek || null));
   }
 
+  if (action === "leaderboard") {
+    return jsonResponse_(getLeaderboard_());
+  }
+
   return jsonResponse_({ error: "Unknown action" });
 }
 
@@ -326,6 +330,141 @@ function getOrCreatePredictionsSheet_(ss, week) {
 }
 
 /**
+ * Leaderboard: Player | Total | Week 1 | Week 2 | …
+ * Points only from games with a known AwayWin result.
+ * Favorite = higher % team; win/loss formulas match the play page.
+ */
+function getLeaderboard_() {
+  var ss = openGameSpreadsheet_();
+  var sheets = ss.getSheets();
+  var weekNums = [];
+  var gamesByWeek = {};
+
+  for (var i = 0; i < sheets.length; i++) {
+    var match = sheets[i].getName().match(/^Week\s+(\d+)$/i);
+    if (!match) {
+      continue;
+    }
+    var weekNum = parseInt(match[1], 10);
+    var games = readGamesFromSheet_(sheets[i]);
+    if (games.length === 0) {
+      continue;
+    }
+    weekNums.push(weekNum);
+    gamesByWeek[weekNum] = games;
+  }
+
+  weekNums.sort(function (a, b) {
+    return a - b;
+  });
+
+  var byPlayer = {}; // lowerName -> { name, total, weeks: { weekNum: score|null } }
+
+  function ensurePlayer_(displayName) {
+    var lower = displayName.toLowerCase();
+    if (byPlayer[lower]) {
+      return byPlayer[lower];
+    }
+    var row = { name: displayName, total: 0, weeks: {} };
+    byPlayer[lower] = row;
+    return row;
+  }
+
+  for (var w = 0; w < weekNums.length; w++) {
+    var week = weekNums[w];
+    var weekGames = gamesByWeek[week];
+    var allPicks = withVegasParticipant_(
+      loadAllPredictionsForWeek_(ss, week),
+      weekGames
+    );
+    var names = Object.keys(allPicks);
+
+    for (var p = 0; p < names.length; p++) {
+      var name = names[p];
+      var player = ensurePlayer_(name);
+      var weekScore = scorePlayerWeek_(weekGames, allPicks[name]);
+      player.weeks[week] = weekScore;
+      if (weekScore !== null) {
+        player.total = round1_(player.total + weekScore);
+      }
+    }
+
+    var playerKeys = Object.keys(byPlayer);
+    for (var pk = 0; pk < playerKeys.length; pk++) {
+      if (byPlayer[playerKeys[pk]].weeks[week] === undefined) {
+        byPlayer[playerKeys[pk]].weeks[week] = null;
+      }
+    }
+  }
+
+  var players = Object.keys(byPlayer).map(function (key) {
+    var row = byPlayer[key];
+    var weekScores = [];
+    for (var wi = 0; wi < weekNums.length; wi++) {
+      weekScores.push(row.weeks[weekNums[wi]]);
+    }
+    return {
+      name: row.name,
+      total: round1_(row.total),
+      weekScores: weekScores,
+    };
+  });
+
+  players.sort(function (a, b) {
+    if (b.total !== a.total) {
+      return b.total - a.total;
+    }
+    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+  });
+
+  return {
+    weeks: weekNums,
+    players: players,
+  };
+}
+
+function scorePlayerWeek_(games, picksByKey) {
+  var total = 0;
+  var any = false;
+
+  for (var g = 0; g < games.length; g++) {
+    var game = games[g];
+    if (game.awayWin !== true && game.awayWin !== false) {
+      continue;
+    }
+    var awayPct = picksByKey[predictionKey_(game.away, game.home)];
+    if (awayPct === undefined || awayPct === null) {
+      continue;
+    }
+    total += scorePrediction_(awayPct, game.awayWin);
+    any = true;
+  }
+
+  return any ? round1_(total) : null;
+}
+
+function scorePrediction_(awayWinPct, awayWon) {
+  var awayPct = Math.max(0, Math.min(100, Math.round(Number(awayWinPct))));
+  var homePct = 100 - awayPct;
+  var favoriteIsAway = awayPct >= homePct;
+  var prob = (favoriteIsAway ? awayPct : homePct) / 100;
+  var favoredWon = favoriteIsAway ? !!awayWon : !awayWon;
+  return favoredWon ? scoreWin_(prob) : scoreLoss_(prob);
+}
+
+function scoreWin_(prob) {
+  return round1_(100 * (0.25 - Math.pow(1 - prob, 2)));
+}
+
+function scoreLoss_(prob) {
+  return round1_(100 * (0.25 - Math.pow(prob, 2)));
+}
+
+function round1_(value) {
+  return Math.round(Number(value) * 10) / 10;
+}
+
+/**
  * Board for Others' Predictions:
  * rows = games, columns = participants, cells = favored team + %.
  */
@@ -361,10 +500,11 @@ function getWeekPredictionsBoard_(weekOpt) {
   }
 
   var games = readGamesFromSheet_(weekSheet);
-  var allPicks = loadAllPredictionsForWeek_(ss, week); // { displayName: { key: awayWinPct } }
-  var participants = Object.keys(allPicks).sort(function (a, b) {
-    return a.toLowerCase().localeCompare(b.toLowerCase());
-  });
+  var allPicks = withVegasParticipant_(
+    loadAllPredictionsForWeek_(ss, week),
+    games
+  );
+  var participants = sortedParticipantsWithVegas_(allPicks);
 
   var boardGames = [];
   for (var g = 0; g < games.length; g++) {
@@ -396,6 +536,59 @@ function getWeekPredictionsBoard_(weekOpt) {
     participants: participants,
     games: boardGames,
   };
+}
+
+/** Build matchup → away-win % from Normalized Odds on the Week sheet. */
+function vegasPicksFromGames_(games) {
+  var picks = {};
+  for (var g = 0; g < games.length; g++) {
+    var game = games[g];
+    var awayPct = null;
+    if (game.vegasAwayPct !== undefined && game.vegasAwayPct !== null) {
+      awayPct = Number(game.vegasAwayPct);
+    } else if (game.vegasHomePct !== undefined && game.vegasHomePct !== null) {
+      awayPct = 100 - Number(game.vegasHomePct);
+    }
+    if (awayPct === null || isNaN(awayPct)) {
+      continue;
+    }
+    picks[predictionKey_(game.away, game.home)] = awayPct;
+  }
+  return picks;
+}
+
+/**
+ * Inject synthetic "Vegas" picks from sheet odds.
+ * Overwrites any real submission named Vegas so the column always means the books.
+ */
+function withVegasParticipant_(allPicks, games) {
+  var vegas = vegasPicksFromGames_(games);
+  if (Object.keys(vegas).length === 0) {
+    return allPicks;
+  }
+
+  var names = Object.keys(allPicks);
+  for (var i = 0; i < names.length; i++) {
+    if (names[i].toLowerCase() === "vegas") {
+      delete allPicks[names[i]];
+    }
+  }
+  allPicks["Vegas"] = vegas;
+  return allPicks;
+}
+
+/** Vegas first, then everyone else A–Z. */
+function sortedParticipantsWithVegas_(allPicks) {
+  var names = Object.keys(allPicks).filter(function (name) {
+    return name.toLowerCase() !== "vegas";
+  });
+  names.sort(function (a, b) {
+    return a.toLowerCase().localeCompare(b.toLowerCase());
+  });
+  if (allPicks["Vegas"]) {
+    names.unshift("Vegas");
+  }
+  return names;
 }
 
 function formatFavoredPick_(away, home, awayWinPct) {

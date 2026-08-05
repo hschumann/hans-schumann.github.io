@@ -46,6 +46,10 @@ export default {
         return await proxyOthers_(env, corsHeaders, request);
       }
 
+      if (request.method === "GET" && path === "/leaderboard") {
+        return await proxyLeaderboard_(env, corsHeaders);
+      }
+
       if (request.method === "POST" && path === "/predictions") {
         return await proxyPredictions_(request, env, corsHeaders);
       }
@@ -129,6 +133,29 @@ async function proxyOthers_(env, corsHeaders, request) {
     encodeURIComponent(env.APPS_SCRIPT_TOKEN) +
     "&action=others" +
     (week ? "&week=" + encodeURIComponent(week) : "");
+
+  const response = await fetch(target, {
+    method: "GET",
+    redirect: "follow",
+  });
+
+  const text = await response.text();
+  return new Response(text, {
+    status: response.ok ? 200 : response.status,
+    headers: {
+      ...corsHeaders,
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+async function proxyLeaderboard_(env, corsHeaders) {
+  const target =
+    env.APPS_SCRIPT_URL +
+    "?token=" +
+    encodeURIComponent(env.APPS_SCRIPT_TOKEN) +
+    "&action=leaderboard";
 
   const response = await fetch(target, {
     method: "GET",

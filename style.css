@@ -1034,8 +1034,71 @@ main ul li {
   color: var(--muted);
 }
 
-.others-table th.others-you,
-.others-table td.others-you {
+/* ---------- Leaderboard ---------- */
+.leaderboard-table-wrapper {
+  max-width: none;
+}
+
+.leaderboard-table {
+  min-width: 22rem;
+  font-size: 0.92rem;
+}
+
+.leaderboard-table .leaderboard-player {
+  font-weight: 650;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.leaderboard-table .leaderboard-empty {
+  color: var(--muted);
+}
+
+.leaderboard-table tr.leaderboard-you td {
   background: color-mix(in oklab, var(--primary) 14%, transparent);
   font-weight: 650;
+}
+
+.leaderboard-sort {
+  appearance: none;
+  background: none;
+  border: 0;
+  color: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+  font: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  padding: 0;
+  text-align: inherit;
+  text-transform: inherit;
+  width: 100%;
+}
+
+.leaderboard-sort::after {
+  content: "";
+  display: inline-block;
+  margin-left: 0.35em;
+  opacity: 0.45;
+  width: 0;
+  height: 0;
+  border-left: 0.28em solid transparent;
+  border-right: 0.28em solid transparent;
+  border-top: 0.35em solid currentColor;
+  vertical-align: 0.1em;
+}
+
+.leaderboard-sort.is-asc::after {
+  border-top: 0;
+  border-bottom: 0.35em solid currentColor;
+  opacity: 1;
+}
+
+.leaderboard-sort.is-desc::after {
+  opacity: 1;
+}
+
+.leaderboard-sort:hover,
+.leaderboard-sort:focus-visible {
+  color: rgba(255, 255, 255, 0.96);
+  outline: none;
 }
