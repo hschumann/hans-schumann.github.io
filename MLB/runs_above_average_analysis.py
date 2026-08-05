@@ -173,8 +173,17 @@ def batter_raa(df: pd.DataFrame, min_pa: int = 50) -> pd.DataFrame:
 def pitcher_raa(df: pd.DataFrame, min_bf: int = 50) -> pd.DataFrame:
     """
     Per-pitcher summary (lower values = better for the pitcher).
-    Columns mirror batter_raa.
+    Columns mirror batter_raa, using batters faced (bf).
     """
+    team_col = "pitcher_team" if "pitcher_team" in df.columns else "team"
+    most_recent_team = (
+        df.sort_values("game_date")
+          .groupby("pitcher")[team_col]
+          .last()
+          .reset_index()
+          .rename(columns={team_col: "team"})
+    )
+
     agg = (
         df.groupby("pitcher")
           .agg(
@@ -187,8 +196,12 @@ def pitcher_raa(df: pd.DataFrame, min_bf: int = 50) -> pd.DataFrame:
           .reset_index()
     )
     agg["total_value"] = agg["raa_sum"] + agg["re_added_sum"]
+    agg = agg.merge(most_recent_team, on="pitcher", how="left")
+
+    cols = ["pitcher", "team", "bf", "raa_sum", "raa_per_bf",
+            "re_added_sum", "re_added_per_bf", "total_value"]
     return (
-        agg[agg["bf"] >= min_bf]
+        agg[agg["bf"] >= min_bf][cols]
            .sort_values("total_value")       # ascending: best pitchers first
            .reset_index(drop=True)
     )
