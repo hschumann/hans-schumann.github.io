@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Field Position at the Women&rsquo;s World Cup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="How starting distance from goal shapes expected goals at the FIFA Women's World Cup, using StatsBomb event data from 2019 and 2023." />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../index.html" class="logo" aria-label="Home">
+      <img src="../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <details class="nav-menu">
+      <summary class="nav-menu-toggle" aria-label="Menu">
+        <span class="nav-menu-label">Menu</span>
+        <span class="nav-menu-icon" aria-hidden="true"></span>
+      </summary>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../analytics/index.html">Analytics</a></li>
+        <li><a href="../prediction-games/index.html">Prediction Games</a></li>
+        <li><a href="../contact/index.html">Contact</a></li>
+      </ul>
+    </details>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">Women&rsquo;s World Cup &bull; 2019 &amp; 2023 &bull; StatsBomb</div>
+    <h1>Field Position at the Women&rsquo;s World Cup</h1>
+    <p class="muted">Where a team wins the ball back is one of the simplest spatial signals in football&mdash;and a useful baseline for chance creation. This piece uses StatsBomb open event data from the 2019 and 2023 FIFA Women&rsquo;s World Cups, with each team-year kept separate (USA 2019 vs USA 2023).</p>
+    <p class="published-date"><time datetime="2026-08-06">August 6, 2026</time></p>
+    <div class="button-row">
+      <a class="btn" href="../analytics/index.html">Back to analytics</a>
+    </div>
+  </section>
+
+  <section class="section card stack">
+
+    <h2>What &ldquo;Field Position&rdquo; Means</h2>
+
+    <p>The field position metric is the straight-line distance from the center of the opponent&rsquo;s goal to the point where that possession begins&mdash;typically where a team recovers the ball, receives a throw-in, or otherwise restarts play.</p>
+
+    <p>Teams that consistently win the ball closer to the opponent&rsquo;s goal are pressing higher, forcing turnovers in dangerous areas, or otherwise starting attacks from more advanced field position. That does not guarantee goals on its own&mdash;but it changes the baseline for how valuable each possession should be.</p>
+
+    <figure class="article-figure">
+      <img src="images/distance-from-goal-pitch.png" alt="Diagram of a soccer pitch showing a line from the center of the goal to a ball about 40 yards out" width="960" height="692" />
+      <figcaption>A possession starting outside the box might sit around 40 yards from goal. Closer recoveries leave less ground to cover before a shot.</figcaption>
+    </figure>
+
+    <p>Intuitively, the relationship is simple: the closer you start to goal, the more expected goals that possession should produce. Less distance to progress, less time for the defense to recover, and a shorter path into the penalty area. By the same logic, teams that force their opponents to start far from goal make it harder to generate goal scoring opportunities against them.</p>
+
+    <h2>What the Data Shows (Women&rsquo;s World Cup)</h2>
+
+    <p>Using StatsBomb event data for the 2019 and 2023 FIFA Women&rsquo;s World Cups, every possession gets a real starting coordinate from the first located event in that possession chain. Goal kicks, penalties, and penalty-kick rebound sequences are excluded because they begin from fixed restart spots (or sit on the penalty spot with outsized xG). When a possession ends in one or more open-play shots, those shots&rsquo; StatsBomb xG values are attached to that same possession.</p>
+
+    <figure class="article-figure epl-curve-figure" aria-label="Expected goals by possession starting distance from goal">
+      <div id="epl-xg-curve" class="epl-curve"></div>
+      <figcaption id="epl-xg-curve-caption">Average xG per possession by starting distance from goal across ~20,500 possessions in the 2019 and 2023 FIFA Women&rsquo;s World Cups (StatsBomb open data). Marker size scales with possessions in each 5-yard bin.</figcaption>
+    </figure>
+
+    <h2>Who Wins the Ball Closest?</h2>
+
+    <p>Average starting distance from goal ranks how high each team-year typically begins possessions. Lower yards means closer to the opponent&rsquo;s goal. To test whether that territory matters, the table pairs the metric with <em>group-stage</em> points and goal difference (knockout games are not scored as points) plus the furthest stage each team reached.</p>
+
+    <p class="muted">Built from StatsBomb open-data events: true possession starts across the whole tournament, with shot xG summed onto any possession that ends in a shot.</p>
+
+    <div class="gold-plan-table-wrapper epl-table-wrapper">
+      <table class="gold-plan-table epl-distance-table" id="epl-team-table">
+        <caption>Women&rsquo;s World Cup team-years by average possession start distance, with group-stage outcomes and furthest stage (2019 &amp; 2023)</caption>
+        <thead></thead>
+        <tbody>
+          <!-- filled by script -->
+        </tbody>
+      </table>
+    </div>
+
+    <p id="epl-table-takeaway" class="muted">Starting closer to goal tracks group-stage success: across 56 team-years, average yards from goal correlates about &minus;0.59 with group points and &minus;0.67 with group goal difference (closer starts, better groups). The link to how far a team goes in the knockout bracket is weaker (~&minus;0.36). Brazil 2023 and France 2019 have the closest starts; USA 2019 (Champions, +18 group GD) and Spain 2023 (Champions) sit near the high-press end; Thailand 2019 and Vietnam 2023 are deepest.</p>
+
+    <h2>Residuals: Creating More Than the Start Suggests</h2>
+
+    <p>Starting position sets an expectation. The residual asks a second question: given where a team typically begins possessions, do they produce more or less xG than the tournament-wide relationship predicts?</p>
+
+    <ul>
+      <li><strong>Positive residual:</strong> more chance creation than expected from those starting spots&mdash;better progression, shot volume, or shot quality once the ball is won.</li>
+      <li><strong>Negative residual:</strong> possessions that start in similar areas but yield less xG.</li>
+    </ul>
+
+    <p id="epl-resid-takeaway">Residual xG still lines up with outcomes&mdash;about +0.52 with group points, +0.68 with group GD, and +0.52 with furthest stage. Spain 2023 and USA 2019 lead among deep runs; France 2019 remains a cautionary case with very close starts but a negative residual after penalties are removed.</p>
+
+    <h2>Where This Goes Next</h2>
+
+    <p>These pieces&mdash;starting distance, opponent field position allowed, and xG margins&mdash;are the building blocks of a match-result model. For club seasons like the current Premier League, the same method needs commercial event data. Until then, open tournament datasets like the Women&rsquo;s World Cup are the best free laboratory for the idea.</p>
+
+  </section>
+</main>
+
+<script src="../nav.js"></script>
+<script src="data.js"></script>
+<script src="page.js"></script>
+</body>
+</html>

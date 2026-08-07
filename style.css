@@ -1190,3 +1190,106 @@ main ul li {
   color: rgba(255, 255, 255, 0.96);
   outline: none;
 }
+
+/* ---------- EPL distance-from-goal article ---------- */
+.article-figure {
+  margin: 1.1rem 0 0.35rem;
+}
+
+.article-figure img {
+  display: block;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.article-figure--narrow {
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.article-figure figcaption,
+.epl-curve-figure figcaption {
+  margin: 0.55rem 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.epl-curve {
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 4px);
+  background: color-mix(in oklab, var(--primary) 6%, var(--surface));
+  padding: 0.65rem 0.4rem 0.35rem;
+}
+
+.epl-curve svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.epl-curve-axis {
+  stroke: color-mix(in oklab, var(--text) 35%, transparent);
+  stroke-width: 1.25;
+}
+
+.epl-curve-grid {
+  stroke: color-mix(in oklab, var(--text) 12%, transparent);
+  stroke-width: 1;
+}
+
+.epl-curve-tick,
+.epl-curve-axis-label {
+  fill: var(--muted);
+  font-size: 12px;
+}
+
+.epl-curve-axis-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.epl-curve-fit {
+  stroke: var(--primary);
+  stroke-width: 2.5;
+}
+
+.epl-curve-point {
+  fill: color-mix(in oklab, var(--accent) 55%, var(--primary));
+  stroke: var(--surface);
+  stroke-width: 1.25;
+  opacity: 0.9;
+}
+
+.epl-table-wrapper {
+  max-width: none;
+}
+
+.epl-distance-table {
+  min-width: 36rem;
+  font-size: 0.88rem;
+}
+
+.epl-resid-pos {
+  color: #1a7f37;
+  font-weight: 700;
+}
+
+.epl-resid-neg {
+  color: #cf222e;
+  font-weight: 700;
+}
+
+@media (prefers-color-scheme: dark) {
+  .epl-resid-pos {
+    color: #3fb950;
+  }
+
+  .epl-resid-neg {
+    color: #f85149;
+  }
+}
