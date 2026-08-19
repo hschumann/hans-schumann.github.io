@@ -33,7 +33,7 @@
     <div class="kicker">MLB &bull; offense &bull; 2026</div>
     <h1>Who&rsquo;s Creating Value at the Plate?</h1>
     <p class="muted">A breakdown of which hitters are not just driving in runs, but setting up better situations&mdash;using a two-part runs above average framework built from Statcast data.</p>
-    <p class="published-date"><time datetime="2026-08-04">August 4, 2026</time></p>
+    <p class="published-date"><time datetime="2026-08-18">August 18, 2026</time></p>
     <div class="button-row">
       <a class="btn" href="../analytics/index.html">Back to analytics</a>
     </div>
@@ -99,7 +99,7 @@
     <p>To capture both sides of this, I built a framework using Statcast play-by-play data that separates a batter&rsquo;s contribution into two components:</p>
 
     <ul>
-      <li><strong>Runs Above Average (RAA):</strong> How many runs actually scored on this plate appearance, relative to the average for that base-out state. If the bases are loaded with nobody out, teams score an average of about 0.28 runs on a given plate appearance. A grand slam scores 4, so that&rsquo;s +3.72. A strikeout scores 0, so that&rsquo;s &minus;0.28.</li>
+      <li><strong>Runs Above Average (RAA):</strong> How many runs actually scored on this plate appearance, relative to the average for that base-out state. If the bases are loaded with nobody out, teams score an average of about 0.85 runs on a given plate appearance. A grand slam scores 4, so that&rsquo;s +3.15. A strikeout scores 0, so that&rsquo;s &minus;0.85.</li>
       <li><strong>Run Expectancy Added (RE Added):</strong> How much did the batter change the situation for the hitters that follow? This measures the shift in expected future run value. A batter who turns a runner-on-first situation into a runners-on-first-and-second situation has improved the environment, even if no run scored on their plate appearance.</li>
     </ul>
 
@@ -107,15 +107,15 @@
 
     <h2>How the Run Expectancy Matrix Works</h2>
 
-    <p>There are 24 possible base-out states in baseball: eight combinations of which bases are occupied (empty, runner on first, first and second, and so on) times three out counts. For each of those 24 states, I calculated the average number of runs that score on a plate appearance starting in that state, using every plate appearance in the 2026 season through early August.</p>
+    <p>There are 24 possible base-out states in baseball: eight combinations of which bases are occupied (empty, runner on first, first and second, and so on) times three out counts. For each of those 24 states, I calculated the average number of runs that score on a plate appearance starting in that state, using every plate appearance in the 2026 season through August 17.</p>
 
     <p>This creates a baseline. When a batter steps to the plate with one out and a runner on first, history tells us what the average outcome looks like in terms of runs scored and state change. Anything above that average is value added. Anything below is value lost.</p>
 
     <p>This approach differs slightly from traditional RE24, which looks at runs scored for the rest of the inning rather than on the plate appearance itself. By focusing on the individual plate appearance, the two components stay cleanly separated and easier to interpret.</p>
 
-    <h2>2026 Batter Leaderboard (through August 3, minimum 100 PA)</h2>
+    <h2>2026 Batter Leaderboard (through August 17, minimum 100 PA)</h2>
 
-    <p>The table below ranks hitters by Total Value&mdash;the sum of RAA and RE Added. Value / PA is Total Value divided by plate appearances. All figures are cumulative through August 3, 2026.</p>
+    <p>The table below ranks hitters by Total Value&mdash;the sum of RAA and RE Added. Value / PA is Total Value divided by plate appearances. All figures are cumulative through August 17, 2026.</p>
 
     <div class="leaderboard-controls">
       <label class="leaderboard-range-label" for="leaderboard-range">Show ranks</label>
@@ -125,7 +125,7 @@
 
     <div class="gold-plan-table-wrapper">
       <table class="gold-plan-table mlb-raa-table" id="mlb-leaderboard-table">
-        <caption>MLB plate appearance value leaders, 2026 season (min. 100 PA, through August 3)</caption>
+        <caption>MLB plate appearance value leaders, 2026 season (min. 100 PA, through August 17)</caption>
         <thead id="mlb-leaderboard-thead"></thead>
         <tbody id="mlb-leaderboard-tbody"></tbody>
       </table>
@@ -137,7 +137,7 @@
 
     <p>Value / BF is Total Value divided by batters faced, so shorter and longer workloads are easier to compare on a rate basis.</p>
 
-    <h2>2026 Pitcher Leaderboard (through August 3, minimum 100 BF)</h2>
+    <h2>2026 Pitcher Leaderboard (through August 17, minimum 100 BF)</h2>
 
     <p>Lower Total Value is better. The table defaults to ascending Total Value so the strongest run-prevention pitchers appear first.</p>
 
@@ -149,7 +149,7 @@
 
     <div class="gold-plan-table-wrapper">
       <table class="gold-plan-table mlb-raa-table" id="mlb-pitcher-table">
-        <caption>MLB pitcher run-prevention leaders, 2026 season (min. 100 BF, through August 3)</caption>
+        <caption>MLB pitcher run-prevention leaders, 2026 season (min. 100 BF, through August 17)</caption>
         <thead id="mlb-pitcher-thead"></thead>
         <tbody id="mlb-pitcher-tbody"></tbody>
       </table>

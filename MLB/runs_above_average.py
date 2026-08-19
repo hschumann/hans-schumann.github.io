@@ -130,7 +130,7 @@ def collect_plate_appearances(start_dt: str, end_dt: str) -> pd.DataFrame:
 if __name__ == "__main__":
     # Adjust date range as needed
     START = "2026-04-01"
-    END   = "2026-08-04"
+    END   = "2026-08-18"
 
     df = collect_plate_appearances(START, END)
 

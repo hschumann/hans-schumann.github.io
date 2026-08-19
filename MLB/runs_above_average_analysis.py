@@ -13,13 +13,16 @@ Runs above average per PA  =  runs_scored  −  RE(state_before)
 """
 
 from pathlib import Path
+import json
 import pandas as pd
 from pybaseball import playerid_reverse_lookup
 
 # Paths relative to this script's location
 SCRIPT_DIR = Path(__file__).parent
 CSV_PATH   = SCRIPT_DIR / "plate_appearances.csv"
-HTML_PATH  = SCRIPT_DIR / "../mlb-runs-above-average/index.html"
+SITE_DIR   = SCRIPT_DIR / "../mlb-runs-above-average"
+BATTER_JS_PATH  = SITE_DIR / "leaderboard-data.js"
+PITCHER_JS_PATH = SITE_DIR / "pitcher-leaderboard-data.js"
 
 # ---------------------------------------------------------------------------
 # 1. Load data
@@ -208,55 +211,47 @@ def pitcher_raa(df: pd.DataFrame, min_bf: int = 50) -> pd.DataFrame:
 
 
 # ---------------------------------------------------------------------------
-# 6. Inject leaderboard into the website HTML
+# 6. Write leaderboard JS files for the website
 # ---------------------------------------------------------------------------
 
-TABLE_START = "<!-- TABLE_START -->"
-TABLE_END   = "<!-- TABLE_END -->"
-
-def build_html_rows(batters: pd.DataFrame, n: int = 30) -> str:
-    """Convert the top-n batter rows into HTML <tr> elements."""
+def batters_to_js_rows(batters: pd.DataFrame) -> list:
     rows = []
-    for rank, row in enumerate(batters.head(n).itertuples(), start=1):
-        rows.append(
-            f'          <tr>'
-            f'<td class="num">{rank}</td>'
-            f'<td>{row.batter}</td>'
-            f'<td>{row.team}</td>'
-            f'<td class="num">{int(row.pa)}</td>'
-            f'<td class="num">{row.raa_sum:+.2f}</td>'
-            f'<td class="num">{row.re_added_sum:+.2f}</td>'
-            f'<td class="num">{row.total_value:+.2f}</td>'
-            f'</tr>'
-        )
-    return "\n".join(rows)
+    for rank, row in enumerate(batters.itertuples(), start=1):
+        rows.append({
+            "rank": rank,
+            "player": row.batter,
+            "team": row.team,
+            "pa": int(row.pa),
+            "raa": round(row.raa_sum, 2),
+            "reAdded": round(row.re_added_sum, 2),
+            "total": round(row.total_value, 2),
+            "valuePerPa": round(row.total_value / row.pa, 4),
+        })
+    return rows
 
 
-def inject_html_table(batters: pd.DataFrame,
-                      html_path: Path = HTML_PATH,
-                      n: int = 30) -> None:
-    """
-    Replace the table body between TABLE_START / TABLE_END markers
-    in the story HTML with fresh data from the leaderboard.
-    """
-    html = html_path.read_text(encoding="utf-8")
+def pitchers_to_js_rows(pitchers: pd.DataFrame) -> list:
+    rows = []
+    for rank, row in enumerate(pitchers.itertuples(), start=1):
+        rows.append({
+            "rank": rank,
+            "player": row.pitcher,
+            "team": row.team,
+            "bf": int(row.bf),
+            "raa": round(row.raa_sum, 2),
+            "reAdded": round(row.re_added_sum, 2),
+            "total": round(row.total_value, 2),
+            "valuePerBf": round(row.total_value / row.bf, 4),
+        })
+    return rows
 
-    start_idx = html.find(TABLE_START)
-    end_idx   = html.find(TABLE_END)
-    if start_idx == -1 or end_idx == -1:
-        raise ValueError(f"Could not find TABLE_START / TABLE_END markers in {html_path}")
 
-    new_rows = build_html_rows(batters, n)
-    new_html = (
-        html[: start_idx + len(TABLE_START)]
-        + "\n"
-        + new_rows
-        + "\n        "
-        + html[end_idx:]
+def write_js_var(rows: list, var_name: str, path: Path) -> None:
+    path.write_text(
+        f"window.{var_name} = {json.dumps(rows, ensure_ascii=True)};\n",
+        encoding="utf-8",
     )
-
-    html_path.write_text(new_html, encoding="utf-8")
-    print(f"✓ Injected {min(n, len(batters))} rows into {html_path}")
+    print(f"✓ Wrote {len(rows)} rows to {path}")
 
 
 # ---------------------------------------------------------------------------
@@ -299,7 +294,7 @@ if __name__ == "__main__":
     print()
 
     # ── Pitcher leaderboard ───────────────────────────────────────────────
-    pitchers = pitcher_raa(df, min_bf=50)
+    pitchers = pitcher_raa(df, min_bf=100)
     print("=== Top 15 Pitchers by RAA (lowest = best) ===")
     print(pitchers.head(15).to_string(index=False))
     print()
@@ -312,5 +307,6 @@ if __name__ == "__main__":
     print(f"RAA range:      [{df['raa'].min():.3f}, {df['raa'].max():.3f}]")
     print(f"re_added range: [{df['re_added'].min():.3f}, {df['re_added'].max():.3f}]")
 
-    # ── Inject into website ───────────────────────────────────────────────
-    inject_html_table(batters)
+    # ── Write website leaderboards ────────────────────────────────────────
+    write_js_var(batters_to_js_rows(batters), "MLB_RAA_LEADERBOARD", BATTER_JS_PATH)
+    write_js_var(pitchers_to_js_rows(pitchers), "MLB_RAA_PITCHERS", PITCHER_JS_PATH)
