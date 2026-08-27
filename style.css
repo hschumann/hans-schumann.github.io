@@ -1293,3 +1293,37 @@ main ul li {
     color: #f85149;
   }
 }
+
+.ht-call {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.ht-call-over {
+  background: color-mix(in oklab, #1a7f37 18%, transparent);
+  color: #1a7f37;
+}
+
+.ht-call-under {
+  background: color-mix(in oklab, #0969da 18%, transparent);
+  color: #0969da;
+}
+
+.ht-call-none {
+  background: color-mix(in oklab, var(--muted) 22%, transparent);
+  color: var(--muted);
+}
+
+@media (prefers-color-scheme: dark) {
+  .ht-call-over {
+    color: #3fb950;
+  }
+
+  .ht-call-under {
+    color: #58a6ff;
+  }
+}
