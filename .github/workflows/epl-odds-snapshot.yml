@@ -1,0 +1,43 @@
+name: EPL odds snapshot
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Monday 06:00 UTC — refresh before midweek fixtures
+    - cron: "0 6 * * 1"
+  push:
+    paths:
+      - "EPL_model/data/football_data/**"
+      - "EPL_model/scripts/snapshot_pregame_odds.py"
+      - "EPL_model/football_data/**"
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r EPL_model/requirements.txt
+
+      - name: Snapshot pregame odds
+        run: python3 EPL_model/scripts/snapshot_pregame_odds.py
+
+      - name: Commit odds.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add epl-halftime-bets/odds.json
+          if git diff --staged --quiet; then
+            echo "No odds changes."
+          else
+            git commit -m "Update EPL pregame odds snapshot"
+            git push
+          fi

@@ -1,0 +1,38 @@
+name: EPL live HT board
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Sat/Sun matchdays — every 15 minutes during typical UK kickoff windows
+    - cron: "*/15 11-22 * * 6,0"
+
+permissions:
+  contents: write
+
+jobs:
+  board:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r EPL_model/requirements.txt
+
+      - name: Build live board
+        run: python3 EPL_model/scripts/build_live_board.py
+
+      - name: Commit board.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add epl-halftime-bets/board.json
+          if git diff --staged --quiet; then
+            echo "No board changes."
+          else
+            git commit -m "Update EPL live HT board"
+            git push
+          fi

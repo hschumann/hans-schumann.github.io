@@ -1,0 +1,12 @@
+# Raw Football-Data.co.uk CSV downloads
+data/football_data/raw/
+
+# FotMob match JSON cache
+data/fotmob/matches/
+
+# Generated outputs
+outputs/
+
+# Python cache
+__pycache__/
+*.pyc

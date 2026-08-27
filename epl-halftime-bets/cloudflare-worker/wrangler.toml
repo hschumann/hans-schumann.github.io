@@ -1,0 +1,17 @@
+name = "epl-halftime-bets"
+main = "src/index.js"
+compatibility_date = "2026-08-19"
+
+# Optional: set after deploy
+#   npx wrangler kv namespace create HT_BOARD
+# then uncomment and paste the id:
+# [[kv_namespaces]]
+# binding = "HT_BOARD"
+# id = "REPLACE_ME"
+
+# Optional override for odds snapshot URL:
+# [vars]
+# ODDS_JSON_URL = "https://hans-schumann.github.io/epl-halftime-bets/odds.json"
+
+[triggers]
+crons = ["*/2 * * * *"]

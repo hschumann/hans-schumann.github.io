@@ -1294,6 +1294,27 @@ main ul li {
   }
 }
 
+.ht-live-banner {
+  padding: 0.85rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in oklab, #1a7f37 35%, var(--border));
+  background: color-mix(in oklab, #1a7f37 8%, var(--card));
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.ht-live-banner p {
+  margin: 0 0 0.35rem;
+}
+
+.ht-row-live {
+  background: color-mix(in oklab, #1a7f37 6%, transparent);
+}
+
+.ht-row-halftime {
+  background: color-mix(in oklab, var(--muted) 6%, transparent);
+}
+
 .ht-call {
   display: inline-block;
   padding: 0.15rem 0.55rem;
@@ -1301,6 +1322,10 @@ main ul li {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.02em;
+}
+
+.ht-call-live {
+  box-shadow: 0 0 0 1px color-mix(in oklab, currentColor 35%, transparent);
 }
 
 .ht-call-over {

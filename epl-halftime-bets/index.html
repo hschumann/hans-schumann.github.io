@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EPL Halftime Over/Under (MVP)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="MVP board: at halftime, recommend OVER, UNDER, or NO BET using pregame odds and the HT score." />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../index.html" class="logo" aria-label="Home">
+      <img src="../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <details class="nav-menu">
+      <summary class="nav-menu-toggle" aria-label="Menu">
+        <span class="nav-menu-label">Menu</span>
+        <span class="nav-menu-icon" aria-hidden="true"></span>
+      </summary>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../analytics/index.html">Analytics</a></li>
+        <li><a href="../prediction-games/index.html">Prediction Games</a></li>
+        <li><a href="../contact/index.html">Contact</a></li>
+      </ul>
+    </details>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">Premier League &bull; MVP &bull; Research tool</div>
+    <h1>Halftime Over / Under</h1>
+    <p class="muted">
+      At halftime, combine the actual score with pregame win and over/under odds to
+      predict the full-time total. Then call <strong>OVER</strong>, <strong>UNDER</strong>,
+      or <strong>NO BET</strong> vs 2.5 goals.
+    </p>
+    <p class="published-date"><time datetime="2026-08-26">August 26, 2026</time></p>
+    <div class="button-row">
+      <a class="btn" href="../analytics/index.html">Back to analytics</a>
+      <button type="button" class="btn" id="ht-refresh">Refresh</button>
+    </div>
+  </section>
+
+  <section class="section card stack">
+    <div id="ht-live-banner" class="ht-live-banner" hidden></div>
+    <p id="ht-status" class="muted">Loading board&hellip;</p>
+    <p id="ht-disclaimer" class="muted"></p>
+
+    <div class="gold-plan-table-wrapper epl-table-wrapper">
+      <table class="gold-plan-table epl-distance-table" id="ht-board-table">
+        <caption>Halftime recommendations (OVER / UNDER / NO BET)</caption>
+        <thead>
+          <tr>
+            <th>Match</th>
+            <th>Phase</th>
+            <th class="num">HT</th>
+            <th class="num">Pred FT</th>
+            <th class="num">Pred total</th>
+            <th>Call</th>
+            <th class="num">Edge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- filled by page.js -->
+        </tbody>
+      </table>
+    </div>
+
+    <h2>How the call is made</h2>
+    <ol>
+      <li>Strip vig from pregame Avg 1X2 and Avg over/under 2.5.</li>
+      <li>Convert those into expected full-time goals for each team (Poisson).</li>
+      <li>Assign 55.5% of expected goals to the second half (historical EPL share).</li>
+      <li>Predicted FT = HT score + remaining expected 2H goals.</li>
+      <li>
+        If predicted total &ge; 3.0 &rarr; <strong>OVER</strong>;
+        &le; 2.0 &rarr; <strong>UNDER</strong>;
+        otherwise <strong>NO BET</strong>.
+      </li>
+    </ol>
+
+    <p class="muted">
+      Live mode: set <code>workerUrl</code> in <code>config.js</code> after deploying the
+      Cloudflare Worker, or rely on the GitHub Action that refreshes <code>board.json</code>
+      on matchdays. Calls with * are tracking-only (HT window has passed). Not betting advice.
+    </p>
+  </section>
+</main>
+
+<script src="../nav.js"></script>
+<script src="config.js"></script>
+<script src="page.js"></script>
+</body>
+</html>
