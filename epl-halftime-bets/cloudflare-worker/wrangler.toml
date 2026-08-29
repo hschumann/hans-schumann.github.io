@@ -11,7 +11,7 @@ compatibility_date = "2026-08-19"
 
 # Optional override for odds snapshot URL:
 # [vars]
-# ODDS_JSON_URL = "https://hans-schumann.github.io/epl-halftime-bets/odds.json"
+# ODDS_JSON_URL = "https://hans-schumann.com/epl-halftime-bets/odds.json"
 
 [triggers]
 crons = ["*/2 * * * *"]

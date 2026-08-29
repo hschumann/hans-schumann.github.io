@@ -71,22 +71,36 @@
     </div>
 
     <h2>How the call is made</h2>
+    <p>
+      This MVP does <strong>not</strong> use first-half shots or corners. It only uses
+      (1) the actual halftime score and (2) the pregame win + over/under odds.
+    </p>
+    <p>Example: Arsenal 1–0 Chelsea at HT. Pregame odds said the match should finish around 2.8 total goals, with Arsenal favored.</p>
     <ol>
-      <li>Strip vig from pregame Avg 1X2 and Avg over/under 2.5.</li>
-      <li>Convert those into expected full-time goals for each team (Poisson).</li>
-      <li>Assign 55.5% of expected goals to the second half (historical EPL share).</li>
-      <li>Predicted FT = HT score + remaining expected 2H goals.</li>
       <li>
-        If predicted total &ge; 3.0 &rarr; <strong>OVER</strong>;
+        <strong>Pregame odds &rarr; expected full-time goals.</strong>
+        From Avg 1X2 and Avg over/under 2.5 (vig removed), estimate how many goals each team was expected to score over 90 minutes. Say Arsenal 1.7, Chelsea 1.1 (total 2.8).
+      </li>
+      <li>
+        <strong>Split those into halves.</strong>
+        Historically ~44.5% of EPL goals fall in the first half and ~55.5% in the second. So the second-half expectation is Arsenal 0.94, Chelsea 0.61.
+      </li>
+      <li>
+        <strong>Add the real HT score.</strong>
+        Predicted FT = actual HT + expected remaining 2H goals.
+        Here: Arsenal 1 + 0.94 = 1.94, Chelsea 0 + 0.61 = 0.61. Predicted total = <strong>2.55</strong>.
+      </li>
+      <li>
+        <strong>Call vs the 2.5 line</strong> (with a buffer so we skip toss-ups):
+        predicted total &ge; 3.0 &rarr; <strong>OVER</strong>;
         &le; 2.0 &rarr; <strong>UNDER</strong>;
         otherwise <strong>NO BET</strong>.
+        In this example 2.55 is a NO BET.
       </li>
     </ol>
-
     <p class="muted">
-      Live mode: set <code>workerUrl</code> in <code>config.js</code> after deploying the
-      Cloudflare Worker, or rely on the GitHub Action that refreshes <code>board.json</code>
-      on matchdays. Calls with * are tracking-only (HT window has passed). Not betting advice.
+      Edge = predicted total − 2.5. Positive leans over; negative leans under.
+      Calls marked * are tracking-only (the HT window has already passed). Not betting advice.
     </p>
   </section>
 </main>

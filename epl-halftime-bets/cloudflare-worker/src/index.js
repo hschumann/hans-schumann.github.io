@@ -17,7 +17,7 @@ const PREMIER_LEAGUE_ID = 47;
 const FOTMOB_MATCHES = "https://www.fotmob.com/api/data/matches";
 const FOTMOB_MATCH = "https://www.fotmob.com/api/data/matchDetails";
 const DEFAULT_ODDS_URL =
-  "https://hans-schumann.github.io/epl-halftime-bets/odds.json";
+  "https://hans-schumann.com/epl-halftime-bets/odds.json";
 const BOARD_KEY = "board";
 const ODDS_CACHE_KEY = "odds_cache";
 const NO_BET_THRESHOLD = 0.5;
