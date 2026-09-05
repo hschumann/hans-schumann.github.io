@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05T16:16:11.879711+00:00",
+  "updated": "2026-09-05T18:28:43.216849+00:00",
   "mode": "live",
   "dates_fetched": [
     "2026-09-05",
@@ -15,25 +15,6 @@
   },
   "live_call_count": 0,
   "matches": [
-    {
-      "match_id": 5795440,
-      "home_team": "Hull",
-      "away_team": "Aston Villa",
-      "kickoff_utc": "2026-09-05T16:30:00.000Z",
-      "phase": "not_started",
-      "status_label": "not_started",
-      "score_str": "\u2013",
-      "ht_home": null,
-      "ht_away": null,
-      "pred_ft_home": null,
-      "pred_ft_away": null,
-      "pred_total": null,
-      "call": null,
-      "call_label": null,
-      "edge": null,
-      "live_call": false,
-      "odds_matched": false
-    },
     {
       "match_id": 5795441,
       "home_team": "Ipswich",
@@ -153,6 +134,25 @@
       "home_team": "Nott'm Forest",
       "away_team": "Tottenham",
       "kickoff_utc": "2026-09-05T14:00:00.000Z",
+      "phase": "finished",
+      "status_label": "Full-Time",
+      "score_str": "0 - 0",
+      "ht_home": 0,
+      "ht_away": 0,
+      "pred_ft_home": null,
+      "pred_ft_away": null,
+      "pred_total": null,
+      "call": null,
+      "call_label": null,
+      "edge": null,
+      "live_call": false,
+      "odds_matched": false
+    },
+    {
+      "match_id": 5795440,
+      "home_team": "Hull",
+      "away_team": "Aston Villa",
+      "kickoff_utc": "2026-09-05T16:30:00.000Z",
       "phase": "finished",
       "status_label": "Full-Time",
       "score_str": "0 - 0",
