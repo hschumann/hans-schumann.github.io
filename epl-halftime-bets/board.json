@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-06T00:05:02.264422+00:00",
+  "updated": "2026-09-06T13:53:00.869400+00:00",
   "mode": "live",
   "dates_fetched": [
     "2026-09-06",
@@ -20,11 +20,11 @@
       "home_team": "Everton",
       "away_team": "Man United",
       "kickoff_utc": "2026-09-06T13:00:00.000Z",
-      "phase": "not_started",
-      "status_label": "not_started",
-      "score_str": "\u2013",
-      "ht_home": null,
-      "ht_away": null,
+      "phase": "first_half",
+      "status_label": "first_half",
+      "score_str": "0 - 0",
+      "ht_home": 0,
+      "ht_away": 0,
       "pred_ft_home": null,
       "pred_ft_away": null,
       "pred_total": null,
