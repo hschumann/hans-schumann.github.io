@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-06T16:38:22.745318+00:00",
+  "updated": "2026-09-06T18:38:18.960273+00:00",
   "mode": "live",
   "dates_fetched": [
     "2026-09-06",
@@ -15,25 +15,6 @@
   },
   "live_call_count": 0,
   "matches": [
-    {
-      "match_id": 5795435,
-      "home_team": "Arsenal",
-      "away_team": "Chelsea",
-      "kickoff_utc": "2026-09-06T15:30:00.000Z",
-      "phase": "second_half",
-      "status_label": "second_half",
-      "score_str": "1 - 1",
-      "ht_home": 1,
-      "ht_away": 1,
-      "pred_ft_home": null,
-      "pred_ft_away": null,
-      "pred_total": null,
-      "call": null,
-      "call_label": null,
-      "edge": null,
-      "live_call": false,
-      "odds_matched": false
-    },
     {
       "match_id": 5795443,
       "home_team": "Newcastle",
@@ -177,6 +158,25 @@
       "score_str": "2 - 2",
       "ht_home": 0,
       "ht_away": 0,
+      "pred_ft_home": null,
+      "pred_ft_away": null,
+      "pred_total": null,
+      "call": null,
+      "call_label": null,
+      "edge": null,
+      "live_call": false,
+      "odds_matched": false
+    },
+    {
+      "match_id": 5795435,
+      "home_team": "Arsenal",
+      "away_team": "Chelsea",
+      "kickoff_utc": "2026-09-06T15:30:00.000Z",
+      "phase": "finished",
+      "status_label": "Full-Time",
+      "score_str": "2 - 1",
+      "ht_home": 1,
+      "ht_away": 1,
       "pred_ft_home": null,
       "pred_ft_away": null,
       "pred_total": null,
