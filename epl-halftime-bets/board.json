@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-12T16:40:36.157894+00:00",
+  "updated": "2026-09-12T18:46:07.643704+00:00",
   "mode": "live",
   "dates_fetched": [
     "2026-09-12",
@@ -15,25 +15,6 @@
   },
   "live_call_count": 0,
   "matches": [
-    {
-      "match_id": 5795454,
-      "home_team": "Tottenham",
-      "away_team": "Everton",
-      "kickoff_utc": "2026-09-12T16:30:00.000Z",
-      "phase": "first_half",
-      "status_label": "first_half",
-      "score_str": "0 - 0",
-      "ht_home": 0,
-      "ht_away": 0,
-      "pred_ft_home": null,
-      "pred_ft_away": null,
-      "pred_total": null,
-      "call": null,
-      "call_label": null,
-      "edge": null,
-      "live_call": false,
-      "odds_matched": false
-    },
     {
       "match_id": 5795453,
       "home_team": "Sunderland",
@@ -134,6 +115,25 @@
       "home_team": "Liverpool",
       "away_team": "Fulham",
       "kickoff_utc": "2026-09-12T14:00:00.000Z",
+      "phase": "finished",
+      "status_label": "Full-Time",
+      "score_str": "0 - 0",
+      "ht_home": 0,
+      "ht_away": 0,
+      "pred_ft_home": null,
+      "pred_ft_away": null,
+      "pred_total": null,
+      "call": null,
+      "call_label": null,
+      "edge": null,
+      "live_call": false,
+      "odds_matched": false
+    },
+    {
+      "match_id": 5795454,
+      "home_team": "Tottenham",
+      "away_team": "Everton",
+      "kickoff_utc": "2026-09-12T16:30:00.000Z",
       "phase": "finished",
       "status_label": "Full-Time",
       "score_str": "0 - 0",
