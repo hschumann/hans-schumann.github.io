@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-12T23:02:27.051487+00:00",
+  "updated": "2026-09-13T14:45:47.698802+00:00",
   "mode": "live",
   "dates_fetched": [
-    "2026-09-12",
-    "2026-09-11"
+    "2026-09-13",
+    "2026-09-12"
   ],
   "source": "fotmob + football-data odds snapshot",
   "disclaimer": "Research tool only \u2014 not betting advice. Live calls appear at halftime only.",
@@ -15,6 +15,44 @@
   },
   "live_call_count": 0,
   "matches": [
+    {
+      "match_id": 5795448,
+      "home_team": "Coventry City",
+      "away_team": "Brighton",
+      "kickoff_utc": "2026-09-13T13:00:00.000Z",
+      "phase": "second_half",
+      "status_label": "second_half",
+      "score_str": "0 - 4",
+      "ht_home": 0,
+      "ht_away": 1,
+      "pred_ft_home": null,
+      "pred_ft_away": null,
+      "pred_total": null,
+      "call": null,
+      "call_label": null,
+      "edge": null,
+      "live_call": false,
+      "odds_matched": false
+    },
+    {
+      "match_id": 5795452,
+      "home_team": "Man United",
+      "away_team": "Man City",
+      "kickoff_utc": "2026-09-13T15:30:00.000Z",
+      "phase": "not_started",
+      "status_label": "not_started",
+      "score_str": "\u2013",
+      "ht_home": null,
+      "ht_away": null,
+      "pred_ft_home": null,
+      "pred_ft_away": null,
+      "pred_total": null,
+      "call": null,
+      "call_label": null,
+      "edge": null,
+      "live_call": false,
+      "odds_matched": false
+    },
     {
       "match_id": 5795445,
       "home_team": "AFC Bournemouth",
