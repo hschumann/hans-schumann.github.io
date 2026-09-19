@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-19T17:16:34.508950+00:00",
+  "updated": "2026-09-19T19:26:40.967509+00:00",
   "mode": "live",
   "dates_fetched": [
     "2026-09-19",
@@ -15,25 +15,6 @@
   },
   "live_call_count": 0,
   "matches": [
-    {
-      "match_id": 5795463,
-      "home_team": "Nott'm Forest",
-      "away_team": "Coventry City",
-      "kickoff_utc": "2026-09-19T16:30:00.000Z",
-      "phase": "first_half",
-      "status_label": "first_half",
-      "score_str": "0 - 0",
-      "ht_home": 0,
-      "ht_away": 0,
-      "pred_ft_home": null,
-      "pred_ft_away": null,
-      "pred_total": null,
-      "call": null,
-      "call_label": null,
-      "edge": null,
-      "live_call": false,
-      "odds_matched": false
-    },
     {
       "match_id": 5795456,
       "home_team": "Brentford",
@@ -119,6 +100,25 @@
       "status_label": "Full-Time",
       "score_str": "2 - 1",
       "ht_home": 2,
+      "ht_away": 0,
+      "pred_ft_home": null,
+      "pred_ft_away": null,
+      "pred_total": null,
+      "call": null,
+      "call_label": null,
+      "edge": null,
+      "live_call": false,
+      "odds_matched": false
+    },
+    {
+      "match_id": 5795463,
+      "home_team": "Nott'm Forest",
+      "away_team": "Coventry City",
+      "kickoff_utc": "2026-09-19T16:30:00.000Z",
+      "phase": "finished",
+      "status_label": "Full-Time",
+      "score_str": "0 - 1",
+      "ht_home": 0,
       "ht_away": 0,
       "pred_ft_home": null,
       "pred_ft_away": null,
