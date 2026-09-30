@@ -1147,6 +1147,46 @@ main ul li {
   font-weight: 650;
 }
 
+.leaderboard-table .leaderboard-sticky-name,
+.leaderboard-table .leaderboard-sticky-total {
+  position: sticky;
+  z-index: 1;
+}
+
+.leaderboard-table .leaderboard-sticky-name {
+  left: 0;
+}
+
+.leaderboard-table .leaderboard-sticky-total {
+  left: var(--leaderboard-name-width, 0);
+  box-shadow: inset -1px 0 0 var(--border);
+}
+
+.leaderboard-table thead .leaderboard-sticky-name,
+.leaderboard-table thead .leaderboard-sticky-total {
+  z-index: 2;
+}
+
+.leaderboard-table tbody td.leaderboard-sticky-name,
+.leaderboard-table tbody td.leaderboard-sticky-total {
+  background: var(--surface);
+}
+
+.leaderboard-table tbody tr:nth-child(even) td.leaderboard-sticky-name,
+.leaderboard-table tbody tr:nth-child(even) td.leaderboard-sticky-total {
+  background: color-mix(in oklab, var(--primary) 6%, var(--surface));
+}
+
+.leaderboard-table tbody tr:hover td.leaderboard-sticky-name,
+.leaderboard-table tbody tr:hover td.leaderboard-sticky-total {
+  background: color-mix(in oklab, var(--primary) 12%, var(--surface));
+}
+
+.leaderboard-table tbody tr.leaderboard-you td.leaderboard-sticky-name,
+.leaderboard-table tbody tr.leaderboard-you td.leaderboard-sticky-total {
+  background: color-mix(in oklab, var(--primary) 14%, var(--surface));
+}
+
 .leaderboard-sort {
   appearance: none;
   background: none;

@@ -78,12 +78,21 @@
     tbodyEl.innerHTML = "";
 
     var sorted = players.slice().sort(comparePlayers);
+    var weekOrder = weeks
+      .map(function (_, index) {
+        return index;
+      })
+      .reverse();
     var headRow = document.createElement("tr");
 
-    headRow.appendChild(sortHeader("Player", "name", false));
-    headRow.appendChild(sortHeader("Total Score", "total", true));
-    weeks.forEach(function (week, index) {
-      headRow.appendChild(sortHeader("Week " + week, "week:" + index, true));
+    var thName = sortHeader("Player", "name", false);
+    thName.classList.add("leaderboard-sticky-name");
+    headRow.appendChild(thName);
+    var thTotal = sortHeader("Total Score", "total", true);
+    thTotal.classList.add("leaderboard-sticky-total");
+    headRow.appendChild(thTotal);
+    weekOrder.forEach(function (index) {
+      headRow.appendChild(sortHeader("Week " + weeks[index], "week:" + index, true));
     });
     theadEl.appendChild(headRow);
 
@@ -94,16 +103,18 @@
       }
 
       var tdName = document.createElement("td");
-      tdName.className = "leaderboard-player";
+      tdName.className = "leaderboard-player leaderboard-sticky-name";
       tdName.textContent = player.name;
       tr.appendChild(tdName);
 
       var tdTotal = document.createElement("td");
-      tdTotal.className = "num";
+      tdTotal.className = "num leaderboard-sticky-total";
       tdTotal.textContent = formatScore(player.total);
       tr.appendChild(tdTotal);
 
-      (player.weekScores || []).forEach(function (score) {
+      var weekScores = player.weekScores || [];
+      weekOrder.forEach(function (index) {
+        var score = weekScores[index];
         var td = document.createElement("td");
         td.className = "num";
         if (score === null || score === undefined) {
@@ -117,7 +128,20 @@
 
       tbodyEl.appendChild(tr);
     });
+
+    updateStickyOffset();
   }
+
+  function updateStickyOffset() {
+    var nameCell = theadEl.querySelector(".leaderboard-sticky-name");
+    if (nameCell) {
+      document
+        .getElementById("leaderboard-table")
+        .style.setProperty("--leaderboard-name-width", nameCell.offsetWidth + "px");
+    }
+  }
+
+  window.addEventListener("resize", updateStickyOffset);
 
   function sortHeader(label, key, numeric) {
     var th = document.createElement("th");
