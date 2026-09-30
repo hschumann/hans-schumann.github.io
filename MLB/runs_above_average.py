@@ -52,6 +52,9 @@ def collect_plate_appearances(start_dt: str, end_dt: str) -> pd.DataFrame:
     raw = statcast(start_dt=start_dt, end_dt=end_dt)
     print(f"  {len(raw):,} pitches downloaded.")
 
+    raw = raw[raw["game_type"] == "R"]
+    print(f"  {len(raw):,} regular-season pitches kept.")
+
     # ── 1. Keep only the final pitch of each plate appearance ──────────────
     pa = raw[raw["events"].notna()].copy()
     print(f"  {len(pa):,} plate appearances identified.")
@@ -91,6 +94,10 @@ def collect_plate_appearances(start_dt: str, end_dt: str) -> pd.DataFrame:
     for col in ["outs_after", "on_1b_after", "on_2b_after", "on_3b_after"]:
         pa[col] = pa[col].astype(int)
 
+    # truncated_pa rows (inning or game ended mid-PA) are needed above to chain
+    # the base/out state, but they are not completed plate appearances.
+    pa = pa[pa["events"] != "truncated_pa"].copy()
+
     # ── 6. Batter's and pitcher's team abbreviations ───────────────────────
     # Top of inning → away team bats; Bottom → home team bats
     pa["team"] = pa.apply(
@@ -129,8 +136,8 @@ def collect_plate_appearances(start_dt: str, end_dt: str) -> pd.DataFrame:
 
 if __name__ == "__main__":
     # Adjust date range as needed
-    START = "2026-04-01"
-    END   = "2026-08-18"
+    START = "2026-03-25"
+    END   = "2026-09-28"
 
     df = collect_plate_appearances(START, END)
 

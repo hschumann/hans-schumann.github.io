@@ -42,8 +42,9 @@ def load_data(path: Path = CSV_PATH) -> pd.DataFrame:
 
 def attach_player_names(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Replaces integer batter/pitcher MLBAM IDs with 'First Last' name strings.
-    Looks up all unique player IDs in one batch call.
+    Adds batter_name / pitcher_name ('First Last') columns alongside the
+    integer MLBAM IDs. Aggregation stays keyed on the IDs, because different
+    players can share a name (e.g. the two Max Muncys).
     """
     all_ids = list(set(df["batter"].tolist() + df["pitcher"].tolist()))
     lookup = playerid_reverse_lookup(all_ids, key_type="mlbam")
@@ -53,8 +54,8 @@ def attach_player_names(df: pd.DataFrame) -> pd.DataFrame:
     name_map = lookup.set_index("key_mlbam")["name"].to_dict()
 
     df = df.copy()
-    df["batter"]  = df["batter"].map(name_map).fillna(df["batter"].astype(str))
-    df["pitcher"] = df["pitcher"].map(name_map).fillna(df["pitcher"].astype(str))
+    df["batter_name"]  = df["batter"].map(name_map).fillna(df["batter"].astype(str))
+    df["pitcher_name"] = df["pitcher"].map(name_map).fillna(df["pitcher"].astype(str))
     return df
 
 
@@ -152,6 +153,7 @@ def batter_raa(df: pd.DataFrame, min_pa: int = 50) -> pd.DataFrame:
     agg = (
         df.groupby("batter")
           .agg(
+              name            = ("batter_name", "first"),
               pa              = ("raa",      "count"),
               raa_sum         = ("raa",      "sum"),
               raa_per_pa      = ("raa",      "mean"),
@@ -164,7 +166,7 @@ def batter_raa(df: pd.DataFrame, min_pa: int = 50) -> pd.DataFrame:
     agg = agg.merge(most_recent_team, on="batter", how="left")
 
     # Reorder so team sits next to the name
-    cols = ["batter", "team", "pa", "raa_sum", "raa_per_pa",
+    cols = ["name", "team", "pa", "raa_sum", "raa_per_pa",
             "re_added_sum", "re_added_per_pa", "total_value"]
     return (
         agg[agg["pa"] >= min_pa][cols]
@@ -190,6 +192,7 @@ def pitcher_raa(df: pd.DataFrame, min_bf: int = 50) -> pd.DataFrame:
     agg = (
         df.groupby("pitcher")
           .agg(
+              name            = ("pitcher_name", "first"),
               bf              = ("raa",      "count"),
               raa_sum         = ("raa",      "sum"),
               raa_per_bf      = ("raa",      "mean"),
@@ -201,7 +204,7 @@ def pitcher_raa(df: pd.DataFrame, min_bf: int = 50) -> pd.DataFrame:
     agg["total_value"] = agg["raa_sum"] + agg["re_added_sum"]
     agg = agg.merge(most_recent_team, on="pitcher", how="left")
 
-    cols = ["pitcher", "team", "bf", "raa_sum", "raa_per_bf",
+    cols = ["name", "team", "bf", "raa_sum", "raa_per_bf",
             "re_added_sum", "re_added_per_bf", "total_value"]
     return (
         agg[agg["bf"] >= min_bf][cols]
@@ -219,7 +222,7 @@ def batters_to_js_rows(batters: pd.DataFrame) -> list:
     for rank, row in enumerate(batters.itertuples(), start=1):
         rows.append({
             "rank": rank,
-            "player": row.batter,
+            "player": row.name,
             "team": row.team,
             "pa": int(row.pa),
             "raa": round(row.raa_sum, 2),
@@ -235,7 +238,7 @@ def pitchers_to_js_rows(pitchers: pd.DataFrame) -> list:
     for rank, row in enumerate(pitchers.itertuples(), start=1):
         rows.append({
             "rank": rank,
-            "player": row.pitcher,
+            "player": row.name,
             "team": row.team,
             "bf": int(row.bf),
             "raa": round(row.raa_sum, 2),

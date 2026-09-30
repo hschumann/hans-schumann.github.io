@@ -794,6 +794,11 @@ main ul li {
   font-weight: 700;
 }
 
+.ats-pending {
+  color: var(--muted);
+  font-weight: 600;
+}
+
 @media (prefers-color-scheme: dark) {
   .ats-win {
     color: #3fb950;
