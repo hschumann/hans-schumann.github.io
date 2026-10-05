@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-04T22:09:28.531528+00:00",
+  "updated": "2026-10-05T00:54:19.227748+00:00",
   "mode": "live",
   "dates_fetched": [
-    "2026-10-04",
-    "2026-10-03"
+    "2026-10-05",
+    "2026-10-04"
   ],
   "source": "fotmob + football-data odds snapshot",
   "disclaimer": "Research tool only \u2014 not betting advice. Live calls appear at halftime only.",
