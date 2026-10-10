@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-10T16:04:40.560565+00:00",
+  "updated": "2026-10-10T20:02:54.895898+00:00",
   "mode": "live",
   "dates_fetched": [
     "2026-10-10",
@@ -15,25 +15,6 @@
   },
   "live_call_count": 0,
   "matches": [
-    {
-      "match_id": 5795473,
-      "home_team": "Man United",
-      "away_team": "Tottenham",
-      "kickoff_utc": "2026-10-10T16:30:00.000Z",
-      "phase": "not_started",
-      "status_label": "not_started",
-      "score_str": "\u2013",
-      "ht_home": null,
-      "ht_away": null,
-      "pred_ft_home": null,
-      "pred_ft_away": null,
-      "pred_total": null,
-      "call": null,
-      "call_label": null,
-      "edge": null,
-      "live_call": false,
-      "odds_matched": false
-    },
     {
       "match_id": 5795465,
       "home_team": "Arsenal",
@@ -118,6 +99,25 @@
       "phase": "finished",
       "status_label": "Full-Time",
       "score_str": "0 - 2",
+      "ht_home": 0,
+      "ht_away": 0,
+      "pred_ft_home": null,
+      "pred_ft_away": null,
+      "pred_total": null,
+      "call": null,
+      "call_label": null,
+      "edge": null,
+      "live_call": false,
+      "odds_matched": false
+    },
+    {
+      "match_id": 5795473,
+      "home_team": "Man United",
+      "away_team": "Tottenham",
+      "kickoff_utc": "2026-10-10T16:30:00.000Z",
+      "phase": "finished",
+      "status_label": "Full-Time",
+      "score_str": "1 - 1",
       "ht_home": 0,
       "ht_away": 0,
       "pred_ft_home": null,
