@@ -2,3 +2,7 @@
 **/node_modules/
 **/.cache/
 prediction-games/nfl-probabilities/cloudflare-worker/.wrangler/
+NBA_model/.env
+NBA_model/.venv/
+**/__pycache__/
+*.pyc
