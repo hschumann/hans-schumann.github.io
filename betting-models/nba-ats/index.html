@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NBA ATS Mean Reversion — Betting Models</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../../style.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <nav class="nav-container container">
+    <a href="../../index.html" class="logo" aria-label="Home">
+      <img src="../../images/logo.png" alt="Hans Schumann logo" />
+    </a>
+    <details class="nav-menu">
+      <summary class="nav-menu-toggle" aria-label="Menu">
+        <span class="nav-menu-label">Menu</span>
+        <span class="nav-menu-icon" aria-hidden="true"></span>
+      </summary>
+      <ul class="nav-links">
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../analytics/index.html">Analytics</a></li>
+        <li><a href="../index.html" aria-current="page">Betting Models</a></li>
+        <li><a href="../../prediction-games/index.html">Prediction Games</a></li>
+        <li><a href="../../contact/index.html">Contact</a></li>
+      </ul>
+    </details>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="kicker">NBA &bull; against the spread</div>
+    <h1>NBA ATS Mean Reversion</h1>
+    <p class="muted">Bet against recent ATS overperformers and with underperformers, using each team&rsquo;s average margin vs the spread over the past 7 days. Top 3 absolute differences each day.</p>
+    <p class="published-date">Updated <time id="updated-at">—</time></p>
+    <div class="button-row">
+      <a class="btn" href="../index.html">Back to betting models</a>
+    </div>
+  </section>
+
+  <section class="section card stack">
+    <h2>Today&rsquo;s Picks</h2>
+    <p class="muted" id="today-meta"></p>
+    <div id="today-picks" class="stack"></div>
+    <p class="muted" id="record-line"></p>
+  </section>
+
+  <section class="section card stack">
+    <h2>How it works</h2>
+    <p>Same public-overreaction idea as the NFL ATS model, adapted for a multi-game week:</p>
+    <ol>
+      <li>After each game, measure how far each team finished relative to the closing spread.</li>
+      <li>A team&rsquo;s score is its <strong>average ATS margin over the trailing 7 days</strong>.</li>
+      <li>For today&rsquo;s slate, rank matchups by the absolute gap between the two teams&rsquo; 7-day scores.</li>
+      <li>Bet the underperformer (lower / more negative average). Publish the top 3 gaps.</li>
+    </ol>
+    <p class="muted">Research tool only&mdash;not betting advice.</p>
+  </section>
+
+  <section class="section card stack">
+    <h2>Pick history</h2>
+    <div class="gold-plan-table-wrapper ats-table-wrapper">
+      <table class="gold-plan-table ats-table" id="history-table">
+        <caption>Past NBA ATS model picks</caption>
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Bet</th>
+            <th scope="col" class="num">Δ</th>
+            <th scope="col" class="num">Result</th>
+          </tr>
+        </thead>
+        <tbody id="history-body">
+          <tr><td colspan="4" class="muted">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script src="../../nav.js"></script>
+<script src="board.js"></script>
+</body>
+</html>

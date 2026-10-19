@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-10-18T20:41:04.669247-04:00",
+  "pick_date": "2026-10-18",
+  "lookback_days": 7,
+  "sync": {
+    "espn_games": 53,
+    "spreads_touched": 0,
+    "results_touched": 0,
+    "odds_api_updates": 0
+  },
+  "picks": []
+}

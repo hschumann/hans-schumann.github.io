@@ -1,0 +1,72 @@
+{
+  "updated": "2026-10-18T20:41:04.670958-04:00",
+  "timezone": "America/New_York",
+  "lookback_days": 7,
+  "today": {
+    "pick_date": "2026-10-18",
+    "picks": []
+  },
+  "upcoming": {
+    "pick_date": "2026-10-20",
+    "picks": [
+      {
+        "rank": 1,
+        "game_id": "401909090",
+        "tipoff_utc": "2026-10-21T01:30:00Z",
+        "home_team": "SA",
+        "away_team": "OKC",
+        "home_spread": -2.5,
+        "home_score_7d": 12.0,
+        "away_score_7d": -17.0,
+        "home_games_7d": 2,
+        "away_games_7d": 2,
+        "abs_diff": 29.0,
+        "bet_team": "OKC",
+        "bet_spread": 2.5,
+        "against_team": "SA",
+        "message": "OKC +2.5 @ SA (\u039429.0: OKC -17.0 vs SA +12.0)"
+      },
+      {
+        "rank": 2,
+        "game_id": "401909088",
+        "tipoff_utc": "2026-10-20T19:00:00Z",
+        "home_team": "DET",
+        "away_team": "BOS",
+        "home_spread": 1.5,
+        "home_score_7d": 9.0,
+        "away_score_7d": 14.0,
+        "home_games_7d": 2,
+        "away_games_7d": 2,
+        "abs_diff": 5.0,
+        "bet_team": "DET",
+        "bet_spread": 1.5,
+        "against_team": "BOS",
+        "message": "DET +1.5 vs BOS (\u03945.0: DET +9.0 vs BOS +14.0)"
+      },
+      {
+        "rank": 3,
+        "game_id": "401909089",
+        "tipoff_utc": "2026-10-20T23:00:00Z",
+        "home_team": "NY",
+        "away_team": "PHI",
+        "home_spread": -4.5,
+        "home_score_7d": -20.0,
+        "away_score_7d": -15.5,
+        "home_games_7d": 2,
+        "away_games_7d": 1,
+        "abs_diff": 4.5,
+        "bet_team": "NY",
+        "bet_spread": -4.5,
+        "against_team": "PHI",
+        "message": "NY -4.5 vs PHI (\u03944.5: NY -20.0 vs PHI -15.5)"
+      }
+    ]
+  },
+  "record": {
+    "wins": 0,
+    "losses": 0,
+    "pushes": 0,
+    "pending": 0
+  },
+  "history": []
+}
