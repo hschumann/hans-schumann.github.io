@@ -1,0 +1,23 @@
+
+"One of the most common theories in sports gambling is that there are ""public"" bets and there are ""sharp"" bets. Casual sports fans and gamblers tend to place bets that are different from professional gamblers who are using advanced mathematical models. "
+"With the growing prevelance of sports gambling among the public, this split between the sharps and the public has also become even more apparent. "
+"The most popular sport to gamble on in the U.S. is the NFL, which provides us with our area of focus. "
+
+"Last season (2025), I decided to put my theory that the public ""overreacts"" to prior weeks' results to the test. Week to week, I tracked the margin of victory each team had against the spread. For example if the Houston Texans were 3.5 point favorites and lost by 7 points, they lost against the spread by 10.5 points. Or if the Washington Commanders were 4.5 point underdogs but won by 4 points, they won against the spread by 8.5 points. "
+
+"Using the results relative to the spread, we can get a difference for each game in an upcoming week, starting with Week 2. Consider the outcomes of the Texans and Commanders above. With a matchup between the Texans and Commanders this week, the difference in their prior outcomes would be 19 points (|-10.5 - 8.5| = 19). "
+"This difference is very large and according to my theory, would indicate that the Texans would be a solid bet this week. "
+
+"Casual sports fans would have seen the Texans underperformance in the first week and undervalued them in the upcoming week, while doing the opposite for the Commanders. This is being done while the porfessional models are weighing factors and long run averages and determining the true value of teams for their matchup this week. "
+
+"Using this theory, I set up two heuristics for an informed model that leverages the public's overreaction against them:"
+"1) Opposite outcomes: if two teams had opposite outcomes against the spread in the prior week, a good bet is the team that lost against the spread. "
+"2) Largest differences: take the absolute value of the differences in outcomes against the spread and take the 5 largest. It is naive to believe that all spreads are mispriced, but assuming one-third may be mispriced is reasonable, so taking the top five differences gives a reasonable subset to consider.  "
+
+"There is a large overlap between the games in each of the two heuristics, but first let's look at the successes alone. The first heuristic, Opposite outcomes, would have produced a correct bet X% of the time (X out of X games, p=___). The second heuristic, Largest difference, would have produced a correct bet X% of the time (X out of X games, p=____). "
+"Both these results are strong, close to statistically significantly better than the 52.4% needed to breakeven on -110 odds."
+"The real power comes when we combine the outputs though. When a game satisfied both conditions, bets were correct X% of the time (X out of X games, p=___). Assuming an average -110 odds on each bet, a $25 bet on each game would have resulted in +$__ in profit by the end of the regular season. "
+
+"Below is a table of all picks made in the 2025 season. Looking ahead to the 2026 season, I will post bets on this site, so follow along to see if the theory holds true another year. "
+
+"All results are for the regular season only, weeks 2 through 18. "
