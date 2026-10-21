@@ -40,6 +40,57 @@
     </div>
   </section>
 
+  <section class="section card stack nfl-current-season">
+    <div>
+      <h2>2026 Picks</h2>
+      <p>The live picks below update from the Google Sheet. Bets qualify only when both model heuristics agree.</p>
+      <p id="nfl-2026-summary">Loading 2026 results…</p>
+      <p class="muted" id="nfl-sheet-source"></p>
+    </div>
+
+    <div class="nfl-picks-grid">
+      <section class="stack" aria-labelledby="spread-picks-heading">
+        <h3 id="spread-picks-heading">Against the Spread</h3>
+        <div class="gold-plan-table-wrapper ats-table-wrapper">
+          <table class="gold-plan-table ats-table">
+            <caption>NFL ATS picks, 2026 regular season</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="num">Week</th>
+                <th scope="col">Bet</th>
+                <th scope="col" class="num">Result</th>
+              </tr>
+            </thead>
+            <tbody id="nfl-2026-spreads-body">
+              <tr><td colspan="3" class="muted">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="stack" aria-labelledby="totals-picks-heading">
+        <h3 id="totals-picks-heading">Game Totals</h3>
+        <div class="gold-plan-table-wrapper ats-table-wrapper">
+          <table class="gold-plan-table ats-table">
+            <caption>NFL totals picks, 2026 regular season</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="num">Week</th>
+                <th scope="col">Bet</th>
+                <th scope="col" class="num">Result</th>
+              </tr>
+            </thead>
+            <tbody id="nfl-2026-totals-body">
+              <tr><td colspan="3" class="muted">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <p class="muted">Update the <strong>Agree</strong> and <strong>Correct</strong> columns in the sheet (1 = win, 0 = loss, blank = pending); the page refreshes from there.</p>
+  </section>
+
   <section class="section card stack">
 
     <h2>The Theory</h2>
@@ -64,6 +115,17 @@
       <li><strong>Opposite outcomes:</strong> If two teams had opposite outcomes against the spread in the prior week, bet the team that lost against the spread.</li>
       <li><strong>Largest differences:</strong> Take the absolute value of the difference in prior-week ATS outcomes for each matchup and select the five largest. It is naive to assume every spread is mispriced, but assuming roughly one-third may be mispriced is reasonable&mdash;so focusing on the top five differences gives a workable subset to consider.</li>
     </ol>
+
+    <h2>Applying the Theory to Totals</h2>
+
+    <p>For game totals, I measure how many points each team&rsquo;s previous game finished above or below its expected total. If both teams went over, the public may push the next line too high, so the model bets the under. If both went under, it bets the over.</p>
+
+    <ol>
+      <li><strong>Same outcomes:</strong> Both teams finished on the same side of their prior totals. Bet the opposite side.</li>
+      <li><strong>Largest combined misses:</strong> Add how far each team finished above or below its total and select the five largest combined values.</li>
+    </ol>
+
+    <p>As with spread picks, a totals bet qualifies only when both heuristics agree.</p>
 
     <h2>2025 Results</h2>
 
@@ -184,64 +246,6 @@
         </tbody>
       </table>
     </div>
-
-    <h2>2026 Season</h2>
-
-    <p>The theory is back for 2026, using the same approach: bets are only placed on games where both heuristics agree. This year I am also applying it to game totals (over/unders).</p>
-
-    <p id="nfl-2026-summary">Loading 2026 results…</p>
-    <p class="muted" id="nfl-sheet-source"></p>
-
-    <h2>2026 Spread Picks</h2>
-
-    <p>Picks and results below update from the Google Sheet (Agree column). Edit the sheet, refresh the page.</p>
-
-    <div class="gold-plan-table-wrapper ats-table-wrapper">
-      <table class="gold-plan-table ats-table">
-        <caption>NFL ATS picks, 2026 regular season &mdash; games where both heuristics agreed</caption>
-        <thead>
-          <tr>
-            <th scope="col" class="num">Week</th>
-            <th scope="col">Bet</th>
-            <th scope="col" class="num">Bet Result</th>
-          </tr>
-        </thead>
-        <tbody id="nfl-2026-spreads-body">
-          <tr><td colspan="3" class="muted">Loading…</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h2>2026 Totals Picks</h2>
-
-    <p>The totals picks use the same theory, but instead of margin against the spread, I measure how many points each team&rsquo;s game finished above or below its expected total (the over/under line) the previous week. If both teams went over their totals, the public is likely to overreact and push this week&rsquo;s line too high, so we bet the under. If both teams went under, we bet the over.</p>
-
-    <p>The two heuristics carry over directly:</p>
-
-    <ol>
-      <li><strong>Same outcomes:</strong> Both teams finished on the same side of their totals in the prior week (both over or both under). Bet the opposite side this week.</li>
-      <li><strong>Largest combined misses:</strong> Add together how far above or below the total each team finished, and select the five matchups with the largest combined values.</li>
-    </ol>
-
-    <p>As with the spread picks, a bet is placed only when both heuristics agree.</p>
-
-    <div class="gold-plan-table-wrapper ats-table-wrapper">
-      <table class="gold-plan-table ats-table">
-        <caption>NFL totals picks, 2026 regular season &mdash; games where both heuristics agreed</caption>
-        <thead>
-          <tr>
-            <th scope="col" class="num">Week</th>
-            <th scope="col">Bet</th>
-            <th scope="col" class="num">Bet Result</th>
-          </tr>
-        </thead>
-        <tbody id="nfl-2026-totals-body">
-          <tr><td colspan="3" class="muted">Loading…</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p class="muted">Picks are posted before each week&rsquo;s games. Update the <strong>Agree</strong> and <strong>Correct</strong> columns in the sheet (1 = win, 0 = loss, blank = pending); the page refreshes from there.</p>
 
   </section>
 </main>
