@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Daily pipeline: sync ESPN data, compute top ATS picks, optionally email them."""
+"""Daily pipeline: sync ESPN data, compute top ATS picks, and write the site board."""
 
 from __future__ import annotations
 
@@ -17,7 +17,6 @@ if str(PROJECT_ROOT) not in sys.path:
 from nba.board import build_board, write_board
 from nba.config import get_settings
 from nba.model import compute_picks, format_alert
-from nba.notify import send_email
 from nba.storage import Store
 from nba.sync import sync_from_espn, sync_odds_api_spreads
 
@@ -30,13 +29,6 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="Days of ESPN history to refresh (default: lookback+3)",
     )
-    parser.add_argument("--no-email", action="store_true", help="Skip email send")
-    parser.add_argument(
-        "--email-always",
-        action="store_true",
-        help="Send email even when there are zero qualifying picks",
-    )
-    parser.add_argument("--dry-run", action="store_true", help="Print email body only")
     return parser
 
 
@@ -79,9 +71,7 @@ def main() -> int:
         )
         board_path = write_board(board)
 
-        body = format_alert(picks, pick_date=pick_date)
-        subject = f"NBA ATS picks — {pick_date}"
-        print(body)
+        print(format_alert(picks, pick_date=pick_date))
         print(
             f"\nSynced ESPN games={stats['espn_games']} "
             f"spreads~{stats['spreads_touched']} results~{stats['results_touched']} "
@@ -89,16 +79,6 @@ def main() -> int:
         )
         print(f"Wrote picks -> {settings.picks_json}")
         print(f"Wrote site board -> {board_path}")
-
-        if args.dry_run:
-            return 0
-        if args.no_email:
-            return 0
-        if not picks and not args.email_always:
-            print("No picks — email skipped (pass --email-always to force).")
-            return 0
-        to_addr = send_email(settings, subject, body)
-        print(f"Sent email to {to_addr}")
     return 0
 
 
