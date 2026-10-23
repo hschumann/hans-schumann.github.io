@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-23T12:01:35.328424-04:00",
+  "updated": "2026-10-23T13:32:17.559169-04:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "today": {
@@ -251,16 +251,16 @@
         "tipoff_utc": "2026-10-24T01:30:00Z",
         "home_team": "UTAH",
         "away_team": "NO",
-        "home_spread": 1.5,
+        "home_spread": -1.5,
         "home_score_7d": -5.5,
         "away_score_7d": 0.0,
         "home_games_7d": 2,
         "away_games_7d": 2,
         "abs_diff": 5.5,
         "bet_team": "UTAH",
-        "bet_spread": 1.5,
+        "bet_spread": -1.5,
         "against_team": "NO",
-        "message": "UTAH +1.5 vs NO (\u03945.5: UTAH -5.5 vs NO +0.0)"
+        "message": "UTAH -1.5 vs NO (\u03945.5: UTAH -5.5 vs NO +0.0)"
       }
     ]
   },
@@ -285,7 +285,7 @@
       "away_score_7d": 13.0,
       "abs_diff": 31.0,
       "message": "SAC +10.5 vs POR (\u039431.0: SAC -18.0 vs POR +13.0)",
-      "created_at": "2026-10-23T16:01:35+00:00",
+      "created_at": "2026-10-23T17:32:17+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -302,7 +302,7 @@
       "away_score_7d": 20.5,
       "abs_diff": 22.5,
       "message": "LAL -9.5 vs LAC (\u039422.5: LAL -2.0 vs LAC +20.5)",
-      "created_at": "2026-10-23T16:01:35+00:00",
+      "created_at": "2026-10-23T17:32:17+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -319,7 +319,7 @@
       "away_score_7d": 17.5,
       "abs_diff": 21.5,
       "message": "CHA +2.5 vs ATL (\u039421.5: CHA -4.0 vs ATL +17.5)",
-      "created_at": "2026-10-23T16:01:35+00:00",
+      "created_at": "2026-10-23T17:32:17+00:00",
       "result": "pending",
       "final_score": null
     }
