@@ -1,12 +1,64 @@
 {
-  "generated_at": "2026-10-22T22:24:23.484441-04:00",
-  "pick_date": "2026-10-22",
+  "generated_at": "2026-10-23T12:01:35.325636-04:00",
+  "pick_date": "2026-10-23",
   "lookback_days": 7,
   "sync": {
-    "espn_games": 67,
-    "spreads_touched": 13,
-    "results_touched": 15,
+    "espn_games": 69,
+    "spreads_touched": 8,
+    "results_touched": 1,
     "odds_api_updates": 0
   },
-  "picks": []
+  "picks": [
+    {
+      "rank": 1,
+      "game_id": "401909852",
+      "tipoff_utc": "2026-10-24T02:00:00Z",
+      "home_team": "SAC",
+      "away_team": "POR",
+      "home_spread": 10.5,
+      "home_score_7d": -18.0,
+      "away_score_7d": 13.0,
+      "home_games_7d": 2,
+      "away_games_7d": 2,
+      "abs_diff": 31.0,
+      "bet_team": "SAC",
+      "bet_spread": 10.5,
+      "against_team": "POR",
+      "message": "SAC +10.5 vs POR (\u039431.0: SAC -18.0 vs POR +13.0)"
+    },
+    {
+      "rank": 2,
+      "game_id": "401909851",
+      "tipoff_utc": "2026-10-24T02:00:00Z",
+      "home_team": "LAL",
+      "away_team": "LAC",
+      "home_spread": -9.5,
+      "home_score_7d": -2.0,
+      "away_score_7d": 20.5,
+      "home_games_7d": 2,
+      "away_games_7d": 1,
+      "abs_diff": 22.5,
+      "bet_team": "LAL",
+      "bet_spread": -9.5,
+      "against_team": "LAC",
+      "message": "LAL -9.5 vs LAC (\u039422.5: LAL -2.0 vs LAC +20.5)"
+    },
+    {
+      "rank": 3,
+      "game_id": "401909843",
+      "tipoff_utc": "2026-10-23T23:00:00Z",
+      "home_team": "CHA",
+      "away_team": "ATL",
+      "home_spread": 2.5,
+      "home_score_7d": -4.0,
+      "away_score_7d": 17.5,
+      "home_games_7d": 2,
+      "away_games_7d": 2,
+      "abs_diff": 21.5,
+      "bet_team": "CHA",
+      "bet_spread": 2.5,
+      "against_team": "ATL",
+      "message": "CHA +2.5 vs ATL (\u039421.5: CHA -4.0 vs ATL +17.5)"
+    }
+  ]
 }
