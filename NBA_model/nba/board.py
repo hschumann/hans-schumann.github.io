@@ -8,7 +8,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from nba.config import Settings
-from nba.model import Pick, compute_picks
+from nba.model import Pick, accuracy_by_percentile, rank_slate
 from nba.storage import Store
 
 DEFAULT_SITE_BOARD = (
@@ -77,37 +77,88 @@ def load_all_picks(store: Store) -> list[dict]:
     return picks
 
 
+def slate_on(
+    store: Store,
+    *,
+    settings: Settings,
+    as_of: datetime,
+) -> list[Pick]:
+    return rank_slate(
+        store,
+        as_of=as_of,
+        lookback_days=settings.ats_lookback_days,
+        timezone_name=settings.timezone,
+    )
+
+
+def slate_payload(slate: list[Pick], *, pick_date: str, top_n: int) -> dict:
+    return {
+        "pick_date": pick_date,
+        "picks": [p.to_dict() for p in slate[:top_n]],
+        "slate": [p.to_dict() for p in slate],
+    }
+
+
 def next_slate_picks(
     store: Store,
     *,
     settings: Settings,
     after_date: str,
 ) -> dict | None:
-    """If today has no games, preview the next day that has qualifying picks."""
+    """If today has no games, preview the next day that has qualifying games."""
     tz = ZoneInfo(settings.timezone)
     start = datetime.fromisoformat(after_date).replace(tzinfo=tz) + timedelta(days=1)
     for offset in range(0, 7):
         day = start + timedelta(days=offset)
         as_of = day.replace(hour=8, minute=0, second=0, microsecond=0)
-        picks = compute_picks(
-            store,
-            as_of=as_of.astimezone(tz),
-            lookback_days=settings.ats_lookback_days,
-            top_n=settings.top_n_picks,
-            timezone_name=settings.timezone,
-        )
-        if picks:
-            return {
-                "pick_date": day.date().isoformat(),
-                "picks": [p.to_dict() for p in picks],
-            }
+        slate = slate_on(store, settings=settings, as_of=as_of)
+        if slate:
+            return slate_payload(
+                slate, pick_date=day.date().isoformat(), top_n=settings.top_n_picks
+            )
     return None
+
+
+def _bet_result(game, bet_team: str) -> str | None:
+    if game.status != "final" or game.home_ats is None:
+        return None
+    bet_ats = game.home_ats if bet_team == game.home_team else game.away_ats
+    if bet_ats is None:
+        return None
+    if bet_ats > 0:
+        return "W"
+    if bet_ats < 0:
+        return "L"
+    return "P"
+
+
+def graded_signals(store: Store, *, settings: Settings) -> list[tuple[float, str]]:
+    """Every finished game the model could score, as (abs_diff, W/L/P)."""
+    tz = ZoneInfo(settings.timezone)
+    games = store.list_games()
+    if not games:
+        return []
+    first = min(datetime.fromisoformat(g.tipoff_utc.replace("Z", "+00:00")) for g in games)
+    day = first.astimezone(tz).date()
+    last = datetime.now(tz).date()
+    samples: list[tuple[float, str]] = []
+    while day <= last:
+        as_of = datetime(day.year, day.month, day.day, 8, tzinfo=tz)
+        for pick in slate_on(store, settings=settings, as_of=as_of):
+            game = store.get_game(pick.game_id)
+            if game is None:
+                continue
+            result = _bet_result(game, pick.bet_team)
+            if result is None:
+                continue
+            samples.append((pick.abs_diff, result))
+        day += timedelta(days=1)
+    return samples
 
 
 def build_board(
     store: Store,
     *,
-    today_picks: list[Pick],
     pick_date: str,
     settings: Settings,
 ) -> dict:
@@ -117,17 +168,22 @@ def build_board(
     losses = sum(1 for h in graded if h["result"] == "L")
     pushes = sum(1 for h in graded if h["result"] == "P")
     tz = ZoneInfo(settings.timezone)
+    now = datetime.now(tz)
+    if pick_date == now.date().isoformat():
+        as_of = now
+    else:
+        as_of = datetime.fromisoformat(pick_date).replace(
+            tzinfo=tz, hour=8, minute=0, second=0, microsecond=0
+        )
+    slate = slate_on(store, settings=settings, as_of=as_of)
     upcoming = None
-    if not today_picks:
+    if not slate:
         upcoming = next_slate_picks(store, settings=settings, after_date=pick_date)
     return {
-        "updated": datetime.now(tz).isoformat(),
+        "updated": now.isoformat(),
         "timezone": settings.timezone,
         "lookback_days": settings.ats_lookback_days,
-        "today": {
-            "pick_date": pick_date,
-            "picks": [p.to_dict() for p in today_picks],
-        },
+        "today": slate_payload(slate, pick_date=pick_date, top_n=settings.top_n_picks),
         "upcoming": upcoming,
         "record": {
             "wins": wins,
@@ -136,6 +192,9 @@ def build_board(
             "pending": sum(1 for h in history if h["result"] == "pending"),
         },
         "history": history,
+        "accuracy_by_percentile": accuracy_by_percentile(
+            graded_signals(store, settings=settings)
+        ),
     }
 
 

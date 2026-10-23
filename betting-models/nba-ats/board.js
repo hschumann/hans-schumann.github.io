@@ -21,64 +21,97 @@
     return "ats-pending";
   }
 
-  function renderPickCard(pick) {
-    var spread = formatSpread(pick.bet_spread);
-    var title = esc(pick.bet_team) + (spread ? " " + esc(spread) : "");
-    var loc = pick.bet_team === pick.home_team ? "vs" : "@";
-    return (
-      '<article class="subsection stack">' +
-      "<h3>" +
-      title +
-      " " +
-      loc +
-      " " +
-      esc(pick.against_team || (pick.bet_team === pick.home_team ? pick.away_team : pick.home_team)) +
-      "</h3>" +
-      '<p class="muted">7-day ATS: ' +
-      esc(pick.bet_team) +
-      " " +
-      (pick.bet_team === pick.home_team
-        ? Number(pick.home_score_7d).toFixed(1)
-        : Number(pick.away_score_7d).toFixed(1)) +
-      " vs " +
-      esc(pick.against_team || "") +
-      " " +
-      (pick.bet_team === pick.home_team
-        ? Number(pick.away_score_7d).toFixed(1)
-        : Number(pick.home_score_7d).toFixed(1)) +
-      " &middot; |Δ| " +
-      Number(pick.abs_diff).toFixed(1) +
-      "</p>" +
-      "</article>"
-    );
+  function signed(value) {
+    var n = Number(value);
+    if (Number.isNaN(n)) return "—";
+    return (n > 0 ? "+" : "") + n.toFixed(1);
+  }
+
+  function slateRows(block) {
+    var rows =
+      block && block.slate && block.slate.length
+        ? block.slate.slice()
+        : ((block && block.picks) || []).slice();
+    rows.sort(function (a, b) {
+      var diff = Number(b.abs_diff) - Number(a.abs_diff);
+      if (diff) return diff;
+      return String(a.tipoff_utc || "").localeCompare(String(b.tipoff_utc || ""));
+    });
+    return rows;
+  }
+
+  function renderSlateTable(rows) {
+    var body = document.getElementById("slate-body");
+    if (!rows.length) {
+      body.innerHTML =
+        '<tr><td colspan="5" class="muted">No qualifying games.</td></tr>';
+      return;
+    }
+    body.innerHTML = rows
+      .map(function (row, index) {
+        var spread = formatSpread(row.bet_spread);
+        var bet = esc(row.bet_team) + (spread ? " " + esc(spread) : "");
+        var game = esc(row.away_team) + " @ " + esc(row.home_team);
+        var pick = Number(row.rank) ? Number(row.rank) <= 3 : index < 3;
+        return (
+          '<tr class="' +
+          (pick ? "ats-pick-row" : "") +
+          '">' +
+          '<td class="num">' +
+          Number(row.abs_diff).toFixed(1) +
+          "</td>" +
+          "<td>" +
+          game +
+          "</td>" +
+          "<td>" +
+          bet +
+          "</td>" +
+          '<td class="num">' +
+          signed(row.away_score_7d) +
+          "</td>" +
+          '<td class="num">' +
+          signed(row.home_score_7d) +
+          "</td>" +
+          "</tr>"
+        );
+      })
+      .join("");
   }
 
   function renderToday(data) {
-    var today = data.today || { picks: [] };
+    var today = data.today || { picks: [], slate: [] };
     var upcoming = data.upcoming;
     var meta = document.getElementById("today-meta");
-    var box = document.getElementById("today-picks");
-    var picks = today.picks || [];
+    var caption = document.getElementById("slate-caption");
+    var rows = slateRows(today);
 
-    if (picks.length) {
-      meta.textContent = "Slate date " + today.pick_date + " · top " + picks.length + " by |Δ|";
-      box.innerHTML = picks.map(renderPickCard).join("");
+    if (rows.length) {
+      meta.textContent =
+        today.pick_date +
+        " · " +
+        rows.length +
+        " games, largest |Δ| first. Highlighted rows are the top 3 bets.";
+      caption.textContent = "Games on " + today.pick_date + ", sorted by |Δ|";
+      renderSlateTable(rows);
       return;
     }
 
-    if (upcoming && upcoming.picks && upcoming.picks.length) {
+    var preview = slateRows(upcoming);
+    if (preview.length) {
       meta.textContent =
         "No qualifying games on " +
-        today.pick_date +
-        ". Next slate preview for " +
+        (today.pick_date || "today") +
+        ". Next slate, " +
         upcoming.pick_date +
-        ":";
-      box.innerHTML = upcoming.picks.map(renderPickCard).join("");
+        ", sorted by |Δ|. Highlighted rows are the top 3 bets.";
+      caption.textContent = "Games on " + upcoming.pick_date + ", sorted by |Δ|";
+      renderSlateTable(preview);
       return;
     }
 
     meta.textContent = "No qualifying games on " + (today.pick_date || "today") + ".";
-    box.innerHTML = '<p class="muted">Check back on the next NBA slate.</p>';
+    caption.textContent = "Games sorted by absolute 7-day ATS gap";
+    renderSlateTable([]);
   }
 
   function renderRecord(record) {
@@ -143,6 +176,65 @@
       .join("");
   }
 
+  function formatRecord(bin) {
+    var record = bin.wins + "–" + bin.losses;
+    if (bin.pushes) record += "–" + bin.pushes;
+    return record;
+  }
+
+  function formatCutoff(bin) {
+    if (bin.cutoff == null) return "—";
+    return "≥ " + Number(bin.cutoff).toFixed(1);
+  }
+
+  function formatAccuracy(bin) {
+    if (bin.accuracy == null) return "—";
+    return (Number(bin.accuracy) * 100).toFixed(1) + "%";
+  }
+
+  function renderAccuracy(bins) {
+    var body = document.getElementById("accuracy-body");
+    var meta = document.getElementById("accuracy-meta");
+    if (!bins || !bins.length) {
+      meta.textContent = "No graded games yet.";
+      body.innerHTML =
+        '<tr><td colspan="4" class="muted">Accuracy fills in once games finish.</td></tr>';
+      return;
+    }
+    var games = bins.reduce(function (sum, bin) {
+      return sum + Number(bin.games || 0);
+    }, 0);
+    meta.textContent =
+      games +
+      " graded games. Each cutoff is the |Δ| at that percentile. A game lands in the highest row it clears.";
+    body.innerHTML = bins
+      .map(function (bin) {
+        var accuracy = formatAccuracy(bin);
+        var accuracyClass = "";
+        if (bin.accuracy != null && bin.accuracy > 0.5) accuracyClass = "ats-win";
+        else if (bin.accuracy != null && bin.accuracy < 0.5) accuracyClass = "ats-loss";
+        return (
+          "<tr>" +
+          "<td>" +
+          esc(bin.label) +
+          "</td>" +
+          '<td class="num">' +
+          formatCutoff(bin) +
+          "</td>" +
+          '<td class="num">' +
+          (bin.games ? formatRecord(bin) : "—") +
+          "</td>" +
+          '<td class="num"><span class="' +
+          accuracyClass +
+          '">' +
+          accuracy +
+          "</span></td>" +
+          "</tr>"
+        );
+      })
+      .join("");
+  }
+
   function formatUpdated(iso) {
     if (!iso) return "—";
     try {
@@ -165,12 +257,15 @@
       renderToday(data);
       renderRecord(data.record);
       renderHistory(data.history);
+      renderAccuracy(data.accuracy_by_percentile);
     })
     .catch(function (err) {
       document.getElementById("today-meta").textContent = "Could not load picks.";
-      document.getElementById("today-picks").innerHTML =
-        '<p class="muted">' + esc(err.message) + "</p>";
+      document.getElementById("slate-body").innerHTML =
+        '<tr><td colspan="5" class="muted">' + esc(err.message) + "</td></tr>";
       document.getElementById("history-body").innerHTML =
+        '<tr><td colspan="4" class="muted">Unavailable</td></tr>';
+      document.getElementById("accuracy-body").innerHTML =
         '<tr><td colspan="4" class="muted">Unavailable</td></tr>';
     });
 })();
