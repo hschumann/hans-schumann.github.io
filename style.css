@@ -737,6 +737,11 @@ main ul li {
   margin-right: auto;
 }
 
+.ats-slate-wrapper {
+  max-width: none;
+  width: 100%;
+}
+
 .ats-table {
   width: 100%;
   min-width: 0;
@@ -774,6 +779,29 @@ main ul li {
 
 .ats-table tbody tr:hover:not(.ats-record-row) {
   background: color-mix(in oklab, var(--primary) 12%, transparent);
+}
+
+.ats-table.ats-slate-table th:first-child,
+.ats-table.ats-slate-table td:first-child,
+.ats-table.ats-slate-table th:last-child,
+.ats-table.ats-slate-table td:last-child {
+  width: auto;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.ats-table.ats-slate-table.ats-accuracy-table {
+  table-layout: fixed;
+}
+
+.ats-table.ats-slate-table.ats-accuracy-table th,
+.ats-table.ats-slate-table.ats-accuracy-table td {
+  white-space: normal;
+}
+
+.ats-slate-table tbody tr.ats-pick-row,
+.ats-slate-table tbody tr.ats-pick-row:nth-child(even) {
+  background: color-mix(in oklab, var(--primary) 16%, transparent);
 }
 
 .ats-record-row {

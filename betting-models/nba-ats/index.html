@@ -33,7 +33,7 @@
   <section class="hero">
     <div class="kicker">NBA &bull; against the spread</div>
     <h1>NBA ATS Mean Reversion</h1>
-    <p class="muted">Bet against recent ATS overperformers and with underperformers, using each team&rsquo;s average margin vs the spread over the past 7 days. Top 3 absolute differences each day.</p>
+    <p class="muted">Bet against recent ATS overperformers and with underperformers, using each team&rsquo;s average margin vs the spread over the past 7 days. Every game on the slate is listed below, largest absolute gap first. The top 3 are the published bets.</p>
     <p class="published-date">Updated <time id="updated-at">—</time></p>
     <div class="button-row">
       <a class="btn" href="../index.html">Back to betting models</a>
@@ -41,9 +41,25 @@
   </section>
 
   <section class="section card stack">
-    <h2>Today&rsquo;s Picks</h2>
+    <h2>Today&rsquo;s slate</h2>
     <p class="muted" id="today-meta"></p>
-    <div id="today-picks" class="stack"></div>
+    <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper">
+      <table class="gold-plan-table ats-table ats-slate-table" id="slate-table">
+        <caption id="slate-caption">Games sorted by absolute 7-day ATS gap</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="num">|Δ|</th>
+            <th scope="col">Game</th>
+            <th scope="col">Bet</th>
+            <th scope="col" class="num">Away 7d</th>
+            <th scope="col" class="num">Home 7d</th>
+          </tr>
+        </thead>
+        <tbody id="slate-body">
+          <tr><td colspan="5" class="muted">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
     <p class="muted" id="record-line"></p>
   </section>
 
@@ -54,7 +70,7 @@
       <li>After each game, measure how far each team finished relative to the closing spread.</li>
       <li>A team&rsquo;s score is its <strong>average ATS margin over the trailing 7 days</strong>.</li>
       <li>For today&rsquo;s slate, rank matchups by the absolute gap between the two teams&rsquo; 7-day scores.</li>
-      <li>Bet the underperformer (lower / more negative average). Publish the top 3 gaps.</li>
+      <li>Bet the underperformer (lower / more negative average). The table shows every game that day; the top 3 gaps are the published bets.</li>
     </ol>
     <p class="muted">Research tool only&mdash;not betting advice.</p>
   </section>
@@ -73,6 +89,27 @@
           </tr>
         </thead>
         <tbody id="history-body">
+          <tr><td colspan="4" class="muted">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section card stack">
+    <h2>Accuracy by |Δ| percentile</h2>
+    <p class="muted" id="accuracy-meta"></p>
+    <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper">
+      <table class="gold-plan-table ats-table ats-slate-table ats-accuracy-table" id="accuracy-table">
+        <caption>Win rate by where a game&rsquo;s |Δ| ranks</caption>
+        <thead>
+          <tr>
+            <th scope="col">Percentile</th>
+            <th scope="col" class="num">|Δ| cutoff</th>
+            <th scope="col" class="num">Record</th>
+            <th scope="col" class="num">Accuracy</th>
+          </tr>
+        </thead>
+        <tbody id="accuracy-body">
           <tr><td colspan="4" class="muted">Loading…</td></tr>
         </tbody>
       </table>

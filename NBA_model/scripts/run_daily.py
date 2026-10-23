@@ -66,9 +66,7 @@ def main() -> int:
         n_csv = store.export_games_csv(settings.games_csv)
         store.save_picks(pick_date, [p.to_dict() for p in picks])
 
-        board = build_board(
-            store, today_picks=picks, pick_date=pick_date, settings=settings
-        )
+        board = build_board(store, pick_date=pick_date, settings=settings)
         board_path = write_board(board)
 
         print(format_alert(picks, pick_date=pick_date))

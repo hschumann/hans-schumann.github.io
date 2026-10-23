@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from nba.espn import _home_spread_from_odds, _parse_line
-from nba.model import compute_picks, team_ats_scores
+from nba.model import accuracy_by_percentile, compute_picks, rank_slate, team_ats_scores
 from nba.storage import Game, Store
 
 
@@ -94,7 +94,91 @@ class ModelTests(unittest.TestCase):
             self.assertEqual(len(picks), 1)
             self.assertEqual(picks[0].bet_team, "DET")
             self.assertAlmostEqual(picks[0].abs_diff, 13.5 + 15.5)
+
+            # A second game with a smaller gap should sort behind DET/BOS.
+            store.upsert_spread(
+                game_id="g3",
+                tipoff_utc=(now - timedelta(days=3)).isoformat().replace("+00:00", "Z"),
+                home_team="MIA",
+                away_team="ORL",
+                home_spread=-2.0,
+                spread_source="test",
+            )
+            store.upsert_result(
+                game_id="g3",
+                tipoff_utc=(now - timedelta(days=3)).isoformat().replace("+00:00", "Z"),
+                home_team="MIA",
+                away_team="ORL",
+                home_score=110,
+                away_score=100,
+                status="final",
+            )
+            store.upsert_spread(
+                game_id="today-2",
+                tipoff_utc=tip,
+                home_team="MIA",
+                away_team="ORL",
+                home_spread=-1.5,
+                spread_source="test",
+            )
+            slate = rank_slate(
+                store,
+                as_of=now,
+                lookback_days=7,
+                timezone_name="UTC",
+            )
+            self.assertEqual([p.game_id for p in slate], ["today", "today-2"])
+            self.assertGreater(slate[0].abs_diff, slate[1].abs_diff)
+            top = compute_picks(
+                store,
+                as_of=now,
+                lookback_days=7,
+                top_n=1,
+                timezone_name="UTC",
+            )
+            self.assertEqual([p.game_id for p in top], ["today"])
             store.close()
+
+
+class PercentileAccuracyTests(unittest.TestCase):
+    def test_eight_games_land_one_per_bin_with_cutoffs(self) -> None:
+        samples = [(float(i), "W" if i == 8 else "L") for i in range(1, 9)]
+        bins = accuracy_by_percentile(samples)
+        self.assertEqual([b["label"] for b in bins], [
+            "87.5th–100th",
+            "75th–87.5th",
+            "62.5th–75th",
+            "50th–62.5th",
+            "37.5th–50th",
+            "25th–37.5th",
+            "12.5th–25th",
+            "0th–12.5th",
+        ])
+        self.assertEqual([b["games"] for b in bins], [1] * 8)
+        self.assertEqual(bins[0]["wins"], 1)
+        self.assertEqual(bins[0]["accuracy"], 1.0)
+        self.assertAlmostEqual(bins[0]["cutoff"], 7.125)
+        self.assertAlmostEqual(bins[1]["cutoff"], 6.25)
+        self.assertGreater(bins[0]["cutoff"], bins[1]["cutoff"])
+        self.assertEqual(bins[-1]["losses"], 1)
+        self.assertEqual(bins[-1]["accuracy"], 0.0)
+        self.assertAlmostEqual(bins[-1]["cutoff"], 1.0)
+
+    def test_pushes_do_not_count_toward_accuracy(self) -> None:
+        bins = accuracy_by_percentile([(10.0, "W"), (1.0, "P")])
+        top = bins[0]
+        self.assertEqual(top["wins"], 1)
+        self.assertEqual(top["accuracy"], 1.0)
+        bottom = next(b for b in bins if b["pushes"])
+        self.assertEqual(bottom["accuracy"], None)
+        self.assertEqual(bottom["games"], 1)
+
+    def test_empty_sample_still_returns_eight_bins(self) -> None:
+        bins = accuracy_by_percentile([])
+        self.assertEqual(len(bins), 8)
+        self.assertTrue(
+            all(b["games"] == 0 and b["accuracy"] is None and b["cutoff"] is None for b in bins)
+        )
 
 
 if __name__ == "__main__":

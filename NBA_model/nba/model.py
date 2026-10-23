@@ -121,18 +121,17 @@ def local_day_bounds(day_local: datetime, tz_name: str) -> tuple[str, str]:
     )
 
 
-def compute_picks(
+def rank_slate(
     store: Store,
     *,
     as_of: datetime | None = None,
     lookback_days: int = 7,
-    top_n: int = 3,
     timezone_name: str = "America/New_York",
     min_games: int = 1,
 ) -> list[Pick]:
     """
     Score each team by average ATS margin over the trailing lookback window,
-    then rank today's matchups by |home_7d - away_7d|.
+    then rank every qualifying game on that local day by |home_7d - away_7d|.
 
     Bet the underperformer (lower / more negative 7-day ATS average).
     """
@@ -143,13 +142,13 @@ def compute_picks(
         window_start.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         window_end.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
     )
-    scores = team_ats_scores(completed)
-
     day_start, day_end = local_day_bounds(as_of, timezone_name)
+    # Keep each delta pregame: don't fold today's results back into the averages.
+    scores = team_ats_scores([g for g in completed if g.tipoff_utc < day_start])
     todays = [
         g
         for g in store.list_games(tipoff_from=day_start, tipoff_to=day_end)
-        if g.status in {"scheduled", "in_progress"} and g.home_spread is not None
+        if g.status in {"scheduled", "in_progress", "final"} and g.home_spread is not None
     ]
 
     candidates: list[Pick] = []
@@ -191,27 +190,106 @@ def compute_picks(
         )
 
     candidates.sort(key=lambda p: (-p.abs_diff, p.tipoff_utc, p.game_id))
-    ranked: list[Pick] = []
-    for i, pick in enumerate(candidates[:top_n], start=1):
-        ranked.append(
-            Pick(
-                rank=i,
-                game_id=pick.game_id,
-                tipoff_utc=pick.tipoff_utc,
-                home_team=pick.home_team,
-                away_team=pick.away_team,
-                home_spread=pick.home_spread,
-                home_score_7d=pick.home_score_7d,
-                away_score_7d=pick.away_score_7d,
-                home_games_7d=pick.home_games_7d,
-                away_games_7d=pick.away_games_7d,
-                abs_diff=pick.abs_diff,
-                bet_team=pick.bet_team,
-                bet_spread=pick.bet_spread,
-                against_team=pick.against_team,
-            )
+    for i, pick in enumerate(candidates, start=1):
+        pick.rank = i
+    return candidates
+
+
+def compute_picks(
+    store: Store,
+    *,
+    as_of: datetime | None = None,
+    lookback_days: int = 7,
+    top_n: int = 3,
+    timezone_name: str = "America/New_York",
+    min_games: int = 1,
+) -> list[Pick]:
+    """Top `top_n` games from the day's slate, already sorted by |Δ|."""
+    return rank_slate(
+        store,
+        as_of=as_of,
+        lookback_days=lookback_days,
+        timezone_name=timezone_name,
+        min_games=min_games,
+    )[:top_n]
+
+
+# Eight equal bands, largest |Δ| first. Each cutoff is the |Δ| at `low`.
+PERCENTILE_BINS: tuple[tuple[float, float], ...] = (
+    (87.5, 100),
+    (75, 87.5),
+    (62.5, 75),
+    (50, 62.5),
+    (37.5, 50),
+    (25, 37.5),
+    (12.5, 25),
+    (0, 12.5),
+)
+
+
+def _pct_label(value: float) -> str:
+    return f"{value:g}th"
+
+
+def accuracy_by_percentile(samples: list[tuple[float, str]]) -> list[dict]:
+    """Win rate of graded bets in eight |Δ| percentile bins.
+
+    `samples` are `(abs_diff, result)` with result in {W, L, P}.
+    A bin's cutoff is the interpolated |Δ| at its lower percentile.
+    A game belongs to the highest bin whose cutoff it clears.
+    Accuracy ignores pushes.
+    """
+    diffs = [diff for diff, _ in samples]
+    ordered = sorted(diffs)
+    cutoffs = (
+        [_percentile_value(ordered, low) for low, _ in PERCENTILE_BINS]
+        if ordered
+        else [None] * len(PERCENTILE_BINS)
+    )
+    grouped: list[list[tuple[float, str]]] = [[] for _ in PERCENTILE_BINS]
+    for sample in samples:
+        grouped[_bin_for_diff(sample[0], cutoffs)].append(sample)
+
+    bins: list[dict] = []
+    for (low, high), cutoff, rows in zip(PERCENTILE_BINS, cutoffs, grouped):
+        wins = sum(1 for _, result in rows if result == "W")
+        losses = sum(1 for _, result in rows if result == "L")
+        pushes = sum(1 for _, result in rows if result == "P")
+        decided = wins + losses
+        bins.append(
+            {
+                "label": f"{_pct_label(low)}–{_pct_label(high)}",
+                "low": low,
+                "high": high,
+                "cutoff": round(cutoff, 3) if cutoff is not None else None,
+                "games": len(rows),
+                "wins": wins,
+                "losses": losses,
+                "pushes": pushes,
+                "accuracy": (wins / decided) if decided else None,
+            }
         )
-    return ranked
+    return bins
+
+
+def _percentile_value(sorted_asc: list[float], pct: float) -> float:
+    """Linearly interpolated |Δ| at `pct` (0 = smallest, 100 = largest)."""
+    if pct <= 0:
+        return sorted_asc[0]
+    if pct >= 100:
+        return sorted_asc[-1]
+    rank = pct / 100 * (len(sorted_asc) - 1)
+    lo = int(rank)
+    hi = min(lo + 1, len(sorted_asc) - 1)
+    frac = rank - lo
+    return sorted_asc[lo] * (1 - frac) + sorted_asc[hi] * frac
+
+
+def _bin_for_diff(diff: float, cutoffs: list[float | None]) -> int:
+    for index, cutoff in enumerate(cutoffs):
+        if cutoff is not None and diff + 1e-9 >= cutoff:
+            return index
+    return len(cutoffs) - 1
 
 
 def format_alert(picks: list[Pick], *, pick_date: str) -> str:
