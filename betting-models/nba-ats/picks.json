@@ -1,7 +1,8 @@
 {
-  "updated": "2026-10-22T22:29:13.907832-04:00",
+  "updated": "2026-10-22T22:54:36.925139-04:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
+  "grade_start": "2026-10-27",
   "today": {
     "pick_date": "2026-10-22",
     "picks": [],
@@ -281,89 +282,89 @@
       "label": "87.5th\u2013100th",
       "low": 87.5,
       "high": 100,
-      "cutoff": 29.0,
-      "games": 8,
-      "wins": 3,
-      "losses": 5,
+      "cutoff": null,
+      "games": 0,
+      "wins": 0,
+      "losses": 0,
       "pushes": 0,
-      "accuracy": 0.375
+      "accuracy": null
     },
     {
       "label": "75th\u201387.5th",
       "low": 75,
       "high": 87.5,
-      "cutoff": 15.25,
-      "games": 3,
-      "wins": 2,
-      "losses": 1,
+      "cutoff": null,
+      "games": 0,
+      "wins": 0,
+      "losses": 0,
       "pushes": 0,
-      "accuracy": 0.6666666666666666
+      "accuracy": null
     },
     {
       "label": "62.5th\u201375th",
       "low": 62.5,
       "high": 75,
-      "cutoff": 9.75,
-      "games": 5,
-      "wins": 3,
-      "losses": 2,
+      "cutoff": null,
+      "games": 0,
+      "wins": 0,
+      "losses": 0,
       "pushes": 0,
-      "accuracy": 0.6
+      "accuracy": null
     },
     {
       "label": "50th\u201362.5th",
       "low": 50,
       "high": 62.5,
-      "cutoff": 7.0,
-      "games": 6,
-      "wins": 1,
-      "losses": 5,
+      "cutoff": null,
+      "games": 0,
+      "wins": 0,
+      "losses": 0,
       "pushes": 0,
-      "accuracy": 0.16666666666666666
+      "accuracy": null
     },
     {
       "label": "37.5th\u201350th",
       "low": 37.5,
       "high": 50,
-      "cutoff": 5.0,
-      "games": 7,
-      "wins": 3,
-      "losses": 4,
+      "cutoff": null,
+      "games": 0,
+      "wins": 0,
+      "losses": 0,
       "pushes": 0,
-      "accuracy": 0.42857142857142855
+      "accuracy": null
     },
     {
       "label": "25th\u201337.5th",
       "low": 25,
       "high": 37.5,
-      "cutoff": 3.5,
-      "games": 5,
-      "wins": 3,
-      "losses": 2,
+      "cutoff": null,
+      "games": 0,
+      "wins": 0,
+      "losses": 0,
       "pushes": 0,
-      "accuracy": 0.6
+      "accuracy": null
     },
     {
       "label": "12.5th\u201325th",
       "low": 12.5,
       "high": 25,
-      "cutoff": 1.625,
-      "games": 3,
-      "wins": 2,
-      "losses": 1,
+      "cutoff": null,
+      "games": 0,
+      "wins": 0,
+      "losses": 0,
       "pushes": 0,
-      "accuracy": 0.6666666666666666
+      "accuracy": null
     },
     {
       "label": "0th\u201312.5th",
       "low": 0,
       "high": 12.5,
-      "cutoff": 0.167,
-      "games": 6,
-      "wins": 5,
-      "losses": 1,
+      "cutoff": null,
+      "games": 0,
+      "wins": 0,
+      "losses": 0,
       "pushes": 0,
-      "accuracy": 0.8333333333333334
+      "accuracy": null
     }
   ]
 }

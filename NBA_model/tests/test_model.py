@@ -6,6 +6,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from nba.espn import _home_spread_from_odds, _parse_line
+from nba.board import counts_toward_grade
 from nba.model import accuracy_by_percentile, compute_picks, rank_slate, team_ats_scores
 from nba.storage import Game, Store
 
@@ -138,6 +139,13 @@ class ModelTests(unittest.TestCase):
             )
             self.assertEqual([p.game_id for p in top], ["today"])
             store.close()
+
+
+class GradeStartTests(unittest.TestCase):
+    def test_games_before_opening_night_are_not_graded(self) -> None:
+        self.assertFalse(counts_toward_grade("2026-10-26"))
+        self.assertTrue(counts_toward_grade("2026-10-27"))
+        self.assertTrue(counts_toward_grade("2026-11-01"))
 
 
 class PercentileAccuracyTests(unittest.TestCase):

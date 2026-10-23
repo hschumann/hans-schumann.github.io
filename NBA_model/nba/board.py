@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -14,6 +14,14 @@ from nba.storage import Store
 DEFAULT_SITE_BOARD = (
     Path(__file__).resolve().parents[2] / "betting-models" / "nba-ats" / "picks.json"
 )
+
+# Regular-season start. Earlier games still feed the 7-day averages, but they
+# are not wins, losses, or part of the percentile record.
+GRADE_START = date(2026, 10, 27)
+
+
+def counts_toward_grade(pick_date: str) -> bool:
+    return pick_date >= GRADE_START.isoformat()
 
 
 def grade_pick(store: Store, pick_row: dict) -> dict:
@@ -133,13 +141,13 @@ def _bet_result(game, bet_team: str) -> str | None:
 
 
 def graded_signals(store: Store, *, settings: Settings) -> list[tuple[float, str]]:
-    """Every finished game the model could score, as (abs_diff, W/L/P)."""
+    """Finished games on or after GRADE_START, as (abs_diff, W/L/P)."""
     tz = ZoneInfo(settings.timezone)
     games = store.list_games()
     if not games:
         return []
     first = min(datetime.fromisoformat(g.tipoff_utc.replace("Z", "+00:00")) for g in games)
-    day = first.astimezone(tz).date()
+    day = max(first.astimezone(tz).date(), GRADE_START)
     last = datetime.now(tz).date()
     samples: list[tuple[float, str]] = []
     while day <= last:
@@ -162,7 +170,11 @@ def build_board(
     pick_date: str,
     settings: Settings,
 ) -> dict:
-    history = [grade_pick(store, row) for row in load_all_picks(store)]
+    history = [
+        grade_pick(store, row)
+        for row in load_all_picks(store)
+        if counts_toward_grade(row["pick_date"])
+    ]
     graded = [h for h in history if h["result"] in {"W", "L", "P"}]
     wins = sum(1 for h in graded if h["result"] == "W")
     losses = sum(1 for h in graded if h["result"] == "L")
@@ -183,6 +195,7 @@ def build_board(
         "updated": now.isoformat(),
         "timezone": settings.timezone,
         "lookback_days": settings.ats_lookback_days,
+        "grade_start": GRADE_START.isoformat(),
         "today": slate_payload(slate, pick_date=pick_date, top_n=settings.top_n_picks),
         "upcoming": upcoming,
         "record": {

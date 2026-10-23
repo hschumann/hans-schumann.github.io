@@ -192,7 +192,20 @@
     return (Number(bin.accuracy) * 100).toFixed(1) + "%";
   }
 
-  function renderAccuracy(bins) {
+  function formatGradeStart(iso) {
+    if (!iso) return "";
+    try {
+      var parts = iso.split("-");
+      return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2])).toLocaleDateString(
+        undefined,
+        { dateStyle: "long" }
+      );
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function renderAccuracy(bins, gradeStart) {
     var body = document.getElementById("accuracy-body");
     var meta = document.getElementById("accuracy-meta");
     if (!bins || !bins.length) {
@@ -204,9 +217,18 @@
     var games = bins.reduce(function (sum, bin) {
       return sum + Number(bin.games || 0);
     }, 0);
-    meta.textContent =
-      games +
-      " graded games. Each cutoff is the |Δ| at that percentile. A game lands in the highest row it clears.";
+    var startLabel = formatGradeStart(gradeStart);
+    if (!games) {
+      meta.textContent = startLabel
+        ? "No graded games yet. Wins and losses count from " + startLabel + "."
+        : "No graded games yet.";
+    } else {
+      meta.textContent =
+        games +
+        " graded games" +
+        (startLabel ? " since " + startLabel : "") +
+        ". Each cutoff is the |Δ| at that percentile. A game lands in the highest row it clears.";
+    }
     body.innerHTML = bins
       .map(function (bin) {
         var accuracy = formatAccuracy(bin);
@@ -257,7 +279,7 @@
       renderToday(data);
       renderRecord(data.record);
       renderHistory(data.history);
-      renderAccuracy(data.accuracy_by_percentile);
+      renderAccuracy(data.accuracy_by_percentile, data.grade_start);
     })
     .catch(function (err) {
       document.getElementById("today-meta").textContent = "Could not load picks.";
