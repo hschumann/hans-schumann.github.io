@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24T10:58:50.342330-04:00",
+  "updated": "2026-10-24T12:18:38.733681-04:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "today": {
@@ -132,16 +132,16 @@
         "tipoff_utc": "2026-10-25T00:00:00Z",
         "home_team": "CHI",
         "away_team": "WSH",
-        "home_spread": -1.5,
+        "home_spread": -2.5,
         "home_score_7d": -12.5,
         "away_score_7d": 3.0,
         "home_games_7d": 2,
         "away_games_7d": 2,
         "abs_diff": 15.5,
         "bet_team": "CHI",
-        "bet_spread": -1.5,
+        "bet_spread": -2.5,
         "against_team": "WSH",
-        "message": "CHI -1.5 vs WSH (\u039415.5: CHI -12.5 vs WSH +3.0)"
+        "message": "CHI -2.5 vs WSH (\u039415.5: CHI -12.5 vs WSH +3.0)"
       },
       {
         "rank": 6,
@@ -217,7 +217,7 @@
       "away_score_7d": -11.0,
       "abs_diff": 26.5,
       "message": "PHX -9.5 vs GS (\u039426.5: PHX -37.5 vs GS -11.0)",
-      "created_at": "2026-10-24T14:58:50+00:00",
+      "created_at": "2026-10-24T16:18:38+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -234,7 +234,7 @@
       "away_score_7d": -11.5,
       "abs_diff": 18.5,
       "message": "SA -12.5 @ DAL (\u039418.5: SA -11.5 vs DAL +7.0)",
-      "created_at": "2026-10-24T14:58:50+00:00",
+      "created_at": "2026-10-24T16:18:38+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -251,7 +251,7 @@
       "away_score_7d": 9.0,
       "abs_diff": 18.0,
       "message": "HOU +1.5 @ ATL (\u039418.0: HOU +9.0 vs ATL +27.0)",
-      "created_at": "2026-10-24T14:58:50+00:00",
+      "created_at": "2026-10-24T16:18:38+00:00",
       "result": "pending",
       "final_score": null
     },
