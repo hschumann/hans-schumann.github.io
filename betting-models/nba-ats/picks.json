@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-25T11:10:07.610919-04:00",
+  "updated": "2026-10-25T12:53:08.064219-04:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "today": {
@@ -166,16 +166,16 @@
         "tipoff_utc": "2026-10-25T23:00:00Z",
         "home_team": "OKC",
         "away_team": "LAC",
-        "home_spread": -15.5,
+        "home_spread": -16.5,
         "home_score_7d": 9.5,
         "away_score_7d": 11.0,
         "home_games_7d": 2,
         "away_games_7d": 2,
         "abs_diff": 1.5,
         "bet_team": "OKC",
-        "bet_spread": -15.5,
+        "bet_spread": -16.5,
         "against_team": "LAC",
-        "message": "OKC -15.5 vs LAC (\u03941.5: OKC +9.5 vs LAC +11.0)"
+        "message": "OKC -16.5 vs LAC (\u03941.5: OKC +9.5 vs LAC +11.0)"
       }
     ]
   },
@@ -200,7 +200,7 @@
       "away_score_7d": 13.0,
       "abs_diff": 22.0,
       "message": "SAC +3.5 vs MEM (\u039422.0: SAC -9.0 vs MEM +13.0)",
-      "created_at": "2026-10-25T15:10:07+00:00",
+      "created_at": "2026-10-25T16:53:08+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -217,7 +217,7 @@
       "away_score_7d": 6.5,
       "abs_diff": 16.0,
       "message": "UTAH +6.5 vs LAL (\u039416.0: UTAH -9.5 vs LAL +6.5)",
-      "created_at": "2026-10-25T15:10:07+00:00",
+      "created_at": "2026-10-25T16:53:08+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -234,7 +234,7 @@
       "away_score_7d": -12.0,
       "abs_diff": 11.5,
       "message": "IND -6.5 @ BKN (\u039411.5: IND -12.0 vs BKN -0.5)",
-      "created_at": "2026-10-25T15:10:07+00:00",
+      "created_at": "2026-10-25T16:53:08+00:00",
       "result": "pending",
       "final_score": null
     },
