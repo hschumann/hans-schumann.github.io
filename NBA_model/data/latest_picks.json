@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-26T13:47:23.917749-04:00",
+  "generated_at": "2026-10-26T14:54:26.825090-04:00",
   "pick_date": "2026-10-26",
   "lookback_days": 7,
   "sync": {
     "espn_games": 80,
-    "spreads_touched": 9,
-    "results_touched": 7,
+    "spreads_touched": 3,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -32,16 +32,16 @@
       "tipoff_utc": "2026-10-27T00:00:00Z",
       "home_team": "OKC",
       "away_team": "PHX",
-      "home_spread": -10.5,
+      "home_spread": -8.5,
       "home_score_7d": 3.167,
       "away_score_7d": -19.0,
       "home_games_7d": 3,
       "away_games_7d": 2,
       "abs_diff": 22.167,
       "bet_team": "PHX",
-      "bet_spread": 10.5,
+      "bet_spread": 8.5,
       "against_team": "OKC",
-      "message": "PHX +10.5 @ OKC (\u039422.2: PHX -19.0 vs OKC +3.2)"
+      "message": "PHX +8.5 @ OKC (\u039422.2: PHX -19.0 vs OKC +3.2)"
     },
     {
       "rank": 3,
