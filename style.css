@@ -742,6 +742,17 @@ main ul li {
   width: 100%;
 }
 
+.ats-games-scroll {
+  max-height: 24rem;
+  overflow-y: auto;
+}
+
+.ats-games-scroll .gold-plan-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 .ats-table {
   width: 100%;
   min-width: 0;

@@ -192,11 +192,30 @@
     return (Number(bin.accuracy) * 100).toFixed(1) + "%";
   }
 
-  function renderAccuracy(bins) {
+  function formatGradeStart(iso) {
+    if (!iso) return "October 27, 2026";
+    try {
+      var parts = iso.split("-");
+      return new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+      ).toLocaleDateString(undefined, {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function renderAccuracy(bins, gradeStart) {
     var body = document.getElementById("accuracy-body");
     var meta = document.getElementById("accuracy-meta");
+    var since = formatGradeStart(gradeStart);
     if (!bins || !bins.length) {
-      meta.textContent = "No graded games yet.";
+      meta.textContent = "No graded games yet. Wins and losses count from " + since + ".";
       body.innerHTML =
         '<tr><td colspan="4" class="muted">Accuracy fills in once games finish.</td></tr>';
       return;
@@ -206,7 +225,9 @@
     }, 0);
     meta.textContent =
       games +
-      " graded games. Each cutoff is the |Δ| at that percentile. A game lands in the highest row it clears.";
+      " graded games since " +
+      since +
+      ". Each cutoff is the |Δ| at that percentile. A game lands in the highest row it clears.";
     body.innerHTML = bins
       .map(function (bin) {
         var accuracy = formatAccuracy(bin);
@@ -257,7 +278,7 @@
       renderToday(data);
       renderRecord(data.record);
       renderHistory(data.history);
-      renderAccuracy(data.accuracy_by_percentile);
+      renderAccuracy(data.accuracy_by_percentile, data.grade_start);
     })
     .catch(function (err) {
       document.getElementById("today-meta").textContent = "Could not load picks.";

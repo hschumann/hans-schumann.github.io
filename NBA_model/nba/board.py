@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -14,6 +14,10 @@ from nba.storage import Store
 DEFAULT_SITE_BOARD = (
     Path(__file__).resolve().parents[2] / "betting-models" / "nba-ats" / "picks.json"
 )
+
+# Percentile accuracy starts with this local slate date. Earlier games still
+# feed the 7-day averages and can still appear on a slate.
+GRADE_START = date(2026, 10, 27)
 
 
 def grade_pick(store: Store, pick_row: dict) -> dict:
@@ -139,7 +143,7 @@ def graded_signals(store: Store, *, settings: Settings) -> list[tuple[float, str
     if not games:
         return []
     first = min(datetime.fromisoformat(g.tipoff_utc.replace("Z", "+00:00")) for g in games)
-    day = first.astimezone(tz).date()
+    day = max(first.astimezone(tz).date(), GRADE_START)
     last = datetime.now(tz).date()
     samples: list[tuple[float, str]] = []
     while day <= last:
@@ -192,6 +196,7 @@ def build_board(
             "pending": sum(1 for h in history if h["result"] == "pending"),
         },
         "history": history,
+        "grade_start": GRADE_START.isoformat(),
         "accuracy_by_percentile": accuracy_by_percentile(
             graded_signals(store, settings=settings)
         ),

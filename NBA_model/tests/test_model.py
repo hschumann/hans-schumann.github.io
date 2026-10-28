@@ -5,6 +5,8 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+from nba.board import GRADE_START, graded_signals
+from nba.config import Settings
 from nba.espn import _home_spread_from_odds, _parse_line
 from nba.model import accuracy_by_percentile, compute_picks, rank_slate, team_ats_scores
 from nba.storage import Game, Store
@@ -181,6 +183,61 @@ class PercentileAccuracyTests(unittest.TestCase):
         self.assertTrue(
             all(b["games"] == 0 and b["accuracy"] is None and b["cutoff"] is None for b in bins)
         )
+
+
+class GradeStartTests(unittest.TestCase):
+    def test_percentile_sample_skips_games_before_october_27(self) -> None:
+        self.assertEqual(GRADE_START.isoformat(), "2026-10-27")
+
+        def final(store: Store, game_id: str, tipoff: str, home: str, away: str, spread: float) -> None:
+            store.upsert_spread(
+                game_id=game_id,
+                tipoff_utc=tipoff,
+                home_team=home,
+                away_team=away,
+                home_spread=spread,
+                spread_source="test",
+            )
+            store.upsert_result(
+                game_id=game_id,
+                tipoff_utc=tipoff,
+                home_team=home,
+                away_team=away,
+                home_score=110,
+                away_score=100,
+                status="final",
+            )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            db = Path(tmp) / "test.db"
+            store = Store(db)
+            # Prior results so both sides of a later game have a 7-day score.
+            final(store, "prior-a", "2026-10-20T23:00:00Z", "BOS", "CHI", -3.5)
+            final(store, "prior-b", "2026-10-20T23:30:00Z", "NY", "MIA", -2.5)
+            # Oct 26 local (EDT). Must not enter the percentile sample.
+            final(store, "before", "2026-10-27T00:00:00Z", "BOS", "NY", -1.5)
+            # Oct 27 local.
+            final(store, "on-start", "2026-10-28T00:00:00Z", "CHI", "MIA", -4.5)
+            settings = Settings(
+                smtp_host="",
+                smtp_port=587,
+                smtp_user="",
+                smtp_password="",
+                email_from="",
+                email_to="",
+                odds_api_key="",
+                preferred_book="",
+                ats_lookback_days=7,
+                top_n_picks=3,
+                timezone="America/New_York",
+                db_path=db,
+                picks_json=Path(tmp) / "picks.json",
+                games_csv=Path(tmp) / "games.csv",
+            )
+            samples = graded_signals(store, settings=settings)
+            store.close()
+
+        self.assertEqual(len(samples), 1)
 
 
 if __name__ == "__main__":
