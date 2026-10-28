@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28T13:36:07.909446-04:00",
+  "updated": "2026-10-28T14:32:53.589642-04:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "today": {
@@ -251,16 +251,16 @@
         "tipoff_utc": "2026-10-28T23:00:00Z",
         "home_team": "IND",
         "away_team": "PHI",
-        "home_spread": 5.5,
+        "home_spread": 7.5,
         "home_score_7d": -4.0,
         "away_score_7d": -2.5,
         "home_games_7d": 4,
         "away_games_7d": 3,
         "abs_diff": 1.5,
         "bet_team": "IND",
-        "bet_spread": 5.5,
+        "bet_spread": 7.5,
         "against_team": "PHI",
-        "message": "IND +5.5 vs PHI (\u03941.5: IND -4.0 vs PHI -2.5)"
+        "message": "IND +7.5 vs PHI (\u03941.5: IND -4.0 vs PHI -2.5)"
       }
     ]
   },
@@ -285,7 +285,7 @@
       "away_score_7d": -15.5,
       "abs_diff": 25.5,
       "message": "MIA +1.5 @ ATL (\u039425.5: MIA -15.5 vs ATL +10.0)",
-      "created_at": "2026-10-28T17:32:18+00:00",
+      "created_at": "2026-10-28T18:32:53+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -302,7 +302,7 @@
       "away_score_7d": 1.5,
       "abs_diff": 17.25,
       "message": "GS +3.5 @ MIN (\u039417.2: GS +1.5 vs MIN +18.8)",
-      "created_at": "2026-10-28T17:32:18+00:00",
+      "created_at": "2026-10-28T18:32:53+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -319,7 +319,7 @@
       "away_score_7d": -12.5,
       "abs_diff": 14.667,
       "message": "DEN -4.5 @ NO (\u039414.7: DEN -12.5 vs NO +2.2)",
-      "created_at": "2026-10-28T17:32:18+00:00",
+      "created_at": "2026-10-28T18:32:53+00:00",
       "result": "pending",
       "final_score": null
     },
