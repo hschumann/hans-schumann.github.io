@@ -193,13 +193,18 @@
   }
 
   function formatGradeStart(iso) {
-    if (!iso) return "";
+    if (!iso) return "October 27, 2026";
     try {
       var parts = iso.split("-");
-      return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2])).toLocaleDateString(
-        undefined,
-        { dateStyle: "long" }
-      );
+      return new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+      ).toLocaleDateString(undefined, {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
     } catch (e) {
       return iso;
     }
@@ -208,8 +213,9 @@
   function renderAccuracy(bins, gradeStart) {
     var body = document.getElementById("accuracy-body");
     var meta = document.getElementById("accuracy-meta");
+    var since = formatGradeStart(gradeStart);
     if (!bins || !bins.length) {
-      meta.textContent = "No graded games yet.";
+      meta.textContent = "No graded games yet. Wins and losses count from " + since + ".";
       body.innerHTML =
         '<tr><td colspan="4" class="muted">Accuracy fills in once games finish.</td></tr>';
       return;
@@ -217,18 +223,11 @@
     var games = bins.reduce(function (sum, bin) {
       return sum + Number(bin.games || 0);
     }, 0);
-    var startLabel = formatGradeStart(gradeStart);
-    if (!games) {
-      meta.textContent = startLabel
-        ? "No graded games yet. Wins and losses count from " + startLabel + "."
-        : "No graded games yet.";
-    } else {
-      meta.textContent =
-        games +
-        " graded games" +
-        (startLabel ? " since " + startLabel : "") +
-        ". Each cutoff is the |Δ| at that percentile. A game lands in the highest row it clears.";
-    }
+    meta.textContent =
+      games +
+      " graded games since " +
+      since +
+      ". Each cutoff is the |Δ| at that percentile. A game lands in the highest row it clears.";
     body.innerHTML = bins
       .map(function (bin) {
         var accuracy = formatAccuracy(bin);

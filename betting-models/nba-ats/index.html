@@ -41,9 +41,30 @@
   </section>
 
   <section class="section card stack">
+    <h2>Accuracy by |Δ| percentile</h2>
+    <p class="muted" id="accuracy-meta">Wins and losses count from October 27, 2026.</p>
+    <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper">
+      <table class="gold-plan-table ats-table ats-slate-table ats-accuracy-table" id="accuracy-table">
+        <caption>Win rate by where a game&rsquo;s |Δ| ranks</caption>
+        <thead>
+          <tr>
+            <th scope="col">Percentile</th>
+            <th scope="col" class="num">|Δ| cutoff</th>
+            <th scope="col" class="num">Record</th>
+            <th scope="col" class="num">Accuracy</th>
+          </tr>
+        </thead>
+        <tbody id="accuracy-body">
+          <tr><td colspan="4" class="muted">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section card stack">
     <h2>Today&rsquo;s slate</h2>
     <p class="muted" id="today-meta"></p>
-    <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper">
+    <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper ats-games-scroll">
       <table class="gold-plan-table ats-table ats-slate-table" id="slate-table">
         <caption id="slate-caption">Games sorted by absolute 7-day ATS gap</caption>
         <thead>
@@ -95,26 +116,6 @@
     </div>
   </section>
 
-  <section class="section card stack">
-    <h2>Accuracy by |Δ| percentile</h2>
-    <p class="muted" id="accuracy-meta"></p>
-    <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper">
-      <table class="gold-plan-table ats-table ats-slate-table ats-accuracy-table" id="accuracy-table">
-        <caption>Win rate by where a game&rsquo;s |Δ| ranks</caption>
-        <thead>
-          <tr>
-            <th scope="col">Percentile</th>
-            <th scope="col" class="num">|Δ| cutoff</th>
-            <th scope="col" class="num">Record</th>
-            <th scope="col" class="num">Accuracy</th>
-          </tr>
-        </thead>
-        <tbody id="accuracy-body">
-          <tr><td colspan="4" class="muted">Loading…</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
 </main>
 
 <script src="../../nav.js"></script>

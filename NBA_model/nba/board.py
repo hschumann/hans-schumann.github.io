@@ -15,14 +15,13 @@ DEFAULT_SITE_BOARD = (
     Path(__file__).resolve().parents[2] / "betting-models" / "nba-ats" / "picks.json"
 )
 
-# Regular-season start. Earlier games still feed the 7-day averages, but they
-# are not wins, losses, or part of the percentile record.
+# Grading starts with this local slate date. Earlier games still feed the
+# 7-day averages and can still appear on a slate.
 GRADE_START = date(2026, 10, 27)
 
 
 def counts_toward_grade(pick_date: str) -> bool:
     return pick_date >= GRADE_START.isoformat()
-
 
 def grade_pick(store: Store, pick_row: dict) -> dict:
     """Attach W/L/P/pending result for a stored pick."""
@@ -205,6 +204,7 @@ def build_board(
             "pending": sum(1 for h in history if h["result"] == "pending"),
         },
         "history": history,
+        "grade_start": GRADE_START.isoformat(),
         "accuracy_by_percentile": accuracy_by_percentile(
             graded_signals(store, settings=settings)
         ),
