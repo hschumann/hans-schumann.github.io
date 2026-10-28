@@ -1,4 +1,4 @@
 window.NFL_PROBABILITIES_CONFIG = {
-  // Empty so the game does not call the Cloudflare Worker.
-  apiUrl: "",
+  // Cloudflare Worker URL only — no tokens here.
+  apiUrl: "https://nfl-probabilities-api.hans-schumann.workers.dev",
 };
