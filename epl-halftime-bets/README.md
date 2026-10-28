@@ -33,7 +33,11 @@ python3 scripts/build_live_board.py
 
 Push `odds.json` and `board.json` to GitHub Pages. The page polls `board.json` every 60s.
 
-## Live mode (Cloudflare Worker — lower latency)
+## Cloudflare Worker (off)
+
+The page does not call the Worker. `workerUrl` in `config.js` is empty, and the Worker cron is commented out in `wrangler.toml`. Delete the deployed `epl-halftime-bets` Worker in the Cloudflare dashboard so the old every-2-minute schedule stops.
+
+To turn it back on later:
 
 ```bash
 cd epl-halftime-bets/cloudflare-worker
