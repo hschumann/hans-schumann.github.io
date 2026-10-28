@@ -5,7 +5,7 @@ import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from nba.board import GRADE_START, graded_signals
+from nba.board import GRADE_START, counts_toward_grade, graded_signals
 from nba.config import Settings
 from nba.espn import _home_spread_from_odds, _parse_line
 from nba.model import accuracy_by_percentile, compute_picks, rank_slate, team_ats_scores
@@ -186,6 +186,11 @@ class PercentileAccuracyTests(unittest.TestCase):
 
 
 class GradeStartTests(unittest.TestCase):
+    def test_games_before_opening_night_are_not_graded(self) -> None:
+        self.assertFalse(counts_toward_grade("2026-10-26"))
+        self.assertTrue(counts_toward_grade("2026-10-27"))
+        self.assertTrue(counts_toward_grade("2026-11-01"))
+
     def test_percentile_sample_skips_games_before_october_27(self) -> None:
         self.assertEqual(GRADE_START.isoformat(), "2026-10-27")
 
