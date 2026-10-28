@@ -15,6 +15,8 @@ class SpreadParseTests(unittest.TestCase):
         self.assertEqual(_parse_line("+1.5"), 1.5)
         self.assertEqual(_parse_line("-7.5"), -7.5)
         self.assertEqual(_parse_line("PK"), 0.0)
+        self.assertIsNone(_parse_line("OFF"))
+        self.assertIsNone(_parse_line("NL"))
 
     def test_home_spread_from_point_spread(self) -> None:
         odds = {

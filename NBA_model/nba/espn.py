@@ -33,10 +33,14 @@ class EspnGame:
 def _parse_line(raw: str | None) -> float | None:
     if raw is None:
         return None
-    text = str(raw).strip().replace("−", "-")
-    if not text or text.upper() in {"PK", "PICK", "PICK'EM"}:
+    text = str(raw).strip().replace("−", "-").replace("–", "-")
+    if not text or text.upper() in {"PK", "PICK", "PICK'EM", "EVEN"}:
         return 0.0
-    return float(text)
+    try:
+        return float(text)
+    except ValueError:
+        # ESPN uses OFF when a number is not posted yet.
+        return None
 
 
 def _status_from_espn(event: dict) -> str:
