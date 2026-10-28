@@ -27,7 +27,7 @@
   if (!apiBase) {
     showStatus(
       "setup",
-      "This game is not connected yet. Deploy the Cloudflare Worker, then set apiUrl in config.js."
+      "This game is offline."
     );
     return;
   }

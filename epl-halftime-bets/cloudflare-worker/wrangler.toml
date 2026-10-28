@@ -13,5 +13,6 @@ compatibility_date = "2026-08-19"
 # [vars]
 # ODDS_JSON_URL = "https://hans-schumann.com/epl-halftime-bets/odds.json"
 
-[triggers]
-crons = ["*/2 * * * *"]
+# Cron disabled. A schedule here runs on Cloudflare even when nobody visits the site.
+# [triggers]
+# crons = ["*/2 * * * *"]
