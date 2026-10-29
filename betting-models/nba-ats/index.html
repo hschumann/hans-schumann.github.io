@@ -41,24 +41,15 @@
   </section>
 
   <section class="section card stack">
-    <h2>Accuracy by |Δ| percentile</h2>
-    <p class="muted" id="accuracy-meta">Wins and losses count from October 27, 2026.</p>
-    <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper">
-      <table class="gold-plan-table ats-table ats-slate-table ats-accuracy-table" id="accuracy-table">
-        <caption>Win rate by where a game&rsquo;s |Δ| ranks</caption>
-        <thead>
-          <tr>
-            <th scope="col">Percentile</th>
-            <th scope="col" class="num">|Δ| cutoff</th>
-            <th scope="col" class="num">Record</th>
-            <th scope="col" class="num">Accuracy</th>
-          </tr>
-        </thead>
-        <tbody id="accuracy-body">
-          <tr><td colspan="4" class="muted">Loading…</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <h2>How it works</h2>
+    <p>Same public-overreaction idea as the NFL ATS model, adapted for a multi-game week:</p>
+    <ol>
+      <li>After each game, measure how far each team finished relative to the closing spread.</li>
+      <li>A team&rsquo;s score is its <strong>average ATS margin over the trailing 7 days</strong>.</li>
+      <li>For today&rsquo;s slate, rank matchups by the absolute gap between the two teams&rsquo; 7-day scores.</li>
+      <li>Bet the underperformer (lower / more negative average). The table shows every game that day; the top 3 gaps are the published bets.</li>
+    </ol>
+    <p class="muted">Research tool only&mdash;not betting advice.</p>
   </section>
 
   <section class="section card stack">
@@ -85,15 +76,24 @@
   </section>
 
   <section class="section card stack">
-    <h2>How it works</h2>
-    <p>Same public-overreaction idea as the NFL ATS model, adapted for a multi-game week:</p>
-    <ol>
-      <li>After each game, measure how far each team finished relative to the closing spread.</li>
-      <li>A team&rsquo;s score is its <strong>average ATS margin over the trailing 7 days</strong>.</li>
-      <li>For today&rsquo;s slate, rank matchups by the absolute gap between the two teams&rsquo; 7-day scores.</li>
-      <li>Bet the underperformer (lower / more negative average). The table shows every game that day; the top 3 gaps are the published bets.</li>
-    </ol>
-    <p class="muted">Research tool only&mdash;not betting advice.</p>
+    <h2>Accuracy by |Δ| percentile</h2>
+    <p class="muted" id="accuracy-meta">Wins and losses count from October 27, 2026.</p>
+    <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper">
+      <table class="gold-plan-table ats-table ats-slate-table ats-accuracy-table" id="accuracy-table">
+        <caption>Win rate by where a game&rsquo;s |Δ| ranks</caption>
+        <thead>
+          <tr>
+            <th scope="col">Percentile</th>
+            <th scope="col" class="num">|Δ| cutoff</th>
+            <th scope="col" class="num">Record</th>
+            <th scope="col" class="num">Accuracy</th>
+          </tr>
+        </thead>
+        <tbody id="accuracy-body">
+          <tr><td colspan="4" class="muted">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <section class="section card stack">
