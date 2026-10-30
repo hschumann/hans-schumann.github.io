@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-30T13:22:45.887829-04:00",
+  "updated": "2026-10-30T14:17:54.072251-04:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "grade_start": "2026-10-27",
@@ -29,16 +29,16 @@
         "tipoff_utc": "2026-10-31T00:00:00Z",
         "home_team": "MIN",
         "away_team": "LAC",
-        "home_spread": -6.5,
+        "home_spread": -7.5,
         "home_score_7d": 10.0,
         "away_score_7d": -0.167,
         "home_games_7d": 4,
         "away_games_7d": 3,
         "abs_diff": 10.167,
         "bet_team": "LAC",
-        "bet_spread": 6.5,
+        "bet_spread": 7.5,
         "against_team": "MIN",
-        "message": "LAC +6.5 @ MIN (\u039410.2: LAC -0.2 vs MIN +10.0)"
+        "message": "LAC +7.5 @ MIN (\u039410.2: LAC -0.2 vs MIN +10.0)"
       },
       {
         "rank": 3,
@@ -82,16 +82,16 @@
         "tipoff_utc": "2026-10-31T00:00:00Z",
         "home_team": "MIN",
         "away_team": "LAC",
-        "home_spread": -6.5,
+        "home_spread": -7.5,
         "home_score_7d": 10.0,
         "away_score_7d": -0.167,
         "home_games_7d": 4,
         "away_games_7d": 3,
         "abs_diff": 10.167,
         "bet_team": "LAC",
-        "bet_spread": 6.5,
+        "bet_spread": 7.5,
         "against_team": "MIN",
-        "message": "LAC +6.5 @ MIN (\u039410.2: LAC -0.2 vs MIN +10.0)"
+        "message": "LAC +7.5 @ MIN (\u039410.2: LAC -0.2 vs MIN +10.0)"
       },
       {
         "rank": 3,
@@ -252,7 +252,7 @@
       "away_score_7d": -10.833,
       "abs_diff": 12.667,
       "message": "ORL +5.5 @ TOR (\u039412.7: ORL -10.8 vs TOR +1.8)",
-      "created_at": "2026-10-30T17:22:45+00:00",
+      "created_at": "2026-10-30T18:17:54+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -261,15 +261,15 @@
       "rank": 2,
       "game_id": "401909284",
       "bet_team": "LAC",
-      "bet_spread": 6.5,
+      "bet_spread": 7.5,
       "home_team": "MIN",
       "away_team": "LAC",
       "against_team": "MIN",
       "home_score_7d": 10.0,
       "away_score_7d": -0.167,
       "abs_diff": 10.167,
-      "message": "LAC +6.5 @ MIN (\u039410.2: LAC -0.2 vs MIN +10.0)",
-      "created_at": "2026-10-30T17:22:45+00:00",
+      "message": "LAC +7.5 @ MIN (\u039410.2: LAC -0.2 vs MIN +10.0)",
+      "created_at": "2026-10-30T18:17:54+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -286,7 +286,7 @@
       "away_score_7d": -4.5,
       "abs_diff": 8.333,
       "message": "CHI +14.5 @ BOS (\u03948.3: CHI -4.5 vs BOS +3.8)",
-      "created_at": "2026-10-30T17:22:45+00:00",
+      "created_at": "2026-10-30T18:17:54+00:00",
       "result": "pending",
       "final_score": null
     },

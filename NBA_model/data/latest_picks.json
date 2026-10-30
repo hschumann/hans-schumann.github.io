@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-30T13:22:45.882808-04:00",
+  "generated_at": "2026-10-30T14:17:54.067302-04:00",
   "pick_date": "2026-10-30",
   "lookback_days": 7,
   "sync": {
     "espn_games": 92,
-    "spreads_touched": 6,
-    "results_touched": 3,
+    "spreads_touched": 1,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -32,16 +32,16 @@
       "tipoff_utc": "2026-10-31T00:00:00Z",
       "home_team": "MIN",
       "away_team": "LAC",
-      "home_spread": -6.5,
+      "home_spread": -7.5,
       "home_score_7d": 10.0,
       "away_score_7d": -0.167,
       "home_games_7d": 4,
       "away_games_7d": 3,
       "abs_diff": 10.167,
       "bet_team": "LAC",
-      "bet_spread": 6.5,
+      "bet_spread": 7.5,
       "against_team": "MIN",
-      "message": "LAC +6.5 @ MIN (\u039410.2: LAC -0.2 vs MIN +10.0)"
+      "message": "LAC +7.5 @ MIN (\u039410.2: LAC -0.2 vs MIN +10.0)"
     },
     {
       "rank": 3,
