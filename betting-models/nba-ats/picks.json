@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-31T12:26:49.034057-04:00",
+  "updated": "2026-10-31T13:24:14.442097-04:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "grade_start": "2026-10-27",
@@ -29,16 +29,16 @@
         "tipoff_utc": "2026-11-01T00:30:00Z",
         "home_team": "HOU",
         "away_team": "OKC",
-        "home_spread": -2.5,
+        "home_spread": -3.5,
         "home_score_7d": 6.5,
         "away_score_7d": -12.167,
         "home_games_7d": 4,
         "away_games_7d": 3,
         "abs_diff": 18.667,
         "bet_team": "OKC",
-        "bet_spread": 2.5,
+        "bet_spread": 3.5,
         "against_team": "HOU",
-        "message": "OKC +2.5 @ HOU (\u039418.7: OKC -12.2 vs HOU +6.5)"
+        "message": "OKC +3.5 @ HOU (\u039418.7: OKC -12.2 vs HOU +6.5)"
       },
       {
         "rank": 3,
@@ -82,16 +82,16 @@
         "tipoff_utc": "2026-11-01T00:30:00Z",
         "home_team": "HOU",
         "away_team": "OKC",
-        "home_spread": -2.5,
+        "home_spread": -3.5,
         "home_score_7d": 6.5,
         "away_score_7d": -12.167,
         "home_games_7d": 4,
         "away_games_7d": 3,
         "abs_diff": 18.667,
         "bet_team": "OKC",
-        "bet_spread": 2.5,
+        "bet_spread": 3.5,
         "against_team": "HOU",
-        "message": "OKC +2.5 @ HOU (\u039418.7: OKC -12.2 vs HOU +6.5)"
+        "message": "OKC +3.5 @ HOU (\u039418.7: OKC -12.2 vs HOU +6.5)"
       },
       {
         "rank": 3,
@@ -150,16 +150,16 @@
         "tipoff_utc": "2026-10-31T22:00:00Z",
         "home_team": "CHA",
         "away_team": "PHI",
-        "home_spread": 1.5,
+        "home_spread": -1.5,
         "home_score_7d": -1.25,
         "away_score_7d": -2.25,
         "home_games_7d": 4,
         "away_games_7d": 4,
         "abs_diff": 1.0,
         "bet_team": "PHI",
-        "bet_spread": -1.5,
+        "bet_spread": 1.5,
         "against_team": "CHA",
-        "message": "PHI -1.5 @ CHA (\u03941.0: PHI -2.2 vs CHA -1.2)"
+        "message": "PHI +1.5 @ CHA (\u03941.0: PHI -2.2 vs CHA -1.2)"
       },
       {
         "rank": 7,
@@ -201,7 +201,7 @@
       "away_score_7d": -7.5,
       "abs_diff": 20.667,
       "message": "SAC +8.5 @ MEM (\u039420.7: SAC -7.5 vs MEM +13.2)",
-      "created_at": "2026-10-31T16:26:49+00:00",
+      "created_at": "2026-10-31T17:24:14+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -210,15 +210,15 @@
       "rank": 2,
       "game_id": "401909902",
       "bet_team": "OKC",
-      "bet_spread": 2.5,
+      "bet_spread": 3.5,
       "home_team": "HOU",
       "away_team": "OKC",
       "against_team": "HOU",
       "home_score_7d": 6.5,
       "away_score_7d": -12.167,
       "abs_diff": 18.667,
-      "message": "OKC +2.5 @ HOU (\u039418.7: OKC -12.2 vs HOU +6.5)",
-      "created_at": "2026-10-31T16:26:49+00:00",
+      "message": "OKC +3.5 @ HOU (\u039418.7: OKC -12.2 vs HOU +6.5)",
+      "created_at": "2026-10-31T17:24:14+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -235,7 +235,7 @@
       "away_score_7d": -10.0,
       "abs_diff": 10.5,
       "message": "POR -7.5 @ UTAH (\u039410.5: POR -10.0 vs UTAH +0.5)",
-      "created_at": "2026-10-31T16:26:49+00:00",
+      "created_at": "2026-10-31T17:24:14+00:00",
       "result": "pending",
       "final_score": null
     },

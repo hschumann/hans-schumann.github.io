@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-10-31T12:26:49.028549-04:00",
+  "generated_at": "2026-10-31T13:24:14.436499-04:00",
   "pick_date": "2026-10-31",
   "lookback_days": 7,
   "sync": {
     "espn_games": 104,
-    "spreads_touched": 7,
-    "results_touched": 10,
+    "spreads_touched": 2,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -32,16 +32,16 @@
       "tipoff_utc": "2026-11-01T00:30:00Z",
       "home_team": "HOU",
       "away_team": "OKC",
-      "home_spread": -2.5,
+      "home_spread": -3.5,
       "home_score_7d": 6.5,
       "away_score_7d": -12.167,
       "home_games_7d": 4,
       "away_games_7d": 3,
       "abs_diff": 18.667,
       "bet_team": "OKC",
-      "bet_spread": 2.5,
+      "bet_spread": 3.5,
       "against_team": "HOU",
-      "message": "OKC +2.5 @ HOU (\u039418.7: OKC -12.2 vs HOU +6.5)"
+      "message": "OKC +3.5 @ HOU (\u039418.7: OKC -12.2 vs HOU +6.5)"
     },
     {
       "rank": 3,
