@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-01T16:58:28.325881+00:00",
+  "updated": "2026-11-01T20:58:21.253008+00:00",
   "mode": "live",
   "dates_fetched": [
     "2026-11-01",
@@ -15,25 +15,6 @@
   },
   "live_call_count": 0,
   "matches": [
-    {
-      "match_id": 5795501,
-      "home_team": "Liverpool",
-      "away_team": "Arsenal",
-      "kickoff_utc": "2026-11-01T16:30:00.000Z",
-      "phase": "first_half",
-      "status_label": "first_half",
-      "score_str": "0 - 1",
-      "ht_home": 0,
-      "ht_away": 1,
-      "pred_ft_home": null,
-      "pred_ft_away": null,
-      "pred_total": null,
-      "call": null,
-      "call_label": null,
-      "edge": null,
-      "live_call": false,
-      "odds_matched": false
-    },
     {
       "match_id": 5795498,
       "home_team": "Chelsea",
@@ -177,6 +158,25 @@
       "score_str": "1 - 1",
       "ht_home": 1,
       "ht_away": 0,
+      "pred_ft_home": null,
+      "pred_ft_away": null,
+      "pred_total": null,
+      "call": null,
+      "call_label": null,
+      "edge": null,
+      "live_call": false,
+      "odds_matched": false
+    },
+    {
+      "match_id": 5795501,
+      "home_team": "Liverpool",
+      "away_team": "Arsenal",
+      "kickoff_utc": "2026-11-01T16:30:00.000Z",
+      "phase": "finished",
+      "status_label": "Full-Time",
+      "score_str": "0 - 1",
+      "ht_home": 0,
+      "ht_away": 1,
       "pred_ft_home": null,
       "pred_ft_away": null,
       "pred_total": null,
