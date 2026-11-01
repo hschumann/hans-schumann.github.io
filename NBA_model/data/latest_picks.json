@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-01T12:20:57.208991-05:00",
+  "generated_at": "2026-11-01T13:10:01.234133-05:00",
   "pick_date": "2026-11-01",
   "lookback_days": 7,
   "sync": {
     "espn_games": 93,
-    "spreads_touched": 4,
-    "results_touched": 7,
+    "spreads_touched": 1,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -15,16 +15,16 @@
       "tipoff_utc": "2026-11-02T01:30:00Z",
       "home_team": "GS",
       "away_team": "LAC",
-      "home_spread": -1.5,
+      "home_spread": -2.5,
       "home_score_7d": 18.833,
       "away_score_7d": -6.833,
       "home_games_7d": 3,
       "away_games_7d": 3,
       "abs_diff": 25.667,
       "bet_team": "LAC",
-      "bet_spread": 1.5,
+      "bet_spread": 2.5,
       "against_team": "GS",
-      "message": "LAC +1.5 @ GS (\u039425.7: LAC -6.8 vs GS +18.8)"
+      "message": "LAC +2.5 @ GS (\u039425.7: LAC -6.8 vs GS +18.8)"
     },
     {
       "rank": 2,
