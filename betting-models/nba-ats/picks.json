@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02T15:57:39.602670-05:00",
+  "updated": "2026-11-02T16:58:12.185581-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "grade_start": "2026-10-27",
@@ -116,16 +116,16 @@
         "tipoff_utc": "2026-11-03T03:00:00Z",
         "home_team": "LAC",
         "away_team": "TOR",
-        "home_spread": 5.5,
+        "home_spread": 4.5,
         "home_score_7d": -13.167,
         "away_score_7d": 3.167,
         "home_games_7d": 3,
         "away_games_7d": 3,
         "abs_diff": 16.333,
         "bet_team": "LAC",
-        "bet_spread": 5.5,
+        "bet_spread": 4.5,
         "against_team": "TOR",
-        "message": "LAC +5.5 vs TOR (\u039416.3: LAC -13.2 vs TOR +3.2)"
+        "message": "LAC +4.5 vs TOR (\u039416.3: LAC -13.2 vs TOR +3.2)"
       },
       {
         "rank": 5,
@@ -184,16 +184,16 @@
         "tipoff_utc": "2026-11-03T00:30:00Z",
         "home_team": "PHI",
         "away_team": "CHI",
-        "home_spread": -10.5,
+        "home_spread": -9.5,
         "home_score_7d": 3.5,
         "away_score_7d": -6.5,
         "home_games_7d": 3,
         "away_games_7d": 3,
         "abs_diff": 10.0,
         "bet_team": "CHI",
-        "bet_spread": 10.5,
+        "bet_spread": 9.5,
         "against_team": "PHI",
-        "message": "CHI +10.5 @ PHI (\u039410.0: CHI -6.5 vs PHI +3.5)"
+        "message": "CHI +9.5 @ PHI (\u039410.0: CHI -6.5 vs PHI +3.5)"
       },
       {
         "rank": 9,
@@ -201,16 +201,16 @@
         "tipoff_utc": "2026-11-03T03:00:00Z",
         "home_team": "LAL",
         "away_team": "MIA",
-        "home_spread": -1.5,
+        "home_spread": -2.5,
         "home_score_7d": -3.5,
         "away_score_7d": 4.5,
         "home_games_7d": 4,
         "away_games_7d": 3,
         "abs_diff": 8.0,
         "bet_team": "LAL",
-        "bet_spread": -1.5,
+        "bet_spread": -2.5,
         "against_team": "MIA",
-        "message": "LAL -1.5 vs MIA (\u03948.0: LAL -3.5 vs MIA +4.5)"
+        "message": "LAL -2.5 vs MIA (\u03948.0: LAL -3.5 vs MIA +4.5)"
       },
       {
         "rank": 10,
@@ -218,16 +218,16 @@
         "tipoff_utc": "2026-11-03T01:30:00Z",
         "home_team": "HOU",
         "away_team": "BOS",
-        "home_spread": -5.5,
+        "home_spread": -4.5,
         "home_score_7d": 8.75,
         "away_score_7d": 3.25,
         "home_games_7d": 4,
         "away_games_7d": 4,
         "abs_diff": 5.5,
         "bet_team": "BOS",
-        "bet_spread": 5.5,
+        "bet_spread": 4.5,
         "against_team": "HOU",
-        "message": "BOS +5.5 @ HOU (\u03945.5: BOS +3.2 vs HOU +8.8)"
+        "message": "BOS +4.5 @ HOU (\u03945.5: BOS +3.2 vs HOU +8.8)"
       },
       {
         "rank": 11,
@@ -235,16 +235,16 @@
         "tipoff_utc": "2026-11-03T00:30:00Z",
         "home_team": "CHA",
         "away_team": "DET",
-        "home_spread": 6.5,
+        "home_spread": 5.5,
         "home_score_7d": -5.0,
         "away_score_7d": -0.833,
         "home_games_7d": 4,
         "away_games_7d": 3,
         "abs_diff": 4.167,
         "bet_team": "CHA",
-        "bet_spread": 6.5,
+        "bet_spread": 5.5,
         "against_team": "DET",
-        "message": "CHA +6.5 vs DET (\u03944.2: CHA -5.0 vs DET -0.8)"
+        "message": "CHA +5.5 vs DET (\u03944.2: CHA -5.0 vs DET -0.8)"
       },
       {
         "rank": 12,
@@ -337,7 +337,7 @@
       "away_score_7d": -12.5,
       "abs_diff": 30.0,
       "message": "SAC +8.5 @ DAL (\u039430.0: SAC -12.5 vs DAL +17.5)",
-      "created_at": "2026-11-02T20:57:39+00:00",
+      "created_at": "2026-11-02T21:58:12+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -354,7 +354,7 @@
       "away_score_7d": -2.5,
       "abs_diff": 19.0,
       "message": "PHX +2.5 @ GS (\u039419.0: PHX -2.5 vs GS +16.5)",
-      "created_at": "2026-11-02T20:57:39+00:00",
+      "created_at": "2026-11-02T21:58:12+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -371,7 +371,7 @@
       "away_score_7d": -14.833,
       "abs_diff": 17.333,
       "message": "OKC +4.5 @ CLE (\u039417.3: OKC -14.8 vs CLE +2.5)",
-      "created_at": "2026-11-02T20:57:39+00:00",
+      "created_at": "2026-11-02T21:58:12+00:00",
       "result": "pending",
       "final_score": null
     },
