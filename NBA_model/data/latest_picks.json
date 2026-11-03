@@ -1,64 +1,12 @@
 {
-  "generated_at": "2026-11-02T16:58:12.179526-05:00",
-  "pick_date": "2026-11-02",
+  "generated_at": "2026-11-03T13:44:54.200020-05:00",
+  "pick_date": "2026-11-03",
   "lookback_days": 7,
   "sync": {
-    "espn_games": 105,
+    "espn_games": 95,
     "spreads_touched": 5,
-    "results_touched": 0,
+    "results_touched": 15,
     "odds_api_updates": 0
   },
-  "picks": [
-    {
-      "rank": 1,
-      "game_id": "401909913",
-      "tipoff_utc": "2026-11-03T01:00:00Z",
-      "home_team": "DAL",
-      "away_team": "SAC",
-      "home_spread": -8.5,
-      "home_score_7d": 17.5,
-      "away_score_7d": -12.5,
-      "home_games_7d": 3,
-      "away_games_7d": 3,
-      "abs_diff": 30.0,
-      "bet_team": "SAC",
-      "bet_spread": 8.5,
-      "against_team": "DAL",
-      "message": "SAC +8.5 @ DAL (\u039430.0: SAC -12.5 vs DAL +17.5)"
-    },
-    {
-      "rank": 2,
-      "game_id": "401909919",
-      "tipoff_utc": "2026-11-03T03:00:00Z",
-      "home_team": "GS",
-      "away_team": "PHX",
-      "home_spread": -2.5,
-      "home_score_7d": 16.5,
-      "away_score_7d": -2.5,
-      "home_games_7d": 4,
-      "away_games_7d": 2,
-      "abs_diff": 19.0,
-      "bet_team": "PHX",
-      "bet_spread": 2.5,
-      "against_team": "GS",
-      "message": "PHX +2.5 @ GS (\u039419.0: PHX -2.5 vs GS +16.5)"
-    },
-    {
-      "rank": 3,
-      "game_id": "401909907",
-      "tipoff_utc": "2026-11-03T00:00:00Z",
-      "home_team": "CLE",
-      "away_team": "OKC",
-      "home_spread": -4.5,
-      "home_score_7d": 2.5,
-      "away_score_7d": -14.833,
-      "home_games_7d": 4,
-      "away_games_7d": 3,
-      "abs_diff": 17.333,
-      "bet_team": "OKC",
-      "bet_spread": 4.5,
-      "against_team": "CLE",
-      "message": "OKC +4.5 @ CLE (\u039417.3: OKC -14.8 vs CLE +2.5)"
-    }
-  ]
+  "picks": []
 }
