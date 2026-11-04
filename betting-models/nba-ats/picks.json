@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-04T13:58:17.922557-05:00",
+  "updated": "2026-11-04T15:06:40.061994-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "grade_start": "2026-10-27",
@@ -167,16 +167,16 @@
         "tipoff_utc": "2026-11-05T00:30:00Z",
         "home_team": "BOS",
         "away_team": "MIL",
-        "home_spread": -10.5,
+        "home_spread": -11.5,
         "home_score_7d": -2.833,
         "away_score_7d": -13.5,
         "home_games_7d": 3,
         "away_games_7d": 3,
         "abs_diff": 10.667,
         "bet_team": "MIL",
-        "bet_spread": 10.5,
+        "bet_spread": 11.5,
         "against_team": "BOS",
-        "message": "MIL +10.5 @ BOS (\u039410.7: MIL -13.5 vs BOS -2.8)"
+        "message": "MIL +11.5 @ BOS (\u039410.7: MIL -13.5 vs BOS -2.8)"
       },
       {
         "rank": 8,
@@ -184,16 +184,16 @@
         "tipoff_utc": "2026-11-05T02:30:00Z",
         "home_team": "SA",
         "away_team": "DAL",
-        "home_spread": -12.5,
+        "home_spread": -11.5,
         "home_score_7d": -1.5,
         "away_score_7d": 5.833,
         "home_games_7d": 3,
         "away_games_7d": 3,
         "abs_diff": 7.333,
         "bet_team": "SA",
-        "bet_spread": -12.5,
+        "bet_spread": -11.5,
         "against_team": "DAL",
-        "message": "SA -12.5 vs DAL (\u03947.3: SA -1.5 vs DAL +5.8)"
+        "message": "SA -11.5 vs DAL (\u03947.3: SA -1.5 vs DAL +5.8)"
       },
       {
         "rank": 9,
@@ -320,7 +320,7 @@
       "away_score_7d": -11.25,
       "abs_diff": 21.083,
       "message": "ATL -3.5 @ WSH (\u039421.1: ATL -11.2 vs WSH +9.8)",
-      "created_at": "2026-11-04T18:58:17+00:00",
+      "created_at": "2026-11-04T20:06:40+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -337,7 +337,7 @@
       "away_score_7d": -3.5,
       "abs_diff": 18.333,
       "message": "IND +6.5 @ MEM (\u039418.3: IND -3.5 vs MEM +14.8)",
-      "created_at": "2026-11-04T18:58:17+00:00",
+      "created_at": "2026-11-04T20:06:40+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -354,7 +354,7 @@
       "away_score_7d": -13.0,
       "abs_diff": 14.833,
       "message": "CHA -3.5 @ BKN (\u039414.8: CHA -13.0 vs BKN +1.8)",
-      "created_at": "2026-11-04T18:58:17+00:00",
+      "created_at": "2026-11-04T20:06:40+00:00",
       "result": "pending",
       "final_score": null
     },
