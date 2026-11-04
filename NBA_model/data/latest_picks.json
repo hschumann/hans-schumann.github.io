@@ -1,12 +1,64 @@
 {
-  "generated_at": "2026-11-03T14:52:18.706586-05:00",
-  "pick_date": "2026-11-03",
+  "generated_at": "2026-11-04T13:58:17.914987-05:00",
+  "pick_date": "2026-11-04",
   "lookback_days": 7,
   "sync": {
-    "espn_games": 95,
-    "spreads_touched": 0,
+    "espn_games": 96,
+    "spreads_touched": 13,
     "results_touched": 0,
     "odds_api_updates": 0
   },
-  "picks": []
+  "picks": [
+    {
+      "rank": 1,
+      "game_id": "401909923",
+      "tipoff_utc": "2026-11-05T00:00:00Z",
+      "home_team": "WSH",
+      "away_team": "ATL",
+      "home_spread": 3.5,
+      "home_score_7d": 9.833,
+      "away_score_7d": -11.25,
+      "home_games_7d": 3,
+      "away_games_7d": 4,
+      "abs_diff": 21.083,
+      "bet_team": "ATL",
+      "bet_spread": -3.5,
+      "against_team": "WSH",
+      "message": "ATL -3.5 @ WSH (\u039421.1: ATL -11.2 vs WSH +9.8)"
+    },
+    {
+      "rank": 2,
+      "game_id": "401909927",
+      "tipoff_utc": "2026-11-05T01:00:00Z",
+      "home_team": "MEM",
+      "away_team": "IND",
+      "home_spread": -6.5,
+      "home_score_7d": 14.833,
+      "away_score_7d": -3.5,
+      "home_games_7d": 3,
+      "away_games_7d": 4,
+      "abs_diff": 18.333,
+      "bet_team": "IND",
+      "bet_spread": 6.5,
+      "against_team": "MEM",
+      "message": "IND +6.5 @ MEM (\u039418.3: IND -3.5 vs MEM +14.8)"
+    },
+    {
+      "rank": 3,
+      "game_id": "401909925",
+      "tipoff_utc": "2026-11-05T00:30:00Z",
+      "home_team": "BKN",
+      "away_team": "CHA",
+      "home_spread": 3.5,
+      "home_score_7d": 1.833,
+      "away_score_7d": -13.0,
+      "home_games_7d": 3,
+      "away_games_7d": 4,
+      "abs_diff": 14.833,
+      "bet_team": "CHA",
+      "bet_spread": -3.5,
+      "against_team": "BKN",
+      "message": "CHA -3.5 @ BKN (\u039414.8: CHA -13.0 vs BKN +1.8)"
+    }
+  ]
 }
