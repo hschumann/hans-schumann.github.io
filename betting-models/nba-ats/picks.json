@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06T13:37:28.954024-05:00",
+  "updated": "2026-11-06T14:44:23.409010-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "grade_start": "2026-10-27",
@@ -29,16 +29,16 @@
         "tipoff_utc": "2026-11-07T00:00:00Z",
         "home_team": "CHA",
         "away_team": "BOS",
-        "home_spread": 9.5,
+        "home_spread": 10.5,
         "home_score_7d": -16.25,
         "away_score_7d": -3.25,
         "home_games_7d": 4,
         "away_games_7d": 4,
         "abs_diff": 13.0,
         "bet_team": "CHA",
-        "bet_spread": 9.5,
+        "bet_spread": 10.5,
         "against_team": "BOS",
-        "message": "CHA +9.5 vs BOS (\u039413.0: CHA -16.2 vs BOS -3.2)"
+        "message": "CHA +10.5 vs BOS (\u039413.0: CHA -16.2 vs BOS -3.2)"
       },
       {
         "rank": 3,
@@ -82,16 +82,16 @@
         "tipoff_utc": "2026-11-07T00:00:00Z",
         "home_team": "CHA",
         "away_team": "BOS",
-        "home_spread": 9.5,
+        "home_spread": 10.5,
         "home_score_7d": -16.25,
         "away_score_7d": -3.25,
         "home_games_7d": 4,
         "away_games_7d": 4,
         "abs_diff": 13.0,
         "bet_team": "CHA",
-        "bet_spread": 9.5,
+        "bet_spread": 10.5,
         "against_team": "BOS",
-        "message": "CHA +9.5 vs BOS (\u039413.0: CHA -16.2 vs BOS -3.2)"
+        "message": "CHA +10.5 vs BOS (\u039413.0: CHA -16.2 vs BOS -3.2)"
       },
       {
         "rank": 3,
@@ -133,16 +133,16 @@
         "tipoff_utc": "2026-11-07T01:00:00Z",
         "home_team": "DAL",
         "away_team": "UTAH",
-        "home_spread": -7.5,
+        "home_spread": -6.5,
         "home_score_7d": -0.5,
         "away_score_7d": -7.5,
         "home_games_7d": 3,
         "away_games_7d": 3,
         "abs_diff": 7.0,
         "bet_team": "UTAH",
-        "bet_spread": 7.5,
+        "bet_spread": 6.5,
         "against_team": "DAL",
-        "message": "UTAH +7.5 @ DAL (\u03947.0: UTAH -7.5 vs DAL -0.5)"
+        "message": "UTAH +6.5 @ DAL (\u03947.0: UTAH -7.5 vs DAL -0.5)"
       },
       {
         "rank": 6,
@@ -235,7 +235,7 @@
       "away_score_7d": 5.833,
       "abs_diff": 13.0,
       "message": "ATL -7.5 vs WSH (\u039413.0: ATL -7.2 vs WSH +5.8)",
-      "created_at": "2026-11-06T18:37:28+00:00",
+      "created_at": "2026-11-06T19:44:23+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -244,15 +244,15 @@
       "rank": 2,
       "game_id": "401909288",
       "bet_team": "CHA",
-      "bet_spread": 9.5,
+      "bet_spread": 10.5,
       "home_team": "CHA",
       "away_team": "BOS",
       "against_team": "BOS",
       "home_score_7d": -16.25,
       "away_score_7d": -3.25,
       "abs_diff": 13.0,
-      "message": "CHA +9.5 vs BOS (\u039413.0: CHA -16.2 vs BOS -3.2)",
-      "created_at": "2026-11-06T18:37:28+00:00",
+      "message": "CHA +10.5 vs BOS (\u039413.0: CHA -16.2 vs BOS -3.2)",
+      "created_at": "2026-11-06T19:44:23+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -269,7 +269,7 @@
       "away_score_7d": 12.5,
       "abs_diff": 12.0,
       "message": "LAL -3.5 vs POR (\u039412.0: LAL +0.5 vs POR +12.5)",
-      "created_at": "2026-11-06T18:37:28+00:00",
+      "created_at": "2026-11-06T19:44:23+00:00",
       "result": "pending",
       "final_score": null
     },

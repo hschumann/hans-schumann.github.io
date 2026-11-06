@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-06T13:37:28.947450-05:00",
+  "generated_at": "2026-11-06T14:44:23.403688-05:00",
   "pick_date": "2026-11-06",
   "lookback_days": 7,
   "sync": {
     "espn_games": 94,
-    "spreads_touched": 9,
-    "results_touched": 2,
+    "spreads_touched": 2,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -32,16 +32,16 @@
       "tipoff_utc": "2026-11-07T00:00:00Z",
       "home_team": "CHA",
       "away_team": "BOS",
-      "home_spread": 9.5,
+      "home_spread": 10.5,
       "home_score_7d": -16.25,
       "away_score_7d": -3.25,
       "home_games_7d": 4,
       "away_games_7d": 4,
       "abs_diff": 13.0,
       "bet_team": "CHA",
-      "bet_spread": 9.5,
+      "bet_spread": 10.5,
       "against_team": "BOS",
-      "message": "CHA +9.5 vs BOS (\u039413.0: CHA -16.2 vs BOS -3.2)"
+      "message": "CHA +10.5 vs BOS (\u039413.0: CHA -16.2 vs BOS -3.2)"
     },
     {
       "rank": 3,
