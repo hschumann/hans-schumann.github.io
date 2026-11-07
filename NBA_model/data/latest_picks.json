@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-07T12:05:48.604152-05:00",
+  "generated_at": "2026-11-07T12:53:32.486259-05:00",
   "pick_date": "2026-11-07",
   "lookback_days": 7,
   "sync": {
     "espn_games": 98,
-    "spreads_touched": 7,
-    "results_touched": 9,
+    "spreads_touched": 0,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
