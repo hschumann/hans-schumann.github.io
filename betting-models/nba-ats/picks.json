@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-08T12:19:40.902949-05:00",
+  "updated": "2026-11-08T13:07:55.068535-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "grade_start": "2026-10-27",
@@ -167,16 +167,16 @@
         "tipoff_utc": "2026-11-08T23:00:00Z",
         "home_team": "DET",
         "away_team": "LAL",
-        "home_spread": -4.5,
+        "home_spread": -5.5,
         "home_score_7d": 9.5,
         "away_score_7d": 6.25,
         "home_games_7d": 2,
         "away_games_7d": 4,
         "abs_diff": 3.25,
         "bet_team": "LAL",
-        "bet_spread": 4.5,
+        "bet_spread": 5.5,
         "against_team": "DET",
-        "message": "LAL +4.5 @ DET (\u03943.2: LAL +6.2 vs DET +9.5)"
+        "message": "LAL +5.5 @ DET (\u03943.2: LAL +6.2 vs DET +9.5)"
       }
     ]
   },
@@ -201,7 +201,7 @@
       "away_score_7d": -12.167,
       "abs_diff": 20.333,
       "message": "MIA -10.5 @ SAC (\u039420.3: MIA -12.2 vs SAC +8.2)",
-      "created_at": "2026-11-08T17:19:40+00:00",
+      "created_at": "2026-11-08T18:07:55+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -218,7 +218,7 @@
       "away_score_7d": -4.5,
       "abs_diff": 11.667,
       "message": "UTAH +12.5 @ MIN (\u039411.7: UTAH -4.5 vs MIN +7.2)",
-      "created_at": "2026-11-08T17:19:40+00:00",
+      "created_at": "2026-11-08T18:07:55+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -235,7 +235,7 @@
       "away_score_7d": -2.833,
       "abs_diff": 10.667,
       "message": "CHI +9.5 vs PHI (\u039410.7: CHI -13.5 vs PHI -2.8)",
-      "created_at": "2026-11-08T17:19:40+00:00",
+      "created_at": "2026-11-08T18:07:55+00:00",
       "result": "pending",
       "final_score": null
     },
