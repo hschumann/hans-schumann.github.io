@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-09T16:41:51.500801-05:00",
+  "updated": "2026-11-09T17:45:27.047797-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -117,16 +117,16 @@
         "tipoff_utc": "2026-11-10T03:00:00Z",
         "home_team": "GS",
         "away_team": "NO",
-        "home_spread": -9.5,
+        "home_spread": -11.5,
         "home_score_7d": 1.5,
         "away_score_7d": -17.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 19.0,
         "bet_team": "NO",
-        "bet_spread": 9.5,
+        "bet_spread": 11.5,
         "against_team": "GS",
-        "message": "NO +9.5 @ GS (\u039419.0: NO -17.5 vs GS +1.5)"
+        "message": "NO +11.5 @ GS (\u039419.0: NO -17.5 vs GS +1.5)"
       },
       {
         "rank": 5,
@@ -151,16 +151,16 @@
         "tipoff_utc": "2026-11-10T00:00:00Z",
         "home_team": "ATL",
         "away_team": "LAL",
-        "home_spread": -1.5,
+        "home_spread": -2.5,
         "home_score_7d": -4.5,
         "away_score_7d": 10.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 15.0,
         "bet_team": "ATL",
-        "bet_spread": -1.5,
+        "bet_spread": -2.5,
         "against_team": "LAL",
-        "message": "ATL -1.5 vs LAL (\u039415.0: ATL -4.5 vs LAL +10.5)"
+        "message": "ATL -2.5 vs LAL (\u039415.0: ATL -4.5 vs LAL +10.5)"
       },
       {
         "rank": 7,
@@ -219,7 +219,7 @@
       "away_score_7d": -26.5,
       "abs_diff": 36.0,
       "message": "MEM +2.5 @ TOR (\u039436.0: MEM -26.5 vs TOR +9.5)",
-      "created_at": "2026-11-09T21:41:51+00:00",
+      "created_at": "2026-11-09T22:45:27+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -236,7 +236,7 @@
       "away_score_7d": -4.5,
       "abs_diff": 34.0,
       "message": "IND +4.5 @ DAL (\u039434.0: IND -4.5 vs DAL +29.5)",
-      "created_at": "2026-11-09T21:41:51+00:00",
+      "created_at": "2026-11-09T22:45:27+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -253,7 +253,7 @@
       "away_score_7d": -7.5,
       "abs_diff": 21.0,
       "message": "CHA +8.5 vs CLE (\u039421.0: CHA -28.5 vs CLE -7.5)",
-      "created_at": "2026-11-09T21:41:51+00:00",
+      "created_at": "2026-11-09T22:45:27+00:00",
       "result": "pending",
       "final_score": null
     },
