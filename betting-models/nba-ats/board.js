@@ -110,7 +110,7 @@
     }
 
     meta.textContent = "No qualifying games on " + (today.pick_date || "today") + ".";
-    caption.textContent = "Games sorted by absolute 7-day ATS gap";
+    caption.textContent = "Games sorted by absolute prior-game ATS gap";
     renderSlateTable([]);
   }
 

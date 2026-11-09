@@ -23,7 +23,8 @@ def main() -> int:
     with Store(settings.db_path) as store:
         picks = compute_picks(
             store,
-            lookback_days=settings.ats_lookback_days,
+            lookback_days=None if settings.ats_lookback_games else settings.ats_lookback_days,
+            lookback_games=settings.ats_lookback_games,
             top_n=settings.top_n_picks,
             timezone_name=settings.timezone,
         )

@@ -28,6 +28,7 @@ class Settings:
     odds_api_key: str
     preferred_book: str
     ats_lookback_days: int
+    ats_lookback_games: int | None
     top_n_picks: int
     timezone: str
     db_path: Path
@@ -37,6 +38,10 @@ class Settings:
 
 def get_settings() -> Settings:
     smtp_user = os.getenv("SMTP_USER", "").strip()
+    # Prefer an explicit game-count window when set. Default is prior 1 game,
+    # which had the best top-25% |Δ| accuracy in the Oct 27–Nov 9 sample.
+    games_raw = os.getenv("ATS_LOOKBACK_GAMES", "1").strip()
+    lookback_games = int(games_raw) if games_raw else None
     return Settings(
         smtp_host=os.getenv("SMTP_HOST", "smtp.gmail.com").strip(),
         smtp_port=int(os.getenv("SMTP_PORT", "587")),
@@ -47,6 +52,7 @@ def get_settings() -> Settings:
         odds_api_key=os.getenv("ODDS_API_KEY", "").strip(),
         preferred_book=os.getenv("PREFERRED_BOOK", "draftkings").strip().lower(),
         ats_lookback_days=int(os.getenv("ATS_LOOKBACK_DAYS", "7")),
+        ats_lookback_games=lookback_games,
         top_n_picks=int(os.getenv("TOP_N_PICKS", "3")),
         timezone=os.getenv("TIMEZONE", "America/New_York").strip(),
         db_path=Path(os.getenv("NBA_DB_PATH", str(DB_PATH))),

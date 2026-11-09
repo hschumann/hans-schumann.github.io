@@ -3,8 +3,8 @@
 Same public-overreaction idea as the NFL ATS project, adapted for a multi-game week:
 
 1. For each finished game, store the closing home spread and compute each team’s margin against the spread (ATS).
-2. A team’s **score** is its **average ATS margin over the trailing 7 days**.
-3. For today’s slate, rank matchups by `|home_7d − away_7d|` and bet the **underperformer** (lower 7-day ATS average).
+2. A team’s **score** is its **ATS margin from its most recent completed game**.
+3. For today’s slate, rank matchups by `|home_prior − away_prior|` and bet the **underperformer** (lower prior-game ATS margin).
 4. Publish the **top 3** absolute differences on the site each morning.
 
 ## Data sources
@@ -57,4 +57,4 @@ The job commits `betting-models/nba-ats/picks.json` and `NBA_model/data/*`, whic
 
 ## Theory note
 
-NFL used last week’s single ATS margin. NBA uses a **7-day average** so teams that played more often are comparable. The bet is still the side that recently underperformed relative to the spread, on the assumption the public overweights that sample.
+NFL used last week’s single ATS margin. NBA uses the **prior game** ATS margin after a window comparison found that shorter lookbacks beat 7/10/14-day averages on top-quartile |Δ| accuracy. The bet is still the side that recently underperformed relative to the spread.

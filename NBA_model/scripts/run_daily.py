@@ -45,12 +45,22 @@ def main() -> int:
             tz_name=settings.timezone,
         )
         odds_updates = sync_odds_api_spreads(store, settings)
-        picks = compute_picks(
-            store,
-            lookback_days=settings.ats_lookback_days,
-            top_n=settings.top_n_picks,
-            timezone_name=settings.timezone,
-        )
+        if settings.ats_lookback_games is not None:
+            picks = compute_picks(
+                store,
+                lookback_days=None,
+                lookback_games=settings.ats_lookback_games,
+                top_n=settings.top_n_picks,
+                timezone_name=settings.timezone,
+            )
+        else:
+            picks = compute_picks(
+                store,
+                lookback_days=settings.ats_lookback_days,
+                lookback_games=None,
+                top_n=settings.top_n_picks,
+                timezone_name=settings.timezone,
+            )
 
         tz = ZoneInfo(settings.timezone)
         pick_date = datetime.now(tz).date().isoformat()
@@ -58,6 +68,7 @@ def main() -> int:
             "generated_at": datetime.now(tz).isoformat(),
             "pick_date": pick_date,
             "lookback_days": settings.ats_lookback_days,
+            "lookback_games": settings.ats_lookback_games,
             "sync": {**stats, "odds_api_updates": odds_updates},
             "picks": [p.to_dict() for p in picks],
         }

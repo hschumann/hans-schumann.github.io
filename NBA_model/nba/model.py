@@ -1,4 +1,4 @@
-"""7-day ATS mean-reversion picks (NBA adaptation of the NFL public-overreaction theory)."""
+"""ATS mean-reversion picks (NBA adaptation of the NFL public-overreaction theory)."""
 
 from __future__ import annotations
 
@@ -106,6 +106,33 @@ def team_ats_scores(
     return out
 
 
+def team_ats_scores_last_n(
+    games: list[Game],
+    *,
+    n: int,
+) -> dict[str, TeamWindowScore]:
+    """Average ATS margin over each team's most recent `n` completed games.
+
+    `games` must be in tipoff order. Teams with fewer than `n` games are omitted.
+    """
+    by_team: dict[str, list[float]] = defaultdict(list)
+    for g in games:
+        if g.home_ats is None or g.away_ats is None:
+            continue
+        by_team[g.home_team].append(g.home_ats)
+        by_team[g.away_team].append(g.away_ats)
+    out: dict[str, TeamWindowScore] = {}
+    for team, margins in by_team.items():
+        if len(margins) < n:
+            continue
+        window = margins[-n:]
+        total = sum(window)
+        out[team] = TeamWindowScore(
+            team=team, avg_ats=total / n, games=n, total_ats=total
+        )
+    return out
+
+
 def local_day_bounds(day_local: datetime, tz_name: str) -> tuple[str, str]:
     """Return [start, end) UTC ISO bounds for a local calendar day."""
     tz = ZoneInfo(tz_name)
@@ -125,26 +152,44 @@ def rank_slate(
     store: Store,
     *,
     as_of: datetime | None = None,
-    lookback_days: int = 7,
+    lookback_days: int | None = 7,
+    lookback_games: int | None = None,
     timezone_name: str = "America/New_York",
-    min_games: int = 1,
+    min_games: int | None = None,
 ) -> list[Pick]:
     """
-    Score each team by average ATS margin over the trailing lookback window,
-    then rank every qualifying game on that local day by |home_7d - away_7d|.
+    Score each team by average ATS margin over a trailing window, then rank
+    every qualifying game on that local day by |home_avg - away_avg|.
 
-    Bet the underperformer (lower / more negative 7-day ATS average).
+    Use either `lookback_days` (calendar days) or `lookback_games` (prior N
+    completed games per team). Bet the underperformer (lower / more negative
+    average).
     """
+    if (lookback_days is None) == (lookback_games is None):
+        raise ValueError("Set exactly one of lookback_days or lookback_games")
     as_of = (as_of or datetime.now(timezone.utc)).astimezone(timezone.utc)
-    window_end = as_of
-    window_start = as_of - timedelta(days=lookback_days)
-    completed = store.completed_with_ats(
-        window_start.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
-        window_end.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
-    )
     day_start, day_end = local_day_bounds(as_of, timezone_name)
     # Keep each delta pregame: don't fold today's results back into the averages.
-    scores = team_ats_scores([g for g in completed if g.tipoff_utc < day_start])
+    if lookback_games is not None:
+        # Pull a long enough history that every team can fill N games.
+        history_days = max(45, lookback_games * 8)
+        window_start = as_of - timedelta(days=history_days)
+        completed = store.completed_with_ats(
+            window_start.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+            as_of.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        )
+        prior = [g for g in completed if g.tipoff_utc < day_start]
+        scores = team_ats_scores_last_n(prior, n=lookback_games)
+        required = lookback_games
+    else:
+        assert lookback_days is not None
+        window_start = as_of - timedelta(days=lookback_days)
+        completed = store.completed_with_ats(
+            window_start.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+            as_of.replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        )
+        scores = team_ats_scores([g for g in completed if g.tipoff_utc < day_start])
+        required = 1 if min_games is None else min_games
     todays = [
         g
         for g in store.list_games(tipoff_from=day_start, tipoff_to=day_end)
@@ -157,7 +202,7 @@ def rank_slate(
         away = scores.get(g.away_team)
         if not home or not away:
             continue
-        if home.games < min_games or away.games < min_games:
+        if home.games < required or away.games < required:
             continue
         abs_diff = abs(home.avg_ats - away.avg_ats)
         # Bet the team that underperformed ATS recently
@@ -199,19 +244,53 @@ def compute_picks(
     store: Store,
     *,
     as_of: datetime | None = None,
-    lookback_days: int = 7,
+    lookback_days: int | None = 7,
+    lookback_games: int | None = None,
     top_n: int = 3,
     timezone_name: str = "America/New_York",
-    min_games: int = 1,
+    min_games: int | None = None,
 ) -> list[Pick]:
     """Top `top_n` games from the day's slate, already sorted by |Δ|."""
     return rank_slate(
         store,
         as_of=as_of,
         lookback_days=lookback_days,
+        lookback_games=lookback_games,
         timezone_name=timezone_name,
         min_games=min_games,
     )[:top_n]
+
+
+def top_percentile_accuracy(
+    samples: list[tuple[float, str]],
+    *,
+    percentile: float = 75.0,
+) -> dict:
+    """Accuracy among games whose |Δ| is at or above `percentile` (e.g. 75 = top 25%)."""
+    if not samples:
+        return {
+            "games": 0,
+            "wins": 0,
+            "losses": 0,
+            "pushes": 0,
+            "accuracy": None,
+            "cutoff": None,
+        }
+    ordered = sorted(diff for diff, _ in samples)
+    cutoff = _percentile_value(ordered, percentile)
+    selected = [(diff, result) for diff, result in samples if diff + 1e-9 >= cutoff]
+    wins = sum(1 for _, result in selected if result == "W")
+    losses = sum(1 for _, result in selected if result == "L")
+    pushes = sum(1 for _, result in selected if result == "P")
+    decided = wins + losses
+    return {
+        "games": len(selected),
+        "wins": wins,
+        "losses": losses,
+        "pushes": pushes,
+        "accuracy": (wins / decided) if decided else None,
+        "cutoff": round(cutoff, 3),
+    }
 
 
 # Eight equal bands, largest |Δ| first. Each cutoff is the |Δ| at `low`.

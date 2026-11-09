@@ -143,6 +143,91 @@ class ModelTests(unittest.TestCase):
             self.assertEqual([p.game_id for p in top], ["today"])
             store.close()
 
+    def test_prior_one_game_uses_only_the_latest_result(self) -> None:
+        now = datetime(2026, 10, 18, 12, 0, tzinfo=timezone.utc)
+        with tempfile.TemporaryDirectory() as tmp:
+            store = Store(Path(tmp) / "test.db")
+            older = (now - timedelta(days=4)).isoformat().replace("+00:00", "Z")
+            newer = (now - timedelta(days=1)).isoformat().replace("+00:00", "Z")
+            tip = now.replace(hour=23).isoformat().replace("+00:00", "Z")
+
+            store.upsert_spread(
+                game_id="det-old",
+                tipoff_utc=older,
+                home_team="DET",
+                away_team="CHI",
+                home_spread=-3.5,
+                spread_source="test",
+            )
+            store.upsert_result(
+                game_id="det-old",
+                tipoff_utc=older,
+                home_team="DET",
+                away_team="CHI",
+                home_score=100,
+                away_score=110,
+                status="final",
+            )
+            # DET older ATS = -13.5
+            store.upsert_spread(
+                game_id="det-new",
+                tipoff_utc=newer,
+                home_team="DET",
+                away_team="ORL",
+                home_spread=-1.5,
+                spread_source="test",
+            )
+            store.upsert_result(
+                game_id="det-new",
+                tipoff_utc=newer,
+                home_team="DET",
+                away_team="ORL",
+                home_score=112,
+                away_score=100,
+                status="final",
+            )
+            # DET newest ATS = (112-100) + (-1.5) = 10.5
+            store.upsert_spread(
+                game_id="bos-new",
+                tipoff_utc=newer,
+                home_team="BOS",
+                away_team="NY",
+                home_spread=-4.5,
+                spread_source="test",
+            )
+            store.upsert_result(
+                game_id="bos-new",
+                tipoff_utc=newer,
+                home_team="BOS",
+                away_team="NY",
+                home_score=120,
+                away_score=100,
+                status="final",
+            )
+            # BOS ATS = 15.5
+            store.upsert_spread(
+                game_id="today",
+                tipoff_utc=tip,
+                home_team="DET",
+                away_team="BOS",
+                home_spread=1.5,
+                spread_source="test",
+            )
+
+            slate = rank_slate(
+                store,
+                as_of=now,
+                lookback_days=None,
+                lookback_games=1,
+                timezone_name="UTC",
+            )
+            self.assertEqual(len(slate), 1)
+            self.assertEqual(slate[0].bet_team, "DET")
+            self.assertAlmostEqual(slate[0].home_score_7d, 10.5)
+            self.assertAlmostEqual(slate[0].away_score_7d, 15.5)
+            self.assertAlmostEqual(slate[0].abs_diff, 5.0)
+            store.close()
+
 
 class PercentileAccuracyTests(unittest.TestCase):
     def test_eight_games_land_one_per_bin_with_cutoffs(self) -> None:
@@ -233,6 +318,7 @@ class GradeStartTests(unittest.TestCase):
                 odds_api_key="",
                 preferred_book="",
                 ats_lookback_days=7,
+                ats_lookback_games=None,
                 top_n_picks=3,
                 timezone="America/New_York",
                 db_path=db,

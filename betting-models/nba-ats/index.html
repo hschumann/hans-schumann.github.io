@@ -33,7 +33,7 @@
   <section class="hero">
     <div class="kicker">NBA &bull; against the spread</div>
     <h1>NBA ATS Mean Reversion</h1>
-    <p class="muted">Bet against recent ATS overperformers and with underperformers, using each team&rsquo;s average margin vs the spread over the past 7 days. Every game on the slate is listed below, largest absolute gap first. The top 3 are the published bets.</p>
+    <p class="muted">Bet against recent ATS overperformers and with underperformers, using each team&rsquo;s ATS margin from its prior game. Every game on the slate is listed below, largest absolute gap first. The top 3 are the published bets.</p>
     <p class="published-date">Updated <time id="updated-at">—</time></p>
     <div class="button-row">
       <a class="btn" href="../index.html">Back to betting models</a>
@@ -45,8 +45,8 @@
     <p>Same public-overreaction idea as the NFL ATS model, adapted for a multi-game week:</p>
     <ol>
       <li>After each game, measure how far each team finished relative to the closing spread.</li>
-      <li>A team&rsquo;s score is its <strong>average ATS margin over the trailing 7 days</strong>.</li>
-      <li>For today&rsquo;s slate, rank matchups by the absolute gap between the two teams&rsquo; 7-day scores.</li>
+      <li>A team&rsquo;s score is its <strong>ATS margin from its most recent completed game</strong>.</li>
+      <li>For today&rsquo;s slate, rank matchups by the absolute gap between those two prior-game scores.</li>
       <li>Bet the underperformer (lower / more negative average). The table shows every game that day; the top 3 gaps are the published bets.</li>
     </ol>
     <p class="muted">Research tool only&mdash;not betting advice.</p>
@@ -57,14 +57,14 @@
     <p class="muted" id="today-meta"></p>
     <div class="gold-plan-table-wrapper ats-table-wrapper ats-slate-wrapper ats-games-scroll">
       <table class="gold-plan-table ats-table ats-slate-table" id="slate-table">
-        <caption id="slate-caption">Games sorted by absolute 7-day ATS gap</caption>
+        <caption id="slate-caption">Games sorted by absolute prior-game ATS gap</caption>
         <thead>
           <tr>
             <th scope="col" class="num">|Δ|</th>
             <th scope="col">Game</th>
             <th scope="col">Bet</th>
-            <th scope="col" class="num">Away 7d</th>
-            <th scope="col" class="num">Home 7d</th>
+            <th scope="col" class="num">Away prior</th>
+            <th scope="col" class="num">Home prior</th>
           </tr>
         </thead>
         <tbody id="slate-body">

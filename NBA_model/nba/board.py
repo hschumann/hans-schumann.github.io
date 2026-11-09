@@ -16,7 +16,7 @@ DEFAULT_SITE_BOARD = (
 )
 
 # Grading starts with this local slate date. Earlier games still feed the
-# 7-day averages and can still appear on a slate.
+# lookback averages and can still appear on a slate.
 GRADE_START = date(2026, 10, 27)
 
 
@@ -90,10 +90,19 @@ def slate_on(
     settings: Settings,
     as_of: datetime,
 ) -> list[Pick]:
+    if settings.ats_lookback_games is not None:
+        return rank_slate(
+            store,
+            as_of=as_of,
+            lookback_days=None,
+            lookback_games=settings.ats_lookback_games,
+            timezone_name=settings.timezone,
+        )
     return rank_slate(
         store,
         as_of=as_of,
         lookback_days=settings.ats_lookback_days,
+        lookback_games=None,
         timezone_name=settings.timezone,
     )
 
@@ -194,6 +203,7 @@ def build_board(
         "updated": now.isoformat(),
         "timezone": settings.timezone,
         "lookback_days": settings.ats_lookback_days,
+        "lookback_games": settings.ats_lookback_games,
         "grade_start": GRADE_START.isoformat(),
         "today": slate_payload(slate, pick_date=pick_date, top_n=settings.top_n_picks),
         "upcoming": upcoming,
