@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-10T13:59:08.183738-05:00",
+  "generated_at": "2026-11-10T15:04:05.154184-05:00",
   "pick_date": "2026-11-10",
   "lookback_days": 7,
   "lookback_games": 1,
   "sync": {
     "espn_games": 93,
-    "spreads_touched": 6,
-    "results_touched": 8,
+    "spreads_touched": 1,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -16,16 +16,16 @@
       "tipoff_utc": "2026-11-11T04:00:00Z",
       "home_team": "POR",
       "away_team": "OKC",
-      "home_spread": 2.5,
+      "home_spread": 1.5,
       "home_score_7d": -16.5,
       "away_score_7d": 26.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 43.0,
       "bet_team": "POR",
-      "bet_spread": 2.5,
+      "bet_spread": 1.5,
       "against_team": "OKC",
-      "message": "POR +2.5 vs OKC (\u039443.0: POR -16.5 vs OKC +26.5)"
+      "message": "POR +1.5 vs OKC (\u039443.0: POR -16.5 vs OKC +26.5)"
     },
     {
       "rank": 2,

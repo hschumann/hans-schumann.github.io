@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10T13:59:08.188831-05:00",
+  "updated": "2026-11-10T15:04:05.162125-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -13,16 +13,16 @@
         "tipoff_utc": "2026-11-11T04:00:00Z",
         "home_team": "POR",
         "away_team": "OKC",
-        "home_spread": 2.5,
+        "home_spread": 1.5,
         "home_score_7d": -16.5,
         "away_score_7d": 26.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 43.0,
         "bet_team": "POR",
-        "bet_spread": 2.5,
+        "bet_spread": 1.5,
         "against_team": "OKC",
-        "message": "POR +2.5 vs OKC (\u039443.0: POR -16.5 vs OKC +26.5)"
+        "message": "POR +1.5 vs OKC (\u039443.0: POR -16.5 vs OKC +26.5)"
       },
       {
         "rank": 2,
@@ -66,16 +66,16 @@
         "tipoff_utc": "2026-11-11T04:00:00Z",
         "home_team": "POR",
         "away_team": "OKC",
-        "home_spread": 2.5,
+        "home_spread": 1.5,
         "home_score_7d": -16.5,
         "away_score_7d": 26.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 43.0,
         "bet_team": "POR",
-        "bet_spread": 2.5,
+        "bet_spread": 1.5,
         "against_team": "OKC",
-        "message": "POR +2.5 vs OKC (\u039443.0: POR -16.5 vs OKC +26.5)"
+        "message": "POR +1.5 vs OKC (\u039443.0: POR -16.5 vs OKC +26.5)"
       },
       {
         "rank": 2,
@@ -177,15 +177,15 @@
       "rank": 1,
       "game_id": "401909965",
       "bet_team": "POR",
-      "bet_spread": 2.5,
+      "bet_spread": 1.5,
       "home_team": "POR",
       "away_team": "OKC",
       "against_team": "OKC",
       "home_score_7d": -16.5,
       "away_score_7d": 26.5,
       "abs_diff": 43.0,
-      "message": "POR +2.5 vs OKC (\u039443.0: POR -16.5 vs OKC +26.5)",
-      "created_at": "2026-11-10T18:59:08+00:00",
+      "message": "POR +1.5 vs OKC (\u039443.0: POR -16.5 vs OKC +26.5)",
+      "created_at": "2026-11-10T20:04:05+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -202,7 +202,7 @@
       "away_score_7d": 17.5,
       "abs_diff": 35.0,
       "message": "PHX -3.5 vs LAC (\u039435.0: PHX -17.5 vs LAC +17.5)",
-      "created_at": "2026-11-10T18:59:08+00:00",
+      "created_at": "2026-11-10T20:04:05+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -219,7 +219,7 @@
       "away_score_7d": -6.5,
       "abs_diff": 14.0,
       "message": "MIL +15.5 @ NY (\u039414.0: MIL -6.5 vs NY +7.5)",
-      "created_at": "2026-11-10T18:59:08+00:00",
+      "created_at": "2026-11-10T20:04:05+00:00",
       "result": "pending",
       "final_score": null
     },
