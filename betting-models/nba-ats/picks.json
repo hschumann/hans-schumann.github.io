@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11T13:57:17.907499-05:00",
+  "updated": "2026-11-11T14:54:11.656228-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -202,16 +202,16 @@
         "tipoff_utc": "2026-11-12T02:00:00Z",
         "home_team": "UTAH",
         "away_team": "ORL",
-        "home_spread": 4.5,
+        "home_spread": 3.5,
         "home_score_7d": 3.5,
         "away_score_7d": 0.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 3.0,
         "bet_team": "ORL",
-        "bet_spread": -4.5,
+        "bet_spread": -3.5,
         "against_team": "UTAH",
-        "message": "ORL -4.5 @ UTAH (\u03943.0: ORL +0.5 vs UTAH +3.5)"
+        "message": "ORL -3.5 @ UTAH (\u03943.0: ORL +0.5 vs UTAH +3.5)"
       },
       {
         "rank": 10,
@@ -253,7 +253,7 @@
       "away_score_7d": -21.5,
       "abs_diff": 43.0,
       "message": "OKC -1.5 @ POR (\u039443.0: OKC -21.5 vs POR +21.5)",
-      "created_at": "2026-11-11T18:57:17+00:00",
+      "created_at": "2026-11-11T19:54:11+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -270,7 +270,7 @@
       "away_score_7d": 20.5,
       "abs_diff": 39.0,
       "message": "TOR +5.5 vs BOS (\u039439.0: TOR -18.5 vs BOS +20.5)",
-      "created_at": "2026-11-11T18:57:17+00:00",
+      "created_at": "2026-11-11T19:54:11+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -287,7 +287,7 @@
       "away_score_7d": -20.5,
       "abs_diff": 37.0,
       "message": "CLE +3.5 @ NY (\u039437.0: CLE -20.5 vs NY +16.5)",
-      "created_at": "2026-11-11T18:57:17+00:00",
+      "created_at": "2026-11-11T19:54:11+00:00",
       "result": "pending",
       "final_score": null
     },
