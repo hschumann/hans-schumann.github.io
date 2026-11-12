@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-12T14:16:24.633226-05:00",
+  "generated_at": "2026-11-12T15:30:41.135790-05:00",
   "pick_date": "2026-11-12",
   "lookback_days": 7,
   "lookback_games": 1,
   "sync": {
     "espn_games": 96,
-    "spreads_touched": 4,
-    "results_touched": 10,
+    "spreads_touched": 2,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -16,16 +16,16 @@
       "tipoff_utc": "2026-11-13T00:00:00Z",
       "home_team": "PHI",
       "away_team": "TOR",
-      "home_spread": -7.5,
+      "home_spread": -6.5,
       "home_score_7d": -20.5,
       "away_score_7d": 0.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 21.0,
       "bet_team": "PHI",
-      "bet_spread": -7.5,
+      "bet_spread": -6.5,
       "against_team": "TOR",
-      "message": "PHI -7.5 vs TOR (\u039421.0: PHI -20.5 vs TOR +0.5)"
+      "message": "PHI -6.5 vs TOR (\u039421.0: PHI -20.5 vs TOR +0.5)"
     },
     {
       "rank": 2,
@@ -33,16 +33,16 @@
       "tipoff_utc": "2026-11-13T00:00:00Z",
       "home_team": "WSH",
       "away_team": "DET",
-      "home_spread": 10.5,
+      "home_spread": 9.5,
       "home_score_7d": -10.5,
       "away_score_7d": 0.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 11.0,
       "bet_team": "WSH",
-      "bet_spread": 10.5,
+      "bet_spread": 9.5,
       "against_team": "DET",
-      "message": "WSH +10.5 vs DET (\u039411.0: WSH -10.5 vs DET +0.5)"
+      "message": "WSH +9.5 vs DET (\u039411.0: WSH -10.5 vs DET +0.5)"
     },
     {
       "rank": 3,
