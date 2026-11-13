@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13T13:52:39.623642-05:00",
+  "updated": "2026-11-13T15:07:38.577202-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -30,16 +30,16 @@
         "tipoff_utc": "2026-11-14T01:00:00Z",
         "home_team": "CHI",
         "away_team": "ATL",
-        "home_spread": 7.5,
+        "home_spread": 6.5,
         "home_score_7d": 10.5,
         "away_score_7d": -12.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 23.0,
         "bet_team": "ATL",
-        "bet_spread": -7.5,
+        "bet_spread": -6.5,
         "against_team": "CHI",
-        "message": "ATL -7.5 @ CHI (\u039423.0: ATL -12.5 vs CHI +10.5)"
+        "message": "ATL -6.5 @ CHI (\u039423.0: ATL -12.5 vs CHI +10.5)"
       },
       {
         "rank": 3,
@@ -83,16 +83,16 @@
         "tipoff_utc": "2026-11-14T01:00:00Z",
         "home_team": "CHI",
         "away_team": "ATL",
-        "home_spread": 7.5,
+        "home_spread": 6.5,
         "home_score_7d": 10.5,
         "away_score_7d": -12.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 23.0,
         "bet_team": "ATL",
-        "bet_spread": -7.5,
+        "bet_spread": -6.5,
         "against_team": "CHI",
-        "message": "ATL -7.5 @ CHI (\u039423.0: ATL -12.5 vs CHI +10.5)"
+        "message": "ATL -6.5 @ CHI (\u039423.0: ATL -12.5 vs CHI +10.5)"
       },
       {
         "rank": 3,
@@ -134,16 +134,16 @@
         "tipoff_utc": "2026-11-14T01:30:00Z",
         "home_team": "HOU",
         "away_team": "UTAH",
-        "home_spread": -14.5,
+        "home_spread": -15.5,
         "home_score_7d": 0.5,
         "away_score_7d": -11.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 12.0,
         "bet_team": "UTAH",
-        "bet_spread": 14.5,
+        "bet_spread": 15.5,
         "against_team": "HOU",
-        "message": "UTAH +14.5 @ HOU (\u039412.0: UTAH -11.5 vs HOU +0.5)"
+        "message": "UTAH +15.5 @ HOU (\u039412.0: UTAH -11.5 vs HOU +0.5)"
       },
       {
         "rank": 6,
@@ -236,7 +236,7 @@
       "away_score_7d": -1.5,
       "abs_diff": 36.0,
       "message": "NO +3.5 vs MEM (\u039436.0: NO -37.5 vs MEM -1.5)",
-      "created_at": "2026-11-13T18:52:39+00:00",
+      "created_at": "2026-11-13T20:07:38+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -245,15 +245,15 @@
       "rank": 2,
       "game_id": "401909299",
       "bet_team": "ATL",
-      "bet_spread": -7.5,
+      "bet_spread": -6.5,
       "home_team": "CHI",
       "away_team": "ATL",
       "against_team": "CHI",
       "home_score_7d": 10.5,
       "away_score_7d": -12.5,
       "abs_diff": 23.0,
-      "message": "ATL -7.5 @ CHI (\u039423.0: ATL -12.5 vs CHI +10.5)",
-      "created_at": "2026-11-13T18:52:39+00:00",
+      "message": "ATL -6.5 @ CHI (\u039423.0: ATL -12.5 vs CHI +10.5)",
+      "created_at": "2026-11-13T20:07:38+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -270,7 +270,7 @@
       "away_score_7d": -11.5,
       "abs_diff": 22.0,
       "message": "NY -8.5 @ IND (\u039422.0: NY -11.5 vs IND +10.5)",
-      "created_at": "2026-11-13T18:52:39+00:00",
+      "created_at": "2026-11-13T20:07:38+00:00",
       "result": "pending",
       "final_score": null
     },

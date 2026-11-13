@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-13T13:52:39.615032-05:00",
+  "generated_at": "2026-11-13T15:07:38.569057-05:00",
   "pick_date": "2026-11-13",
   "lookback_days": 7,
   "lookback_games": 1,
   "sync": {
     "espn_games": 90,
-    "spreads_touched": 9,
-    "results_touched": 4,
+    "spreads_touched": 2,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -33,16 +33,16 @@
       "tipoff_utc": "2026-11-14T01:00:00Z",
       "home_team": "CHI",
       "away_team": "ATL",
-      "home_spread": 7.5,
+      "home_spread": 6.5,
       "home_score_7d": 10.5,
       "away_score_7d": -12.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 23.0,
       "bet_team": "ATL",
-      "bet_spread": -7.5,
+      "bet_spread": -6.5,
       "against_team": "CHI",
-      "message": "ATL -7.5 @ CHI (\u039423.0: ATL -12.5 vs CHI +10.5)"
+      "message": "ATL -6.5 @ CHI (\u039423.0: ATL -12.5 vs CHI +10.5)"
     },
     {
       "rank": 3,
