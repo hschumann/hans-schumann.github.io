@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-14T12:25:40.498463-05:00",
+  "generated_at": "2026-11-14T13:33:09.504318-05:00",
   "pick_date": "2026-11-14",
   "lookback_days": 7,
   "lookback_games": 1,
   "sync": {
     "espn_games": 98,
-    "spreads_touched": 5,
-    "results_touched": 9,
+    "spreads_touched": 3,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -33,16 +33,16 @@
       "tipoff_utc": "2026-11-15T00:30:00Z",
       "home_team": "CLE",
       "away_team": "DAL",
-      "home_spread": 1.5,
+      "home_spread": 4.5,
       "home_score_7d": -9.5,
       "away_score_7d": -33.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 24.0,
       "bet_team": "DAL",
-      "bet_spread": -1.5,
+      "bet_spread": -4.5,
       "against_team": "CLE",
-      "message": "DAL -1.5 @ CLE (\u039424.0: DAL -33.5 vs CLE -9.5)"
+      "message": "DAL -4.5 @ CLE (\u039424.0: DAL -33.5 vs CLE -9.5)"
     },
     {
       "rank": 3,

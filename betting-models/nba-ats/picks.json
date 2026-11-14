@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-14T12:25:40.508395-05:00",
+  "updated": "2026-11-14T13:33:09.511516-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -30,16 +30,16 @@
         "tipoff_utc": "2026-11-15T00:30:00Z",
         "home_team": "CLE",
         "away_team": "DAL",
-        "home_spread": 1.5,
+        "home_spread": 4.5,
         "home_score_7d": -9.5,
         "away_score_7d": -33.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 24.0,
         "bet_team": "DAL",
-        "bet_spread": -1.5,
+        "bet_spread": -4.5,
         "against_team": "CLE",
-        "message": "DAL -1.5 @ CLE (\u039424.0: DAL -33.5 vs CLE -9.5)"
+        "message": "DAL -4.5 @ CLE (\u039424.0: DAL -33.5 vs CLE -9.5)"
       },
       {
         "rank": 3,
@@ -83,16 +83,16 @@
         "tipoff_utc": "2026-11-15T00:30:00Z",
         "home_team": "CLE",
         "away_team": "DAL",
-        "home_spread": 1.5,
+        "home_spread": 4.5,
         "home_score_7d": -9.5,
         "away_score_7d": -33.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 24.0,
         "bet_team": "DAL",
-        "bet_spread": -1.5,
+        "bet_spread": -4.5,
         "against_team": "CLE",
-        "message": "DAL -1.5 @ CLE (\u039424.0: DAL -33.5 vs CLE -9.5)"
+        "message": "DAL -4.5 @ CLE (\u039424.0: DAL -33.5 vs CLE -9.5)"
       },
       {
         "rank": 3,
@@ -117,16 +117,16 @@
         "tipoff_utc": "2026-11-15T01:00:00Z",
         "home_team": "MIA",
         "away_team": "DET",
-        "home_spread": 4.5,
+        "home_spread": 3.5,
         "home_score_7d": 9.5,
         "away_score_7d": -5.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 15.0,
         "bet_team": "DET",
-        "bet_spread": -4.5,
+        "bet_spread": -3.5,
         "against_team": "MIA",
-        "message": "DET -4.5 @ MIA (\u039415.0: DET -5.5 vs MIA +9.5)"
+        "message": "DET -3.5 @ MIA (\u039415.0: DET -5.5 vs MIA +9.5)"
       },
       {
         "rank": 5,
@@ -134,16 +134,16 @@
         "tipoff_utc": "2026-11-15T01:00:00Z",
         "home_team": "MEM",
         "away_team": "BKN",
-        "home_spread": -3.5,
+        "home_spread": -2.5,
         "home_score_7d": 27.5,
         "away_score_7d": 37.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 10.0,
         "bet_team": "MEM",
-        "bet_spread": -3.5,
+        "bet_spread": -2.5,
         "against_team": "BKN",
-        "message": "MEM -3.5 vs BKN (\u039410.0: MEM +27.5 vs BKN +37.5)"
+        "message": "MEM -2.5 vs BKN (\u039410.0: MEM +27.5 vs BKN +37.5)"
       }
     ]
   },
@@ -168,7 +168,7 @@
       "away_score_7d": 1.5,
       "abs_diff": 29.0,
       "message": "NO +12.5 vs DEN (\u039429.0: NO -27.5 vs DEN +1.5)",
-      "created_at": "2026-11-14T17:25:40+00:00",
+      "created_at": "2026-11-14T18:33:09+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -177,15 +177,15 @@
       "rank": 2,
       "game_id": "401909981",
       "bet_team": "DAL",
-      "bet_spread": -1.5,
+      "bet_spread": -4.5,
       "home_team": "CLE",
       "away_team": "DAL",
       "against_team": "CLE",
       "home_score_7d": -9.5,
       "away_score_7d": -33.5,
       "abs_diff": 24.0,
-      "message": "DAL -1.5 @ CLE (\u039424.0: DAL -33.5 vs CLE -9.5)",
-      "created_at": "2026-11-14T17:25:40+00:00",
+      "message": "DAL -4.5 @ CLE (\u039424.0: DAL -33.5 vs CLE -9.5)",
+      "created_at": "2026-11-14T18:33:09+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -202,7 +202,7 @@
       "away_score_7d": 14.5,
       "abs_diff": 19.0,
       "message": "CHI +15.5 @ MIN (\u039419.0: CHI +14.5 vs MIN +33.5)",
-      "created_at": "2026-11-14T17:25:40+00:00",
+      "created_at": "2026-11-14T18:33:09+00:00",
       "result": "pending",
       "final_score": null
     },
