@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-15T13:06:05.792875-05:00",
+  "generated_at": "2026-11-15T14:09:34.980891-05:00",
   "pick_date": "2026-11-15",
   "lookback_days": 7,
   "lookback_games": 1,
   "sync": {
     "espn_games": 89,
-    "spreads_touched": 9,
-    "results_touched": 5,
+    "spreads_touched": 1,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -50,16 +50,16 @@
       "tipoff_utc": "2026-11-15T23:00:00Z",
       "home_team": "BOS",
       "away_team": "DAL",
-      "home_spread": -13.5,
+      "home_spread": -14.5,
       "home_score_7d": -0.5,
       "away_score_7d": -14.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 14.0,
       "bet_team": "DAL",
-      "bet_spread": 13.5,
+      "bet_spread": 14.5,
       "against_team": "BOS",
-      "message": "DAL +13.5 @ BOS (\u039414.0: DAL -14.5 vs BOS -0.5)"
+      "message": "DAL +14.5 @ BOS (\u039414.0: DAL -14.5 vs BOS -0.5)"
     }
   ]
 }

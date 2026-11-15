@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-15T13:06:05.808432-05:00",
+  "updated": "2026-11-15T14:09:34.989558-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -47,16 +47,16 @@
         "tipoff_utc": "2026-11-15T23:00:00Z",
         "home_team": "BOS",
         "away_team": "DAL",
-        "home_spread": -13.5,
+        "home_spread": -14.5,
         "home_score_7d": -0.5,
         "away_score_7d": -14.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 14.0,
         "bet_team": "DAL",
-        "bet_spread": 13.5,
+        "bet_spread": 14.5,
         "against_team": "BOS",
-        "message": "DAL +13.5 @ BOS (\u039414.0: DAL -14.5 vs BOS -0.5)"
+        "message": "DAL +14.5 @ BOS (\u039414.0: DAL -14.5 vs BOS -0.5)"
       }
     ],
     "slate": [
@@ -100,16 +100,16 @@
         "tipoff_utc": "2026-11-15T23:00:00Z",
         "home_team": "BOS",
         "away_team": "DAL",
-        "home_spread": -13.5,
+        "home_spread": -14.5,
         "home_score_7d": -0.5,
         "away_score_7d": -14.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 14.0,
         "bet_team": "DAL",
-        "bet_spread": 13.5,
+        "bet_spread": 14.5,
         "against_team": "BOS",
-        "message": "DAL +13.5 @ BOS (\u039414.0: DAL -14.5 vs BOS -0.5)"
+        "message": "DAL +14.5 @ BOS (\u039414.0: DAL -14.5 vs BOS -0.5)"
       },
       {
         "rank": 4,
@@ -236,7 +236,7 @@
       "away_score_7d": 25.5,
       "abs_diff": 17.0,
       "message": "UTAH +15.5 vs SA (\u039417.0: UTAH +8.5 vs SA +25.5)",
-      "created_at": "2026-11-15T18:06:05+00:00",
+      "created_at": "2026-11-15T19:09:34+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -253,7 +253,7 @@
       "away_score_7d": -14.5,
       "abs_diff": 16.0,
       "message": "ATL -8.5 @ MIL (\u039416.0: ATL -14.5 vs MIL +1.5)",
-      "created_at": "2026-11-15T18:06:05+00:00",
+      "created_at": "2026-11-15T19:09:34+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -262,15 +262,15 @@
       "rank": 3,
       "game_id": "401909989",
       "bet_team": "DAL",
-      "bet_spread": 13.5,
+      "bet_spread": 14.5,
       "home_team": "BOS",
       "away_team": "DAL",
       "against_team": "BOS",
       "home_score_7d": -0.5,
       "away_score_7d": -14.5,
       "abs_diff": 14.0,
-      "message": "DAL +13.5 @ BOS (\u039414.0: DAL -14.5 vs BOS -0.5)",
-      "created_at": "2026-11-15T18:06:05+00:00",
+      "message": "DAL +14.5 @ BOS (\u039414.0: DAL -14.5 vs BOS -0.5)",
+      "created_at": "2026-11-15T19:09:34+00:00",
       "result": "pending",
       "final_score": null
     },
