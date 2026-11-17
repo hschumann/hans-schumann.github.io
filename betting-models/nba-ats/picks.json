@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-17T15:09:39.556664-05:00",
+  "updated": "2026-11-17T16:24:23.354801-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -168,7 +168,7 @@
       "away_score_7d": -23.5,
       "abs_diff": 16.0,
       "message": "DET +9.5 @ SA (\u039416.0: DET -23.5 vs SA -7.5)",
-      "created_at": "2026-11-17T20:09:39+00:00",
+      "created_at": "2026-11-17T21:24:23+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -185,7 +185,7 @@
       "away_score_7d": -9.5,
       "abs_diff": 14.0,
       "message": "CHA +7.5 @ LAL (\u039414.0: CHA -9.5 vs LAL +4.5)",
-      "created_at": "2026-11-17T20:09:39+00:00",
+      "created_at": "2026-11-17T21:24:23+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -202,7 +202,7 @@
       "away_score_7d": -5.5,
       "abs_diff": 11.0,
       "message": "POR +3.5 @ MIN (\u039411.0: POR -5.5 vs MIN +5.5)",
-      "created_at": "2026-11-17T20:09:39+00:00",
+      "created_at": "2026-11-17T21:24:23+00:00",
       "result": "pending",
       "final_score": null
     },
