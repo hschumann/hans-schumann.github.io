@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-18T14:41:28.329719-05:00",
+  "generated_at": "2026-11-18T15:56:55.462247-05:00",
   "pick_date": "2026-11-18",
   "lookback_days": 7,
   "lookback_games": 1,
   "sync": {
     "espn_games": 96,
-    "spreads_touched": 12,
-    "results_touched": 5,
+    "spreads_touched": 2,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -33,16 +33,16 @@
       "tipoff_utc": "2026-11-19T03:00:00Z",
       "home_team": "SAC",
       "away_team": "PHX",
-      "home_spread": 7.5,
+      "home_spread": 6.5,
       "home_score_7d": -11.5,
       "away_score_7d": 21.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 33.0,
       "bet_team": "SAC",
-      "bet_spread": 7.5,
+      "bet_spread": 6.5,
       "against_team": "PHX",
-      "message": "SAC +7.5 vs PHX (\u039433.0: SAC -11.5 vs PHX +21.5)"
+      "message": "SAC +6.5 vs PHX (\u039433.0: SAC -11.5 vs PHX +21.5)"
     },
     {
       "rank": 3,

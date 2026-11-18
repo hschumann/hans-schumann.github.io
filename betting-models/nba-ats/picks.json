@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18T14:41:28.337283-05:00",
+  "updated": "2026-11-18T15:56:55.472147-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -30,16 +30,16 @@
         "tipoff_utc": "2026-11-19T03:00:00Z",
         "home_team": "SAC",
         "away_team": "PHX",
-        "home_spread": 7.5,
+        "home_spread": 6.5,
         "home_score_7d": -11.5,
         "away_score_7d": 21.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 33.0,
         "bet_team": "SAC",
-        "bet_spread": 7.5,
+        "bet_spread": 6.5,
         "against_team": "PHX",
-        "message": "SAC +7.5 vs PHX (\u039433.0: SAC -11.5 vs PHX +21.5)"
+        "message": "SAC +6.5 vs PHX (\u039433.0: SAC -11.5 vs PHX +21.5)"
       },
       {
         "rank": 3,
@@ -83,16 +83,16 @@
         "tipoff_utc": "2026-11-19T03:00:00Z",
         "home_team": "SAC",
         "away_team": "PHX",
-        "home_spread": 7.5,
+        "home_spread": 6.5,
         "home_score_7d": -11.5,
         "away_score_7d": 21.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 33.0,
         "bet_team": "SAC",
-        "bet_spread": 7.5,
+        "bet_spread": 6.5,
         "against_team": "PHX",
-        "message": "SAC +7.5 vs PHX (\u039433.0: SAC -11.5 vs PHX +21.5)"
+        "message": "SAC +6.5 vs PHX (\u039433.0: SAC -11.5 vs PHX +21.5)"
       },
       {
         "rank": 3,
@@ -151,16 +151,16 @@
         "tipoff_utc": "2026-11-19T00:00:00Z",
         "home_team": "ORL",
         "away_team": "PHI",
-        "home_spread": -1.5,
+        "home_spread": 1.5,
         "home_score_7d": 18.5,
         "away_score_7d": 7.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 11.0,
         "bet_team": "PHI",
-        "bet_spread": 1.5,
+        "bet_spread": -1.5,
         "against_team": "ORL",
-        "message": "PHI +1.5 @ ORL (\u039411.0: PHI +7.5 vs ORL +18.5)"
+        "message": "PHI -1.5 @ ORL (\u039411.0: PHI +7.5 vs ORL +18.5)"
       },
       {
         "rank": 7,
@@ -287,7 +287,7 @@
       "away_score_7d": 31.5,
       "abs_diff": 35.0,
       "message": "LAL -10.5 vs UTAH (\u039435.0: LAL -3.5 vs UTAH +31.5)",
-      "created_at": "2026-11-18T19:41:28+00:00",
+      "created_at": "2026-11-18T20:56:55+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -296,15 +296,15 @@
       "rank": 2,
       "game_id": "401910018",
       "bet_team": "SAC",
-      "bet_spread": 7.5,
+      "bet_spread": 6.5,
       "home_team": "SAC",
       "away_team": "PHX",
       "against_team": "PHX",
       "home_score_7d": -11.5,
       "away_score_7d": 21.5,
       "abs_diff": 33.0,
-      "message": "SAC +7.5 vs PHX (\u039433.0: SAC -11.5 vs PHX +21.5)",
-      "created_at": "2026-11-18T19:41:28+00:00",
+      "message": "SAC +6.5 vs PHX (\u039433.0: SAC -11.5 vs PHX +21.5)",
+      "created_at": "2026-11-18T20:56:55+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -321,7 +321,7 @@
       "away_score_7d": -19.5,
       "abs_diff": 20.0,
       "message": "HOU -7.5 @ IND (\u039420.0: HOU -19.5 vs IND +0.5)",
-      "created_at": "2026-11-18T19:41:28+00:00",
+      "created_at": "2026-11-18T20:56:55+00:00",
       "result": "pending",
       "final_score": null
     },
