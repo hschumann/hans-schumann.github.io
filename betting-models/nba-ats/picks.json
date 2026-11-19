@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-19T14:41:25.865187-05:00",
+  "updated": "2026-11-19T16:02:39.486285-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -117,16 +117,16 @@
         "tipoff_utc": "2026-11-20T01:00:00Z",
         "home_team": "MIL",
         "away_team": "POR",
-        "home_spread": 11.5,
+        "home_spread": 10.5,
         "home_score_7d": 4.5,
         "away_score_7d": 2.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 2.0,
         "bet_team": "POR",
-        "bet_spread": -11.5,
+        "bet_spread": -10.5,
         "against_team": "MIL",
-        "message": "POR -11.5 @ MIL (\u03942.0: POR +2.5 vs MIL +4.5)"
+        "message": "POR -10.5 @ MIL (\u03942.0: POR +2.5 vs MIL +4.5)"
       }
     ]
   },
@@ -151,7 +151,7 @@
       "away_score_7d": -17.5,
       "abs_diff": 25.0,
       "message": "GS +5.5 @ MEM (\u039425.0: GS -17.5 vs MEM +7.5)",
-      "created_at": "2026-11-19T19:41:25+00:00",
+      "created_at": "2026-11-19T21:02:39+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -168,7 +168,7 @@
       "away_score_7d": -31.5,
       "abs_diff": 10.0,
       "message": "LAC +15.5 @ SA (\u039410.0: LAC -31.5 vs SA -21.5)",
-      "created_at": "2026-11-19T19:41:25+00:00",
+      "created_at": "2026-11-19T21:02:39+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -185,7 +185,7 @@
       "away_score_7d": 4.5,
       "abs_diff": 7.0,
       "message": "MIN +1.5 vs NY (\u03947.0: MIN -2.5 vs NY +4.5)",
-      "created_at": "2026-11-19T19:41:25+00:00",
+      "created_at": "2026-11-19T21:02:39+00:00",
       "result": "pending",
       "final_score": null
     },
