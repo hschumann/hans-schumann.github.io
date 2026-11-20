@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20T14:21:17.682003-05:00",
+  "updated": "2026-11-20T15:48:48.119484-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -151,16 +151,16 @@
         "tipoff_utc": "2026-11-21T00:00:00Z",
         "home_team": "ATL",
         "away_team": "CHA",
-        "home_spread": -6.5,
+        "home_spread": -7.5,
         "home_score_7d": 10.5,
         "away_score_7d": 3.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 7.0,
         "bet_team": "CHA",
-        "bet_spread": 6.5,
+        "bet_spread": 7.5,
         "against_team": "ATL",
-        "message": "CHA +6.5 @ ATL (\u03947.0: CHA +3.5 vs ATL +10.5)"
+        "message": "CHA +7.5 @ ATL (\u03947.0: CHA +3.5 vs ATL +10.5)"
       },
       {
         "rank": 7,
@@ -236,7 +236,7 @@
       "away_score_7d": -3.5,
       "abs_diff": 29.0,
       "message": "BKN +6.5 vs ORL (\u039429.0: BKN -32.5 vs ORL -3.5)",
-      "created_at": "2026-11-20T19:21:17+00:00",
+      "created_at": "2026-11-20T20:48:48+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -253,7 +253,7 @@
       "away_score_7d": 8.5,
       "abs_diff": 24.0,
       "message": "WSH +2.5 @ CHI (\u039424.0: WSH +8.5 vs CHI +32.5)",
-      "created_at": "2026-11-20T19:21:17+00:00",
+      "created_at": "2026-11-20T20:48:48+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -270,7 +270,7 @@
       "away_score_7d": -8.5,
       "abs_diff": 17.0,
       "message": "TOR +6.5 @ DET (\u039417.0: TOR -8.5 vs DET +8.5)",
-      "created_at": "2026-11-20T19:21:17+00:00",
+      "created_at": "2026-11-20T20:48:48+00:00",
       "result": "pending",
       "final_score": null
     },
