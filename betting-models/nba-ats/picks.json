@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-21T13:23:27.667647-05:00",
+  "updated": "2026-11-21T14:51:25.348798-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -47,16 +47,16 @@
         "tipoff_utc": "2026-11-22T01:00:00Z",
         "home_team": "DAL",
         "away_team": "LAC",
-        "home_spread": -5.5,
+        "home_spread": -4.5,
         "home_score_7d": 17.5,
         "away_score_7d": 3.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 14.0,
         "bet_team": "LAC",
-        "bet_spread": 5.5,
+        "bet_spread": 4.5,
         "against_team": "DAL",
-        "message": "LAC +5.5 @ DAL (\u039414.0: LAC +3.5 vs DAL +17.5)"
+        "message": "LAC +4.5 @ DAL (\u039414.0: LAC +3.5 vs DAL +17.5)"
       }
     ],
     "slate": [
@@ -100,16 +100,16 @@
         "tipoff_utc": "2026-11-22T01:00:00Z",
         "home_team": "DAL",
         "away_team": "LAC",
-        "home_spread": -5.5,
+        "home_spread": -4.5,
         "home_score_7d": 17.5,
         "away_score_7d": 3.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 14.0,
         "bet_team": "LAC",
-        "bet_spread": 5.5,
+        "bet_spread": 4.5,
         "against_team": "DAL",
-        "message": "LAC +5.5 @ DAL (\u039414.0: LAC +3.5 vs DAL +17.5)"
+        "message": "LAC +4.5 @ DAL (\u039414.0: LAC +3.5 vs DAL +17.5)"
       },
       {
         "rank": 4,
@@ -117,16 +117,16 @@
         "tipoff_utc": "2026-11-22T01:00:00Z",
         "home_team": "SA",
         "away_team": "NO",
-        "home_spread": -18.5,
+        "home_spread": -19.5,
         "home_score_7d": -3.5,
         "away_score_7d": 5.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 9.0,
         "bet_team": "SA",
-        "bet_spread": -18.5,
+        "bet_spread": -19.5,
         "against_team": "NO",
-        "message": "SA -18.5 vs NO (\u03949.0: SA -3.5 vs NO +5.5)"
+        "message": "SA -19.5 vs NO (\u03949.0: SA -3.5 vs NO +5.5)"
       },
       {
         "rank": 5,
@@ -168,7 +168,7 @@
       "away_score_7d": 22.5,
       "abs_diff": 24.0,
       "message": "MIN -6.5 vs MEM (\u039424.0: MIN -1.5 vs MEM +22.5)",
-      "created_at": "2026-11-21T18:23:27+00:00",
+      "created_at": "2026-11-21T19:51:25+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -185,7 +185,7 @@
       "away_score_7d": -6.5,
       "abs_diff": 19.0,
       "message": "BOS -13.5 @ SAC (\u039419.0: BOS -6.5 vs SAC +12.5)",
-      "created_at": "2026-11-21T18:23:27+00:00",
+      "created_at": "2026-11-21T19:51:25+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -194,15 +194,15 @@
       "rank": 3,
       "game_id": "401910025",
       "bet_team": "LAC",
-      "bet_spread": 5.5,
+      "bet_spread": 4.5,
       "home_team": "DAL",
       "away_team": "LAC",
       "against_team": "DAL",
       "home_score_7d": 17.5,
       "away_score_7d": 3.5,
       "abs_diff": 14.0,
-      "message": "LAC +5.5 @ DAL (\u039414.0: LAC +3.5 vs DAL +17.5)",
-      "created_at": "2026-11-21T18:23:27+00:00",
+      "message": "LAC +4.5 @ DAL (\u039414.0: LAC +3.5 vs DAL +17.5)",
+      "created_at": "2026-11-21T19:51:25+00:00",
       "result": "pending",
       "final_score": null
     },
