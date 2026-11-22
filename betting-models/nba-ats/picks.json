@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-22T13:46:35.869747-05:00",
+  "updated": "2026-11-22T15:00:10.107922-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -117,16 +117,16 @@
         "tipoff_utc": "2026-11-23T00:00:00Z",
         "home_team": "UTAH",
         "away_team": "DAL",
-        "home_spread": -1.5,
+        "home_spread": 1.5,
         "home_score_7d": -5.5,
         "away_score_7d": 5.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 11.0,
         "bet_team": "UTAH",
-        "bet_spread": -1.5,
+        "bet_spread": 1.5,
         "against_team": "DAL",
-        "message": "UTAH -1.5 vs DAL (\u039411.0: UTAH -5.5 vs DAL +5.5)"
+        "message": "UTAH +1.5 vs DAL (\u039411.0: UTAH -5.5 vs DAL +5.5)"
       },
       {
         "rank": 5,
@@ -151,16 +151,16 @@
         "tipoff_utc": "2026-11-22T23:00:00Z",
         "home_team": "MIA",
         "away_team": "OKC",
-        "home_spread": -4.5,
+        "home_spread": -3.5,
         "home_score_7d": -4.5,
         "away_score_7d": -5.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 1.0,
         "bet_team": "OKC",
-        "bet_spread": 4.5,
+        "bet_spread": 3.5,
         "against_team": "MIA",
-        "message": "OKC +4.5 @ MIA (\u03941.0: OKC -5.5 vs MIA -4.5)"
+        "message": "OKC +3.5 @ MIA (\u03941.0: OKC -5.5 vs MIA -4.5)"
       },
       {
         "rank": 7,
@@ -202,7 +202,7 @@
       "away_score_7d": -9.5,
       "abs_diff": 16.0,
       "message": "DET -1.5 @ ATL (\u039416.0: DET -9.5 vs ATL +6.5)",
-      "created_at": "2026-11-22T18:46:35+00:00",
+      "created_at": "2026-11-22T20:00:10+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -219,7 +219,7 @@
       "away_score_7d": 7.5,
       "abs_diff": 14.0,
       "message": "CHI +9.5 vs DEN (\u039414.0: CHI -6.5 vs DEN +7.5)",
-      "created_at": "2026-11-22T18:46:35+00:00",
+      "created_at": "2026-11-22T20:00:10+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -236,7 +236,7 @@
       "away_score_7d": -4.5,
       "abs_diff": 11.0,
       "message": "ORL -4.5 @ WSH (\u039411.0: ORL -4.5 vs WSH +6.5)",
-      "created_at": "2026-11-22T18:46:35+00:00",
+      "created_at": "2026-11-22T20:00:10+00:00",
       "result": "pending",
       "final_score": null
     },
