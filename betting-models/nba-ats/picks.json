@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-25T15:47:06.043747-05:00",
+  "updated": "2026-11-25T17:01:43.034238-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -134,16 +134,16 @@
         "tipoff_utc": "2026-11-26T00:30:00Z",
         "home_team": "NY",
         "away_team": "CLE",
-        "home_spread": -1.5,
+        "home_spread": -4.5,
         "home_score_7d": -0.5,
         "away_score_7d": -22.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 22.0,
         "bet_team": "CLE",
-        "bet_spread": 1.5,
+        "bet_spread": 4.5,
         "against_team": "NY",
-        "message": "CLE +1.5 @ NY (\u039422.0: CLE -22.5 vs NY -0.5)"
+        "message": "CLE +4.5 @ NY (\u039422.0: CLE -22.5 vs NY -0.5)"
       },
       {
         "rank": 6,
@@ -168,16 +168,16 @@
         "tipoff_utc": "2026-11-26T03:00:00Z",
         "home_team": "GS",
         "away_team": "SAC",
-        "home_spread": -6.5,
+        "home_spread": -7.5,
         "home_score_7d": 9.5,
         "away_score_7d": -3.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 13.0,
         "bet_team": "SAC",
-        "bet_spread": 6.5,
+        "bet_spread": 7.5,
         "against_team": "GS",
-        "message": "SAC +6.5 @ GS (\u039413.0: SAC -3.5 vs GS +9.5)"
+        "message": "SAC +7.5 @ GS (\u039413.0: SAC -3.5 vs GS +9.5)"
       },
       {
         "rank": 8,
@@ -236,7 +236,7 @@
       "away_score_7d": -15.5,
       "abs_diff": 31.0,
       "message": "BKN +1.5 @ MIL (\u039431.0: BKN -15.5 vs MIL +15.5)",
-      "created_at": "2026-11-25T20:47:06+00:00",
+      "created_at": "2026-11-25T22:01:43+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -253,7 +253,7 @@
       "away_score_7d": 22.5,
       "abs_diff": 26.0,
       "message": "CHA -3.5 vs CHI (\u039426.0: CHA -3.5 vs CHI +22.5)",
-      "created_at": "2026-11-25T20:47:06+00:00",
+      "created_at": "2026-11-25T22:01:43+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -270,7 +270,7 @@
       "away_score_7d": 6.5,
       "abs_diff": 25.0,
       "message": "PHI +1.5 vs MIA (\u039425.0: PHI -18.5 vs MIA +6.5)",
-      "created_at": "2026-11-25T20:47:06+00:00",
+      "created_at": "2026-11-25T22:01:43+00:00",
       "result": "pending",
       "final_score": null
     },
