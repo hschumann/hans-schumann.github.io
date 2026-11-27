@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-27T15:25:21.551177-05:00",
+  "updated": "2026-11-27T16:41:50.920969-05:00",
   "timezone": "America/New_York",
   "lookback_days": 7,
   "lookback_games": 1,
@@ -151,16 +151,16 @@
         "tipoff_utc": "2026-11-28T02:30:00Z",
         "home_team": "SA",
         "away_team": "LAL",
-        "home_spread": -5.5,
+        "home_spread": -6.5,
         "home_score_7d": -8.5,
         "away_score_7d": 1.5,
         "home_games_7d": 1,
         "away_games_7d": 1,
         "abs_diff": 10.0,
         "bet_team": "SA",
-        "bet_spread": -5.5,
+        "bet_spread": -6.5,
         "against_team": "LAL",
-        "message": "SA -5.5 vs LAL (\u039410.0: SA -8.5 vs LAL +1.5)"
+        "message": "SA -6.5 vs LAL (\u039410.0: SA -8.5 vs LAL +1.5)"
       },
       {
         "rank": 7,
@@ -270,7 +270,7 @@
       "away_score_7d": 27.5,
       "abs_diff": 30.0,
       "message": "PHX -3.5 vs DAL (\u039430.0: PHX -2.5 vs DAL +27.5)",
-      "created_at": "2026-11-27T20:25:21+00:00",
+      "created_at": "2026-11-27T21:41:50+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -287,7 +287,7 @@
       "away_score_7d": -27.5,
       "abs_diff": 26.0,
       "message": "DEN -9.5 @ UTAH (\u039426.0: DEN -27.5 vs UTAH -1.5)",
-      "created_at": "2026-11-27T20:25:21+00:00",
+      "created_at": "2026-11-27T21:41:50+00:00",
       "result": "pending",
       "final_score": null
     },
@@ -304,7 +304,7 @@
       "away_score_7d": -8.5,
       "abs_diff": 24.0,
       "message": "MIL +9.5 @ DET (\u039424.0: MIL -8.5 vs DET +15.5)",
-      "created_at": "2026-11-27T20:25:21+00:00",
+      "created_at": "2026-11-27T21:41:50+00:00",
       "result": "pending",
       "final_score": null
     },
