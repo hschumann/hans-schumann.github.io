@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-11-28T14:14:08.170459-05:00",
+  "generated_at": "2026-11-28T15:38:22.000083-05:00",
   "pick_date": "2026-11-28",
   "lookback_days": 7,
   "lookback_games": 1,
   "sync": {
     "espn_games": 93,
-    "spreads_touched": 5,
-    "results_touched": 11,
+    "spreads_touched": 2,
+    "results_touched": 0,
     "odds_api_updates": 0
   },
   "picks": [
@@ -16,16 +16,16 @@
       "tipoff_utc": "2026-11-29T01:00:00Z",
       "home_team": "CHI",
       "away_team": "IND",
-      "home_spread": -1.5,
+      "home_spread": 1.5,
       "home_score_7d": 5.5,
       "away_score_7d": -20.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 26.0,
       "bet_team": "IND",
-      "bet_spread": 1.5,
+      "bet_spread": -1.5,
       "against_team": "CHI",
-      "message": "IND +1.5 @ CHI (\u039426.0: IND -20.5 vs CHI +5.5)"
+      "message": "IND -1.5 @ CHI (\u039426.0: IND -20.5 vs CHI +5.5)"
     },
     {
       "rank": 2,
@@ -50,16 +50,16 @@
       "tipoff_utc": "2026-11-28T22:00:00Z",
       "home_team": "WSH",
       "away_team": "ORL",
-      "home_spread": 3.5,
+      "home_spread": 5.5,
       "home_score_7d": -3.5,
       "away_score_7d": -15.5,
       "home_games_7d": 1,
       "away_games_7d": 1,
       "abs_diff": 12.0,
       "bet_team": "ORL",
-      "bet_spread": -3.5,
+      "bet_spread": -5.5,
       "against_team": "WSH",
-      "message": "ORL -3.5 @ WSH (\u039412.0: ORL -15.5 vs WSH -3.5)"
+      "message": "ORL -5.5 @ WSH (\u039412.0: ORL -15.5 vs WSH -3.5)"
     }
   ]
 }
